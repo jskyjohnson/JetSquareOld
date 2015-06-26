@@ -13,7 +13,6 @@ public class DeathBlock : MonoBehaviour {
 		if (a < 1F) {
 			a += 0.1F;
 			currentColor.a = a;
-			Debug.Log (a);
 			this.gameObject.GetComponent<SpriteRenderer> ().color = currentColor;
 		}
 	}

@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 	void Start () {
 		jumpLoaded = false;
 		canReplicate = false;
-		right = true;
+		right = false;
 	}
 	
 	// Update is called once per frame
@@ -29,15 +29,15 @@ public class Player : MonoBehaviour {
 		{
 			if (touch.phase == TouchPhase.Stationary)
 			{
-				rigidbody2D.AddForce(new Vector2((sinAngle * 0.2f), (cosAngle * 2.8f)), ForceMode2D.Impulse);
+				rigidbody2D.AddForce(new Vector2((sinAngle * 0.1f), (cosAngle * 2.8f)), ForceMode2D.Impulse);
 			}
 			if (touch.phase == TouchPhase.Ended) {
 				jumpLoaded = false;
 			}
 		}
+		Debug.Log (jumpLoaded);
 		if (Input.GetKey ("up") && jumpLoaded == true) {
-			//this.gameObject.rigidbody2D.isKinematic = false;
-			rigidbody2D.AddForce(new Vector2((sinAngle * 0.2f), (cosAngle * 2.8f)), ForceMode2D.Impulse);
+			rigidbody2D.AddForce(new Vector2((sinAngle * 0.3f), (cosAngle * 1.7f)), ForceMode2D.Impulse);
 		}
 		if (Input.GetKeyUp("up")) {
 			jumpLoaded = false;
@@ -56,8 +56,10 @@ public class Player : MonoBehaviour {
 			Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 			cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
 			sinAngle = -(float)(Math.Sin (3.14f * (rot.z / 180f)));
-			jumpLoaded = true;
-			//this.gameObject.rigidbody2D.isKinematic = true;
+			if (jumpLoaded == false) {
+				this.gameObject.rigidbody2D.isKinematic = true;
+				this.gameObject.rigidbody2D.isKinematic = false;
+			}
 			score += 1;
 			Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
 			Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
@@ -65,15 +67,16 @@ public class Player : MonoBehaviour {
 
 			if (right == true) {
 				float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
-				CreatePlatform (randomnum + 1.2f, -6 + (-12 * (score)), UnityEngine.Random.Range(50.0F, 60.0F), randomnum, platformcolor);
+				CreatePlatform (randomnum + 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range(50.0F, 60.0F), randomnum, platformcolor);
 				right = false;
 				Debug.Log ("Generated one on left");
 			} else if (right == false) {
 				float randomnum = UnityEngine.Random.Range (-0F, 2F);
-				CreatePlatform (randomnum -1.2f, -6 + (-12 * (score)), UnityEngine.Random.Range(300F, 310F), randomnum, platformcolor);
+				CreatePlatform (randomnum -1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range(300F, 310F), randomnum, platformcolor);
 				right = true;
 				Debug.Log ("Generated one on right");
 			}
+			jumpLoaded = true;
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
 			//if(coll.gameObject.transform.position.y < ((10 * (-score + 1)) - 5) && coll.gameObject.transform.position.y > (10 * (-score) - 5)) {
@@ -88,9 +91,9 @@ public class Player : MonoBehaviour {
 		GameObject platform;
 		Instantiate(Platform, spawnLocation, platformAngle);
 		if (right == true) {
-			CreateObstacle (randomnum, (int)((score) * (-12.0f)), spaceBetweenObstacles, platformcolor);
+			CreateObstacle (randomnum, (int)((score + 1) * (-12.0f)), spaceBetweenObstacles, platformcolor);
 		} else {
-			CreateObstacle(randomnum, (int)((score) * (-12.0f)), spaceBetweenObstacles, platformcolor);
+			CreateObstacle(randomnum, (int)((score + 1) * (-12.0f)), spaceBetweenObstacles, platformcolor);
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
