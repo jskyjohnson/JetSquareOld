@@ -20,7 +20,6 @@ public class Platform : MonoBehaviour {
 		if (a < 1F) {
 			a += 0.008F;
 			currentColor.a = a;
-			Debug.Log (a);
 			this.gameObject.GetComponent<SpriteRenderer> ().color = currentColor;
 		}
 	}
