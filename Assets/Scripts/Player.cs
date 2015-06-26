@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	public GameObject playershadow;
 	public bool canReplicate;
 	public bool right;
+	public float spaceBetweenObstacles = 3.0f;
 	Quaternion platformAngle;
 	void Start () {
 		jumpLoaded = false;
@@ -64,12 +65,12 @@ public class Player : MonoBehaviour {
 
 			if (right == true) {
 				float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
-				CreatePlatform (randomnum + 1.3f, -7 + (-12 * (score)), UnityEngine.Random.Range(50.0F, 60.0F), randomnum, platformcolor);
+				CreatePlatform (randomnum + 1.2f, -6 + (-12 * (score)), UnityEngine.Random.Range(50.0F, 60.0F), randomnum, platformcolor);
 				right = false;
 				Debug.Log ("Generated one on left");
 			} else if (right == false) {
 				float randomnum = UnityEngine.Random.Range (-0F, 2F);
-				CreatePlatform (randomnum -1.3f, -7 + (-12 * (score)), UnityEngine.Random.Range(300F, 310F), randomnum, platformcolor);
+				CreatePlatform (randomnum -1.2f, -6 + (-12 * (score)), UnityEngine.Random.Range(300F, 310F), randomnum, platformcolor);
 				right = true;
 				Debug.Log ("Generated one on right");
 			}
@@ -87,9 +88,9 @@ public class Player : MonoBehaviour {
 		GameObject platform;
 		Instantiate(Platform, spawnLocation, platformAngle);
 		if (right == true) {
-			CreateObstacle (randomnum, (int)((score) * (-12.0f)), 2.5f, platformcolor);
+			CreateObstacle (randomnum, (int)((score) * (-12.0f)), spaceBetweenObstacles, platformcolor);
 		} else {
-			CreateObstacle(randomnum, (int)((score) * (-12.0f)), 2.5f, platformcolor);
+			CreateObstacle(randomnum, (int)((score) * (-12.0f)), spaceBetweenObstacles, platformcolor);
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
