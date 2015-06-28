@@ -12,6 +12,6 @@ public class Mobile : MonoBehaviour {
 		Camera.main.projectionMatrix = Matrix4x4.Ortho(
 			-orthographicSize * aspect, orthographicSize * aspect,
 			-orthographicSize, orthographicSize,
-			camera.nearClipPlane, camera.farClipPlane);
+			GetComponent<Camera>().nearClipPlane, GetComponent<Camera>().farClipPlane);
 	}
 }

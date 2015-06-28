@@ -11,9 +11,10 @@ public class Player : MonoBehaviour {
 	public Vector3 spawnLocation;
 	public GameObject playerobject;
 	public GameObject playershadow;
+	public GameObject scoreGUI;
 	public bool canReplicate;
 	public bool right;
-	public float spaceBetweenObstacles = 3.0f;
+	public float spaceBetweenObstacles;
 	public bool hasCollided;
 	Quaternion platformAngle;
 	void Start () {
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour {
 		canReplicate = false;
 		right = false;
 		hasCollided = false;
+		spaceBetweenObstacles = 3.5f;
 	}
 	
 	// Update is called once per frame
@@ -31,14 +33,14 @@ public class Player : MonoBehaviour {
 		{
 			if (touch.phase == TouchPhase.Stationary)
 			{
-				rigidbody2D.AddForce(new Vector2((sinAngle * 0.1f), (cosAngle * 2.8f)), ForceMode2D.Impulse);
+				GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.15f), (cosAngle * 2.8f)), ForceMode2D.Impulse);
 			}
 			if (touch.phase == TouchPhase.Ended) {
 				jumpLoaded = false;
 			}
 		}
 		if (Input.GetKey ("up") && jumpLoaded == true) {
-			rigidbody2D.AddForce(new Vector2((sinAngle * 0.3f), (cosAngle * 1.5f)), ForceMode2D.Impulse);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.3f), (cosAngle * 1.9f)), ForceMode2D.Impulse);
 		}
 		if (Input.GetKeyUp("up")) {
 			jumpLoaded = false;
@@ -52,14 +54,14 @@ public class Player : MonoBehaviour {
 		hasCollided = false;
 	}
 
-	void OnCollisionEnter2D(Collision2D coll) {
+	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
 			if (!hasCollided) {
 				if (jumpLoaded == false) {
 					hasCollided = true;
-					this.gameObject.rigidbody2D.isKinematic = true;
-					this.gameObject.rigidbody2D.isKinematic = false;
+					playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
+					this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
@@ -71,23 +73,19 @@ public class Player : MonoBehaviour {
 
 				if (right == true) {
 					float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
-					CreatePlatform (randomnum + 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (50.0F, 60.0F), randomnum, platformcolor);
+					CreatePlatform (randomnum + 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (50.0F, 70.0F), randomnum, platformcolor);
 					right = false;
-					Debug.Log ("Generated one on left");
 				} else if (right == false) {
 					float randomnum = UnityEngine.Random.Range (-0F, 2F);
-					CreatePlatform (randomnum - 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (300F, 310F), randomnum, platformcolor);
+					CreatePlatform (randomnum - 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (290F, 310F), randomnum, platformcolor);
 					right = true;
-					Debug.Log ("Generated one on right");
 				}
 				jumpLoaded = true;
-				Debug.Log (score);
+				scoreGUI.GetComponent<GUIText>().text = score.ToString();
 			}
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
-			//if(coll.gameObject.transform.position.y < ((10 * (-score + 1)) - 5) && coll.gameObject.transform.position.y > (10 * (-score) - 5)) {
-			Application.LoadLevel (Application.loadedLevel);
-			//}
+			Application.LoadLevel ("menu");
 		}
 	}
 	void CreatePlatform(float locx, int locy, float angle, float randomnum, Color platformcolor) {
@@ -96,6 +94,7 @@ public class Player : MonoBehaviour {
 		platformAngle.eulerAngles = new Vector3(0.0f, 0.0f, angle);
 		GameObject platform;
 		Instantiate(Platform, spawnLocation, platformAngle);
+		Debug.Log (spaceBetweenObstacles);
 		if (right == true) {
 			CreateObstacle (randomnum, (int)((score + 1) * (-12.0f)), spaceBetweenObstacles, platformcolor);
 		} else {
