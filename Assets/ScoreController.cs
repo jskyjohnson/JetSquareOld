@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DeathBlock : MonoBehaviour {
-	float a = 0F;
-	public Color currentColor;
+public class ScoreController : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad (this);
 	}
+	
 	// Update is called once per frame
 	void Update () {
 	}

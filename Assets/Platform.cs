@@ -9,18 +9,17 @@ public class Platform : MonoBehaviour {
 	public Color currentColor;
 	// Use this for initialization
 	void Start () {
-		r = UnityEngine.Random.Range (0.5F, 1F);
+		/*r = UnityEngine.Random.Range (0.5F, 1F);
 		g = UnityEngine.Random.Range (0.5F, 1F);
 		b = UnityEngine.Random.Range (0.5F, 1F);
-		currentColor = new Color(r, g, b);
-		this.gameObject.GetComponent<SpriteRenderer> ().color = currentColor;
+		currentColor = new Color(r, g, b);*/
 	}
 	// Update is called once per frame
 	void Update () {
-		if (a < 1F) {
+		/*if (a < 1F) {
 			a += 0.008F;
 			currentColor.a = a;
 			this.gameObject.GetComponent<SpriteRenderer> ().color = currentColor;
-		}
+		}*/
 	}
 }

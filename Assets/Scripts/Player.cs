@@ -2,7 +2,7 @@
 using System;
 
 public class Player : MonoBehaviour {
-	int score = 0;
+	public int score = 0;
 	bool jumpLoaded;
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
 	public bool right;
 	public float spaceBetweenObstacles;
 	public bool hasCollided;
+	public Color levelBasedColor;
+	public float scale;
 	Quaternion platformAngle;
 	void Start () {
 		jumpLoaded = false;
@@ -56,6 +58,31 @@ public class Player : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
+		if (score < 10) {
+			spaceBetweenObstacles = 4.0f;
+			scale = 2.3f;
+			levelBasedColor = new Color(1f, 1f, 1f);
+		} else if (score < 20 && score >= 10) {
+			scale = 2.0f;
+			spaceBetweenObstacles = 3.5f;
+			levelBasedColor = new Color(0.6f, 0.6f, 1f);
+		} else if (score < 30 && score >= 20) {
+			scale = 1.8f;
+			spaceBetweenObstacles = 3.0f;
+			levelBasedColor = new Color(0.6f, 1f, 1f);
+		} else if (score < 40 && score >= 30) {
+			scale = 1.6f;
+			spaceBetweenObstacles = 2.5f;
+			levelBasedColor = new Color(1f, 0.6f, 0.6f);
+		} else if (score < 50 && score >= 40) {
+			scale = 1.4f;
+			spaceBetweenObstacles = 2.25f;
+			levelBasedColor = new Color(1f, 0.6f, 1f);
+		} else {
+			scale = 1.2f;
+			spaceBetweenObstacles = 2.0f;
+			levelBasedColor = new Color(0.6f, 1f, 1f);
+		}
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
 			if (!hasCollided) {
 				if (jumpLoaded == false) {
@@ -73,11 +100,11 @@ public class Player : MonoBehaviour {
 
 				if (right == true) {
 					float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
-					CreatePlatform (randomnum + 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (50.0F, 70.0F), randomnum, platformcolor);
+					CreatePlatform (randomnum + 1.1f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (40.0F, 60.0F), randomnum, levelBasedColor, scale);
 					right = false;
 				} else if (right == false) {
 					float randomnum = UnityEngine.Random.Range (-0F, 2F);
-					CreatePlatform (randomnum - 1.2f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (290F, 310F), randomnum, platformcolor);
+					CreatePlatform (randomnum - 1.1f, -6 + (-12 * (score + 1)), UnityEngine.Random.Range (300F, 320F), randomnum, levelBasedColor, scale);
 					right = true;
 				}
 				jumpLoaded = true;
@@ -88,13 +115,15 @@ public class Player : MonoBehaviour {
 			Application.LoadLevel ("menu");
 		}
 	}
-	void CreatePlatform(float locx, int locy, float angle, float randomnum, Color platformcolor) {
+	void CreatePlatform(float locx, int locy, float angle, float randomnum, Color platformcolor, float scale) {
 		spawnLocation = new Vector3 (locx, locy, 0);
 		platformAngle = Quaternion.identity;
 		platformAngle.eulerAngles = new Vector3(0.0f, 0.0f, angle);
 		GameObject platform;
-		Instantiate(Platform, spawnLocation, platformAngle);
-		Debug.Log (spaceBetweenObstacles);
+		platform = (GameObject)Instantiate(Platform, spawnLocation, platformAngle);
+		platform.GetComponent<SpriteRenderer> ().color = platformcolor;
+		Vector3 platformScale = platform.transform.localScale;
+		platformScale.x = scale;
 		if (right == true) {
 			CreateObstacle (randomnum, (int)((score + 1) * (-12.0f)), spaceBetweenObstacles, platformcolor);
 		} else {
@@ -115,3 +144,7 @@ public class Player : MonoBehaviour {
 		Instantiate(playershadow, spawnLocation, Quaternion.identity);
 	}
 }
+
+/*
+ * 1-10 Easy 10-20 Medium 20-30 Hard 30-40 Very hard 40-50 Elite 50+ yolo mode
+*/

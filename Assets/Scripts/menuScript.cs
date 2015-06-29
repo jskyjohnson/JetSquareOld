@@ -18,6 +18,7 @@ public class menuScript : MonoBehaviour {
 
 	public void Play() {
 		//Debug.Log ("Clicked");
+		Destroy (GameObject.Find ("Score"));
 		Application.LoadLevel ("Scene1");
 	}
 
