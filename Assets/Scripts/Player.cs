@@ -112,6 +112,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
+			StoreHighscore(score);
 			Application.LoadLevel ("menu");
 		}
 	}
@@ -142,6 +143,13 @@ public class Player : MonoBehaviour {
 	void CreatePlayerShadow() {
 		spawnLocation = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
 		Instantiate(playershadow, spawnLocation, Quaternion.identity);
+	}
+	void StoreHighscore(int newHighscore)
+	{
+		int oldHighscore = PlayerPrefs.GetInt("highscore", 0);    
+		if(newHighscore > oldHighscore)
+			PlayerPrefs.SetInt("highscore", newHighscore);
+		PlayerPrefs.Save ();
 	}
 }
 

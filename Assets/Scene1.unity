@@ -258,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 247995796}
   m_LocalRotation: {x: 0, y: 0, z: .50000006, w: .866025388}
   m_LocalPosition: {x: 6.19999981, y: -17, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -344,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 621568050}
   m_LocalRotation: {x: 0, y: 0, z: .499999821, w: -.866025507}
   m_LocalPosition: {x: -.100000001, y: -5.60320663, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -687,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39807bdc85e0344bf93b2e7d8ab6e950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   Platform: {fileID: 621568050}
   Deathblock: {fileID: 707843673}
   spawnLocation: {x: 0, y: 0, z: 0}
@@ -697,6 +698,8 @@ MonoBehaviour:
   right: 1
   spaceBetweenObstacles: 3
   hasCollided: 0
+  levelBasedColor: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
 --- !u!1 &1277197815
 GameObject:
   m_ObjectHideFlags: 0
