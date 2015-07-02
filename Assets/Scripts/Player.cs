@@ -43,7 +43,10 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if (Input.GetKey ("up") && jumpLoaded == true) {
-			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.3f), (cosAngle * 1.9f)), ForceMode2D.Impulse);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.35f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
+		}
+		if (Input.GetKey ("up")) {
+			this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
 		if (Input.GetKeyUp("up")) {
 			jumpLoaded = false;
@@ -60,27 +63,27 @@ public class Player : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
 		if (score < 10) {
-			spaceBetweenObstacles = 4.0f;
-			scale = 2.0f;
+			spaceBetweenObstacles = 3.5f;
+			scale = 1.9f;
 			levelBasedColor = new Color(1f, 1f, 1f);
 		} else if (score < 20 && score >= 10) {
-			scale = 1.7f;
-			spaceBetweenObstacles = 3.5f;
+			scale = 1.8f;
+			spaceBetweenObstacles = 3.2f;
 			levelBasedColor = new Color(0.6f, 0.6f, 1f);
 		} else if (score < 30 && score >= 20) {
-			scale = 1.5f;
+			scale = 1.7f;
 			spaceBetweenObstacles = 3.0f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 		} else if (score < 40 && score >= 30) {
-			scale = 1.3f;
+			scale = 1.6f;
 			spaceBetweenObstacles = 2.8f;
 			levelBasedColor = new Color(1f, 0.6f, 0.6f);
 		} else if (score < 50 && score >= 40) {
-			scale = 1.2f;
+			scale = 1.5f;
 			spaceBetweenObstacles = 2.6f;
 			levelBasedColor = new Color(1f, 0.6f, 1f);
 		} else {
-			scale = 1.1f;
+			scale = 1.4f;
 			spaceBetweenObstacles = 2.3f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 		}
@@ -89,24 +92,26 @@ public class Player : MonoBehaviour {
 				if (jumpLoaded == false) {
 					hasCollided = true;
 					playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
-					this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
 				sinAngle = -(float)(Math.Sin (3.14f * (rot.z / 180f)));
-				score += 1;
-				Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
-				Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
-				this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
-
-				if (right == true) {
-					float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
-					CreatePlatform (randomnum + 1.1f, -5 + (-10 * (score + 1)), UnityEngine.Random.Range (40.0F, 60.0F), randomnum, levelBasedColor, scale);
-					right = false;
-				} else if (right == false) {
-					float randomnum = UnityEngine.Random.Range (-0F, 2F);
-					CreatePlatform (randomnum - 1.1f, -5 + (-10 * (score + 1)), UnityEngine.Random.Range (300F, 320F), randomnum, levelBasedColor, scale);
-					right = true;
+				if(coll.gameObject.GetComponent<PlatformScript>().givenScore == false) {
+					score += 1;
+					coll.gameObject.GetComponent<PlatformScript>().givenScore = true;
+					Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
+					Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
+					this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
+					
+					if (right == true) {
+						float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
+						CreatePlatform (randomnum + 0.7f, -5 + (-10 * (score + 1)), UnityEngine.Random.Range (50.0F, 65.0F), randomnum, levelBasedColor, scale);
+						right = false;
+					} else if (right == false) {
+						float randomnum = UnityEngine.Random.Range (0.6F, 2F);
+						CreatePlatform (randomnum - 0.7f, -5 + (-10 * (score + 1)), UnityEngine.Random.Range (295F, 310F), randomnum, levelBasedColor, scale);
+						right = true;
+					}
 				}
 				jumpLoaded = true;
 				scoreGUI.GetComponent<GUIText>().text = score.ToString();
