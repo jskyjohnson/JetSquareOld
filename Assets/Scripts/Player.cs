@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
 	public Color levelBasedColor;
 	public float scale;
 	public GameObject Coin;
+	public Camera maincamera;
 	Quaternion platformAngle;
 	void Start () {
 		jumpLoaded = false;
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour {
 		hasCollided = false;
 		spaceBetweenObstacles = 3.5f;
 		scale = 2.5f;
-
 		coins = PlayerPrefs.GetInt ("coins", 0);
 	}
 	
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if (Input.GetKey ("up") && jumpLoaded == true) {
-			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.35f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 		}
 		if (Input.GetKey ("up")) {
 			//
@@ -86,15 +86,17 @@ public class Player : MonoBehaviour {
 		if (score < 10) {
 			spaceBetweenObstacles = 3.5f;
 			scale = 1.9f;
-			levelBasedColor = new Color(1f, 1f, 1f);
+			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
+			maincamera.backgroundColor = levelBasedColor;
 		} else if (score < 20 && score >= 10) {
 			scale = 1.8f;
 			spaceBetweenObstacles = 3.2f;
-			levelBasedColor = new Color(0.6f, 0.6f, 1f);
+			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
+			maincamera.backgroundColor = levelBasedColor;
 		} else if (score < 30 && score >= 20) {
 			scale = 1.7f;
 			spaceBetweenObstacles = 3.0f;
-			levelBasedColor = new Color(0.6f, 1f, 1f);
+			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		} else if (score < 40 && score >= 30) {
 			scale = 1.6f;
 			spaceBetweenObstacles = 2.8f;
@@ -115,6 +117,7 @@ public class Player : MonoBehaviour {
 					hasCollided = true;
 					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
 					playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+					playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
@@ -122,9 +125,9 @@ public class Player : MonoBehaviour {
 				if(coll.gameObject.GetComponent<PlatformScript>().givenScore == false) {
 					score += 1;
 					coll.gameObject.GetComponent<PlatformScript>().givenScore = true;
-					Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
-					Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
-					this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
+					//Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
+					//Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
+					//this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
 					
 					if (right == true) {
 						float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
@@ -151,7 +154,7 @@ public class Player : MonoBehaviour {
 		platformAngle.eulerAngles = new Vector3(0.0f, 0.0f, angle);
 		GameObject platform;
 		platform = (GameObject)Instantiate(Platform, spawnLocation, platformAngle);
-		platform.GetComponent<SpriteRenderer> ().color = platformcolor;
+		//platform.GetComponent<SpriteRenderer> ().color = platformcolor;
 		Vector3 platformScale = platform.transform.localScale;
 		platformScale.x = scale;
 		platform.transform.localScale = platformScale;
@@ -167,10 +170,10 @@ public class Player : MonoBehaviour {
 		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 7.5f), locy, 0);
 		GameObject obstacle;
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
-		obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
+		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
 		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 7.5f), locy, 0);
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
-		obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
+		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
 	}
 	void CreatePlayerShadow() {
 		spawnLocation = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
