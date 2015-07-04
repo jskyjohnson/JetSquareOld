@@ -156,10 +156,10 @@ public class Player : MonoBehaviour {
 		platform.transform.localScale = platformScale;
 		if (right == true) {
 			CreateObstacle (randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (-0.5f + randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
 		} else {
 			CreateObstacle(randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (0.5f + randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
