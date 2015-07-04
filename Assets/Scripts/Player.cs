@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 	public float scale;
 	public GameObject Coin;
 	public Camera maincamera;
+	public int coloralternation = 1;
 	Quaternion platformAngle;
 	void Start () {
 		jumpLoaded = false;
@@ -33,6 +34,10 @@ public class Player : MonoBehaviour {
 		spaceBetweenObstacles = 3.5f;
 		scale = 2.5f;
 		coins = PlayerPrefs.GetInt ("coins", 0);
+		Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+		playershadowcolor = new Color(1f, 1f, 1f);
+		playershadowcolor.a = 0.2f;
+		playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 	}
 	
 	// Update is called once per frame
@@ -53,11 +58,33 @@ public class Player : MonoBehaviour {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 		}
 		if (Input.GetKey ("up")) {
+			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+			if(coloralternation >= 1) {
+				playershadowcolor = new Color(1f, 0.54f, 0.54f);
+				coloralternation += 1;
+			} else if(coloralternation == 8) {
+				playershadowcolor = new Color(0.949f, 0.572f, 0.286f);
+				coloralternation = 1;
+			}
+			playershadowcolor.a = 0.7f;
+			Vector3 playershadowscale = playershadow.transform.localScale;
+			playershadowscale.x = 0.35f;
+			playershadowscale.y = 0.35f;
+			playershadow.transform.localScale = playershadowscale;
+			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			//
 			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
 		if (Input.GetKeyUp("up")) {
 			jumpLoaded = false;
+			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+			playershadowcolor = new Color(1f, 1f, 1f);
+			playershadowcolor.a = 0.2f;
+			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+			Vector3 playershadowscale = playershadow.transform.localScale;
+			playershadowscale.x = 0.3f;
+			playershadowscale.y = 0.3f;
+			playershadow.transform.localScale = playershadowscale;
 		}
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
 	}
@@ -127,11 +154,11 @@ public class Player : MonoBehaviour {
 					//this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
 					
 					if (right == true) {
-						float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
+						float randomnum = UnityEngine.Random.Range (4.6F, 5.9F);
 						CreatePlatform (randomnum + 0.8f + 3.0f, -7 + (-10 * (score + 1)), UnityEngine.Random.Range (50.0F, 60.0F), randomnum, levelBasedColor, scale);
 						right = false;
 					} else if (right == false) {
-						float randomnum = UnityEngine.Random.Range (0.6F, 2F);
+						float randomnum = UnityEngine.Random.Range (0F, 1.3F);
 						CreatePlatform (randomnum - 0.8f - 3.0f, -7 + (-10 * (score + 1)), UnityEngine.Random.Range (300F, 310F), randomnum, levelBasedColor, scale);
 						right = true;
 					}
