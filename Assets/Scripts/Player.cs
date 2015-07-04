@@ -59,6 +59,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyUp("up")) {
 			jumpLoaded = false;
 		}
+		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
@@ -69,14 +70,10 @@ public class Player : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
-		Debug.Log ("trigged m8");
 		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
-			Debug.Log ("omg munie");
 			coins += 1;
 			initcoins += 1;
-			Debug.Log ("+1 munie lol");
 			Destroy(coll.gameObject);
-			Debug.Log ("rip");
 			coinGUI.GetComponent<GUIText>().text = initcoins.ToString();
 		}
 	}
@@ -87,12 +84,11 @@ public class Player : MonoBehaviour {
 			spaceBetweenObstacles = 3.5f;
 			scale = 1.9f;
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
-			maincamera.backgroundColor = levelBasedColor;
 		} else if (score < 20 && score >= 10) {
 			scale = 1.8f;
 			spaceBetweenObstacles = 3.2f;
+			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
-			maincamera.backgroundColor = levelBasedColor;
 		} else if (score < 30 && score >= 20) {
 			scale = 1.7f;
 			spaceBetweenObstacles = 3.0f;
