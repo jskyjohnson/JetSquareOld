@@ -82,29 +82,30 @@ public class Player : MonoBehaviour {
 		//handles change in rotation.
 		if (score < 10) {
 			spaceBetweenObstacles = 3.5f;
-			scale = 1.9f;
+			scale = 1.1f;
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
 		} else if (score < 20 && score >= 10) {
-			scale = 1.8f;
+			scale = 1.0f;
 			spaceBetweenObstacles = 3.2f;
 			//previousColor = levelBasedColor;
-			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
+			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
 		} else if (score < 30 && score >= 20) {
-			scale = 1.7f;
+			scale = 0.9f;
 			spaceBetweenObstacles = 3.0f;
-			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
+			levelBasedColor = new Color(0.8823f, 0.8705f, 0.6039f);//yellow
 		} else if (score < 40 && score >= 30) {
-			scale = 1.6f;
-			spaceBetweenObstacles = 2.8f;
-			levelBasedColor = new Color(1f, 0.6f, 0.6f);
-		} else if (score < 50 && score >= 40) {
-			scale = 1.5f;
+			scale = 0.8f;
 			spaceBetweenObstacles = 2.6f;
-			levelBasedColor = new Color(1f, 0.6f, 1f);
+			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
+		} else if (score < 50 && score >= 40) {
+			scale = 0.6f;
+			spaceBetweenObstacles = 2.4f;
+			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
-			scale = 1.4f;
-			spaceBetweenObstacles = 2.3f;
+			scale = 0.6f;
+			spaceBetweenObstacles = 2.0f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
+			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		}
 
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
@@ -127,11 +128,11 @@ public class Player : MonoBehaviour {
 					
 					if (right == true) {
 						float randomnum = UnityEngine.Random.Range (4.0F, 5.5F);
-						CreatePlatform (randomnum + 0.7f, -5 + (-10 * (score + 1)), UnityEngine.Random.Range (50.0F, 65.0F), randomnum, levelBasedColor, scale);
+						CreatePlatform (randomnum + 0.7f + 3.0f, -7 + (-10 * (score + 1)), UnityEngine.Random.Range (50.0F, 65.0F), randomnum, levelBasedColor, scale);
 						right = false;
 					} else if (right == false) {
 						float randomnum = UnityEngine.Random.Range (0.6F, 2F);
-						CreatePlatform (randomnum - 0.7f, -5 + (-10 * (score + 1)), UnityEngine.Random.Range (295F, 310F), randomnum, levelBasedColor, scale);
+						CreatePlatform (randomnum - 0.7f - 3.0f, -7 + (-10 * (score + 1)), UnityEngine.Random.Range (295F, 310F), randomnum, levelBasedColor, scale);
 						right = true;
 					}
 				}
@@ -163,11 +164,11 @@ public class Player : MonoBehaviour {
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
-		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 7.5f), locy, 0);
+		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 3.5f), locy, 0);
 		GameObject obstacle;
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
-		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 7.5f), locy, 0);
+		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 3.5f), locy, 0);
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
 	}
