@@ -7,6 +7,8 @@ public class menuScript : MonoBehaviour {
 	public Button playGame;
 	int highscorevalue;
 	public Text highscore;
+	public Text coins;
+	int coinsvalue;
 	// Use this for initialization
 	void Start () {
 		Menu = Menu.GetComponent<Canvas> ();
@@ -15,6 +17,10 @@ public class menuScript : MonoBehaviour {
 		highscorevalue = PlayerPrefs.GetInt ("highscore");
 		highscore = highscore.GetComponent<Text>();
 		highscore.text = "Highscore: " + highscorevalue;
+
+		coinsvalue = PlayerPrefs.GetInt ("coins");
+		coins = coins.GetComponent<Text> ();
+		coins.text = "Total Coins: " + coinsvalue;
 	}
 	
 	// Update is called once per frame

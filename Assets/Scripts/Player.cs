@@ -3,6 +3,9 @@ using System;
 
 public class Player : MonoBehaviour {
 	public int score = 0;
+	public int coins;
+	public int initcoins = 0;
+
 	bool jumpLoaded;
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
@@ -12,12 +15,14 @@ public class Player : MonoBehaviour {
 	public GameObject playerobject;
 	public GameObject playershadow;
 	public GameObject scoreGUI;
+	public GameObject coinGUI;
 	public bool canReplicate;
 	public bool right;
 	public float spaceBetweenObstacles;
 	public bool hasCollided;
 	public Color levelBasedColor;
 	public float scale;
+	public GameObject Coin;
 	Quaternion platformAngle;
 	void Start () {
 		jumpLoaded = false;
@@ -26,6 +31,8 @@ public class Player : MonoBehaviour {
 		hasCollided = false;
 		spaceBetweenObstacles = 3.5f;
 		scale = 2.5f;
+
+		coins = PlayerPrefs.GetInt ("coins", 0);
 	}
 	
 	// Update is called once per frame
@@ -60,6 +67,19 @@ public class Player : MonoBehaviour {
 		hasCollided = false;
 	}
 
+	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
+		Debug.Log ("trigged m8");
+		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
+			Debug.Log ("omg munie");
+			coins += 1;
+			initcoins += 1;
+			Debug.Log ("+1 munie lol");
+			Destroy(coll.gameObject);
+			Debug.Log ("rip");
+			coinGUI.GetComponent<GUIText>().text = initcoins.ToString();
+		}
+	}
+
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
 		if (score < 10) {
@@ -87,6 +107,7 @@ public class Player : MonoBehaviour {
 			spaceBetweenObstacles = 2.3f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 		}
+
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
 			if (!hasCollided) {
 				if (jumpLoaded == false) {
@@ -118,7 +139,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
-			StoreHighscore(score);
+			StoreValues(score, coins);
 			Application.LoadLevel ("menu");
 		}
 	}
@@ -134,8 +155,10 @@ public class Player : MonoBehaviour {
 		platform.transform.localScale = platformScale;
 		if (right == true) {
 			CreateObstacle (randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
 		} else {
 			CreateObstacle(randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
@@ -151,12 +174,17 @@ public class Player : MonoBehaviour {
 		spawnLocation = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
 		Instantiate(playershadow, spawnLocation, Quaternion.identity);
 	}
-	void StoreHighscore(int newHighscore)
+	void StoreValues(int newHighscore, int newCoins)
 	{
 		int oldHighscore = PlayerPrefs.GetInt("highscore", 0);    
 		if(newHighscore > oldHighscore)
 			PlayerPrefs.SetInt("highscore", newHighscore);
+		PlayerPrefs.SetInt("coins", newCoins);
 		PlayerPrefs.Save ();
+	}
+	void CreateCoin(float locx, float locy) {
+		spawnLocation = new Vector3 (locx, locy, 0);
+		Instantiate(Coin, spawnLocation, Quaternion.identity);
 	}
 }
 
