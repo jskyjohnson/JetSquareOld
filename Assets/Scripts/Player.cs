@@ -53,7 +53,8 @@ public class Player : MonoBehaviour {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.35f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 		}
 		if (Input.GetKey ("up")) {
-			this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			//
+			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
 		if (Input.GetKeyUp("up")) {
 			jumpLoaded = false;
@@ -112,7 +113,8 @@ public class Player : MonoBehaviour {
 			if (!hasCollided) {
 				if (jumpLoaded == false) {
 					hasCollided = true;
-					playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
+					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
+					playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
@@ -155,10 +157,10 @@ public class Player : MonoBehaviour {
 		platform.transform.localScale = platformScale;
 		if (right == true) {
 			CreateObstacle (randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
+			CreateCoin (-0.5f + randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
 		} else {
 			CreateObstacle(randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
+			CreateCoin (0.5f + randomnum + UnityEngine.Random.Range (-spaceBetweenObstacles/2f, spaceBetweenObstacles/2f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
