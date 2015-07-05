@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System;
 public class ShopScript : MonoBehaviour {
 	public Canvas ShopMenu;
-	public Text coins;
+	public static Text coins;
 	public Button backButton;
 	int coinsvalue;
 	public static string[] currentskins = {};

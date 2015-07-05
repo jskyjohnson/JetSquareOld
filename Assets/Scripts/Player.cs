@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
 	public static string currentSpriteName;
 	public Sprite Default;
 	public Sprite CirclePlayer;
+	public Sprite CircleShadow;
 
 
 	Quaternion platformAngle;
@@ -266,6 +267,9 @@ public class Player : MonoBehaviour {
 			break;
 			case "CirclePlayer":
 				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
+			break;
+			case "CircleShadow":
+				playershadow.GetComponent<SpriteRenderer>().sprite = CircleShadow;
 			break;
 		}
 	}
