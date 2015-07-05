@@ -183,7 +183,6 @@ public class Player : MonoBehaviour {
 					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
 					playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 					playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-					Debug.Log(playerobject.GetComponent<Rigidbody2D>().velocity);
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
