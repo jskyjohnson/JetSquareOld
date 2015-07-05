@@ -25,6 +25,13 @@ public class Player : MonoBehaviour {
 	public GameObject Coin;
 	public Camera maincamera;
 	public int coloralternation = 1;
+
+	//sprites
+	public static string currentSpriteName;
+	public Sprite Default;
+	public Sprite CirclePlayer;
+
+
 	Quaternion platformAngle;
 	void Start () {
 		jumpLoaded = false;
@@ -38,6 +45,8 @@ public class Player : MonoBehaviour {
 		playershadowcolor = new Color(1f, 1f, 1f);
 		playershadowcolor.a = 0.2f;
 		playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+		currentSpriteName = PlayerPrefs.GetString ("currentskin");
+		loadSkin ();
 	}
 	
 	// Update is called once per frame
@@ -246,6 +255,20 @@ public class Player : MonoBehaviour {
 	void CreateCoin(float locx, float locy) {
 		spawnLocation = new Vector3 (locx, locy, 0);
 		Instantiate(Coin, spawnLocation, Quaternion.identity);
+	}
+	//loads the proper skin depending on the current configuration.
+	public void loadSkin() {
+		Debug.Log (currentSpriteName);
+		switch (currentSpriteName) {
+			//cases have to be hardcoded because each case differs in some special way.
+			case "Default":
+				Debug.Log ("called");
+				playerobject.GetComponent<SpriteRenderer>().sprite = Default;
+			break;
+			case "CirclePlayer":
+				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
+			break;
+		}
 	}
 }
 

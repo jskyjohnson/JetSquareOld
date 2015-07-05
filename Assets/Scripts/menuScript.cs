@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class menuScript : MonoBehaviour {
 	public Canvas Menu;
@@ -21,6 +22,11 @@ public class menuScript : MonoBehaviour {
 		coinsvalue = PlayerPrefs.GetInt ("coins");
 		coins = coins.GetComponent<Text> ();
 		coins.text = "Total Coins: " + coinsvalue;
+
+		if (!(Array.IndexOf (PlayerPrefsX.GetStringArray ("purchased"), "Default") >= 0)) {
+			PlayerPrefsX.SetStringArray ("purchased", new string[]{"Default"});
+			PlayerPrefs.Save ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -33,6 +39,11 @@ public class menuScript : MonoBehaviour {
 		Destroy (GameObject.Find ("Score"));
 		Application.LoadLevel ("Scene1");
 	}
+
+	public void Shop() {
+		Application.LoadLevel ("ShopMenu");
+	}
+
 
 	public void ExitGame() {
 		Application.Quit ();
