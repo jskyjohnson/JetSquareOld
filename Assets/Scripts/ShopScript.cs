@@ -12,10 +12,9 @@ public class ShopScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ShopMenu = ShopMenu.GetComponent<Canvas> ();
-		coinsvalue = PlayerPrefs.GetInt ("coins");
-		coins = coins.GetComponent<Text> ();
-		coins.text = "Total Coins: " + coinsvalue;
 		currentskins = PlayerPrefsX.GetStringArray ("purchased");
+		coins = ShopMenu.GetComponentInChildren<Text> ();
+		loadcoinvalue (PlayerPrefs.GetInt ("coins"));
 	}
 	
 	// Update is called once per frame
@@ -25,5 +24,9 @@ public class ShopScript : MonoBehaviour {
 
 	public void back() {
 		Application.LoadLevel ("Menu");
+	}
+
+	public static void loadcoinvalue(int coinsvalue) {
+		coins.text = "Total Coins: " + coinsvalue;
 	}
 }

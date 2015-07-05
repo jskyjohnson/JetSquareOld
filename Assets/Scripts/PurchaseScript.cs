@@ -30,8 +30,7 @@ public class PurchaseScript : MonoBehaviour {
 				ShopScript.currentskins = currentskinsList.ToArray ();
 				PlayerPrefsX.SetStringArray("purchased", ShopScript.currentskins);
 
-				ShopScript.coins = ShopScript.coins.GetComponent<Text> ();
-				ShopScript.coins.text = "Total Coins: " + newcoins;
+				ShopScript.loadcoinvalue(newcoins);
 
 				PlayerPrefs.Save ();
 			}
