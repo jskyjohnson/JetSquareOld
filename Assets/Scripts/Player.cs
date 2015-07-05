@@ -171,7 +171,7 @@ public class Player : MonoBehaviour {
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
 			scale = 0.6f;
-			spaceBetweenObstacles = 2.0f;
+			spaceBetweenObstacles = 2.1f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		}
