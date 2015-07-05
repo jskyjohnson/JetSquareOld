@@ -44,16 +44,41 @@ public class Player : MonoBehaviour {
 	void Update () {
 		//Handles movement
 		CreatePlayerShadow();
+		/*
 		foreach (Touch touch in Input.touches)
 		{
-			if (touch.phase == TouchPhase.Stationary)
+			if (touch.phase == TouchPhase.Stationary && jumpLoaded == true)
 			{
-				GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.15f), (cosAngle * 2.8f)), ForceMode2D.Impulse);
+				GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
+			}
+			if (touch.phase == TouchPhase.Stationary) {
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				if(coloralternation >= 1) {
+					playershadowcolor = new Color(1f, 0.54f, 0.54f);
+					coloralternation += 1;
+				} else if(coloralternation == 8) {
+					playershadowcolor = new Color(0.949f, 0.572f, 0.286f);
+					coloralternation = 1;
+				}
+				playershadowcolor.a = 0.7f;
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				playershadowscale.x = 0.35f;
+				playershadowscale.y = 0.35f;
+				playershadow.transform.localScale = playershadowscale;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (touch.phase == TouchPhase.Ended) {
 				jumpLoaded = false;
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				playershadowcolor = new Color(1f, 1f, 1f);
+				playershadowcolor.a = 0.2f;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				playershadowscale.x = 0.3f;
+				playershadowscale.y = 0.3f;
+				playershadow.transform.localScale = playershadowscale;
 			}
-		}
+		}*/
 		if (Input.GetKey ("up") && jumpLoaded == true) {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 		}
@@ -90,7 +115,14 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
-		if (!Input.GetKey("up")) {
+		/*foreach (Touch touch in Input.touches)
+		{
+			if (!(touch.phase == TouchPhase.Stationary))
+			{
+				jumpLoaded = false;
+			}
+		}*/
+		if (!Input.GetKey("up")) { //uncomment this on mobile
 			jumpLoaded = false;
 		}
 		hasCollided = false;
@@ -142,6 +174,7 @@ public class Player : MonoBehaviour {
 					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
 					playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 					playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+					Debug.Log(playerobject.GetComponent<Rigidbody2D>().velocity);
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
@@ -191,11 +224,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
-		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 3.5f), locy, 0);
-		GameObject obstacle;
-		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
+		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 6.1f), locy, 0);
+		GameObject obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
-		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 3.5f), locy, 0);
+		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 6.1f), locy, 0);
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
 	}
