@@ -621,6 +621,7 @@ GameObject:
   - 4: {fileID: 1000772071}
   - 212: {fileID: 1000772070}
   - 58: {fileID: 1000772069}
+  - 95: {fileID: 1000772072}
   m_Layer: 0
   m_Name: Coin(Clone)
   m_TagString: Untagged
@@ -665,7 +666,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a7a85bea0dc64150a5bccc452fcc6fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1000772071
 Transform:
@@ -679,6 +680,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!95 &1000772072
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000772068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f4952ed6f8f9f547ad39ed2d4c9ab3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1052378220
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +758,7 @@ GameObject:
   - 4: {fileID: 1074521146}
   - 212: {fileID: 1074521148}
   - 58: {fileID: 1074521147}
+  - 95: {fileID: 1074521149}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -796,8 +815,25 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a7a85bea0dc64150a5bccc452fcc6fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!95 &1074521149
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074521145}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f4952ed6f8f9f547ad39ed2d4c9ab3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1108948522
 GameObject:
   m_ObjectHideFlags: 0
