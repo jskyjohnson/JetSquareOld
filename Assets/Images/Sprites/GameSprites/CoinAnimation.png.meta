@@ -1,0 +1,253 @@
+fileFormatVersion: 2
+guid: 2c994825b7ced694d967846b49528538
+timeCreated: 1436314041
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: CoinAnimation_0
+    21300002: CoinAnimation_1
+    21300004: CoinAnimation_2
+    21300006: CoinAnimation_3
+    21300008: CoinAnimation_4
+    21300010: CoinAnimation_5
+    21300012: CoinAnimation_6
+    21300014: CoinAnimation_7
+    21300016: CoinAnimation_8
+    21300018: CoinAnimation_9
+    21300020: CoinAnimation_10
+    21300022: CoinAnimation_11
+    21300024: CoinAnimation_12
+    21300026: CoinAnimation_13
+    21300028: CoinAnimation_14
+    21300030: CoinAnimation_15
+    21300032: CoinAnimation_16
+    21300034: CoinAnimation_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: CoinAnimation_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 24
+        width: 50
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_1
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 24
+        width: 40
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 24
+        width: 32
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_3
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 24
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_4
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 24
+        width: 18
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_5
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 24
+        width: 11
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_6
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 24
+        width: 7
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_7
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 24
+        width: 6
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_8
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 24
+        width: 4
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_9
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 24
+        width: 6
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_10
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 24
+        width: 7
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_11
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 24
+        width: 11
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_12
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 24
+        width: 18
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_13
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 24
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_14
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 24
+        width: 32
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_15
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 24
+        width: 40
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_16
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 24
+        width: 50
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CoinAnimation_17
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 24
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
