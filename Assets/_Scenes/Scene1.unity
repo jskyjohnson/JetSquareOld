@@ -952,6 +952,8 @@ MonoBehaviour:
   coloralternation: 1
   Default: {fileID: 21300000, guid: f60c4f294fa7d44aca9a97ec32938eef, type: 3}
   CirclePlayer: {fileID: 21300000, guid: d7ed877daade8435dbd7f011fdfca916, type: 3}
+  TwoSquarePlayer: {fileID: 21300000, guid: f6995d8da9a284c4ba2c43e3d0744424, type: 3}
+  DogePlayer: {fileID: 21300000, guid: 2c6068e5687354a67b72c0a5eff75e73, type: 3}
   CircleShadow: {fileID: 21300000, guid: f12128a55ba274e6f8a97f216d8b3152, type: 3}
 --- !u!1 &1277197815
 GameObject:

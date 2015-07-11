@@ -48,12 +48,16 @@ public class ShopScript : MonoBehaviour {
 			if (PlayerPrefs.GetString ("currentskin") == button.name) {
 				//if item is currently used
 				itemImage.color = new Color (0.34509f, 0.94509f, 1f);
+				Debug.Log (button.name);
 			} else if (!(PlayerPrefs.GetString ("currentskin") == button.name) && contains) {
 				//if item is bought but not currently used
 				itemImage.color = new Color (1f, 1f, 1f);
+				Debug.Log (button.name);
 			} else {
 				//set to unknown picture
+				Debug.Log ("setting to unknown");
 				button.image.overrideSprite = unknownImage;
+				Debug.Log (button.name);
 			}
 			//unknown does not have a configuration because item will stay black despite color because black things tinted different colors are still black.
 			button.image = itemImage;

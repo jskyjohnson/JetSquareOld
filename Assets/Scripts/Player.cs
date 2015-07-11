@@ -30,6 +30,9 @@ public class Player : MonoBehaviour {
 	public static string currentSpriteName;
 	public Sprite Default;
 	public Sprite CirclePlayer;
+	public Sprite TwoSquarePlayer;
+	public Sprite DogePlayer;
+	//shadows
 	public Sprite CircleShadow;
 
 
@@ -259,17 +262,40 @@ public class Player : MonoBehaviour {
 	//loads the proper skin depending on the current configuration.
 	public void loadSkin() {
 		Debug.Log (currentSpriteName);
+		Vector3 playerscale = playerobject.transform.localScale;
 		switch (currentSpriteName) {
 			//cases have to be hardcoded because each case differs in some special way.
 			case "Default":
-				Debug.Log ("called");
 				playerobject.GetComponent<SpriteRenderer>().sprite = Default;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
 			break;
 			case "CirclePlayer":
 				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<CircleCollider2D>();
+				playerscale.x = 0.85f;
+				playerscale.y = 0.85f;
+				playerobject.transform.localScale = playerscale;
 			break;
-			case "CircleShadow":
-				playershadow.GetComponent<SpriteRenderer>().sprite = CircleShadow;
+			case "2SquarePlayer":
+				playerobject.GetComponent<SpriteRenderer>().sprite = TwoSquarePlayer;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<PolygonCollider2D>();
+				playerscale.x = 0.85f;
+				playerscale.y = 0.85f;
+				playerobject.transform.localScale = playerscale;
+			break;
+			case "DogePlayer":
+				playerobject.GetComponent<SpriteRenderer>().sprite = DogePlayer;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<CircleCollider2D>();
+				playerscale.x = 0.85f;
+				playerscale.y = 0.85f;
+				playerobject.transform.localScale = playerscale;
 			break;
 		}
 	}
