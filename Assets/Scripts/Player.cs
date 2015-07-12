@@ -27,7 +27,9 @@ public class Player : MonoBehaviour {
 	public float scale;
 	public int coloralternation = 1;
 	public Vector3 spawnLocation;
+	//powerup controller variables
 	public bool infiniteJumpAllowed;
+	public bool coinMagnet;
 	//sprites
 	public static string currentSpriteName;
 	public Sprite Default;
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour {
 
 		jumpLoaded = false;
 		infiniteJumpAllowed = false;
+		coinMagnet = false;
 		canReplicate = false;
 		right = false;
 		spaceBetweenObstacles = 3.5f;
@@ -146,6 +149,9 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyUp (KeyCode.Q)) {
 			StartCoroutine(InfiniteJumpPowerup());
+		}
+		if (Input.GetKeyUp (KeyCode.W)) {
+			StartCoroutine (CoinMagnet());
 		}
 	}
 
@@ -340,11 +346,16 @@ public class Player : MonoBehaviour {
 
 	//powerups
 	IEnumerator InfiniteJumpPowerup() {
-		Debug.Log ("called");
 		jumpLoaded = true;
 		infiniteJumpAllowed = true;
 		yield return new WaitForSeconds(10.0f);
 		infiniteJumpAllowed = false;
+	}
+
+	IEnumerator CoinMagnet() {
+		coinMagnet = true;
+		yield return new WaitForSeconds(10.0f);
+		coinMagnet = false;
 	}
 }
 

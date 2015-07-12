@@ -624,6 +624,7 @@ GameObject:
   - 212: {fileID: 1000772070}
   - 58: {fileID: 1000772069}
   - 95: {fileID: 1000772072}
+  - 114: {fileID: 1000772073}
   m_Layer: 0
   m_Name: Coin(Clone)
   m_TagString: Untagged
@@ -699,6 +700,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1000772073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000772068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c574277f3e54c5eb9ac4c1d588aeed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1108948522}
+  position: {x: 0, y: 0, z: 0}
+  playerPosition: {x: 0, y: 0, z: 0}
+  speed: 0
+  willFollow: 0
 --- !u!1 &1052378220
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +778,7 @@ GameObject:
   - 212: {fileID: 1074521148}
   - 58: {fileID: 1074521147}
   - 95: {fileID: 1074521149}
+  - 114: {fileID: 1074521150}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -836,6 +854,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1074521150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074521145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c574277f3e54c5eb9ac4c1d588aeed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1108948522}
+  position: {x: 0, y: 0, z: 0}
+  playerPosition: {x: 0, y: 0, z: 0}
+  speed: 0
+  willFollow: 0
 --- !u!1 &1108948522
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +989,7 @@ MonoBehaviour:
   coloralternation: 1
   spawnLocation: {x: 0, y: 0, z: 0}
   infiniteJumpAllowed: 0
+  coinMagnet: 0
   Default: {fileID: 21300000, guid: f60c4f294fa7d44aca9a97ec32938eef, type: 3}
   CirclePlayer: {fileID: 21300000, guid: d7ed877daade8435dbd7f011fdfca916, type: 3}
   TwoSquarePlayer: {fileID: 21300000, guid: f6995d8da9a284c4ba2c43e3d0744424, type: 3}
