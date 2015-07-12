@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 public class Player : MonoBehaviour {
 	public int score = 0;
@@ -35,9 +36,25 @@ public class Player : MonoBehaviour {
 	//shadows
 	public Sprite CircleShadow;
 
+	//audio
+	public AudioSource fxSource;
+	public AudioSource musicSource;
+	public AudioSource coinSource;
+
+	public AudioClip music;
+	public AudioClip HitPlatform;
+	public AudioClip HitCoin;
+	public AudioClip HitDeathBlock;
+
+	public float lowPitch = .95f;
+	public float highPitch = 1.05f;
+
 
 	Quaternion platformAngle;
 	void Start () {
+		musicSource.clip = music;
+		musicSource.Play ();
+
 		jumpLoaded = false;
 		canReplicate = false;
 		right = false;
@@ -143,6 +160,10 @@ public class Player : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
 		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
+
+			coinSource.clip=HitCoin;
+			coinSource.Play ();
+
 			coins += 1;
 			initcoins += 1;
 			Destroy(coll.gameObject);
@@ -181,6 +202,8 @@ public class Player : MonoBehaviour {
 		}
 
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
+			RandomiseAudio(HitPlatform);
+
 			if (!hasCollided) {
 				if (jumpLoaded == false) {
 					hasCollided = true;
@@ -299,6 +322,19 @@ public class Player : MonoBehaviour {
 			break;
 		}
 	}
+
+	//Audio Methods
+	public void PlaySingle(AudioClip clip){
+		fxSource.clip = clip;
+		fxSource.Play ();
+	}
+	public void RandomiseAudio(AudioClip clip){
+		float randomPitch = UnityEngine.Random.Range (lowPitch, highPitch);
+
+		fxSource.pitch = randomPitch;
+		PlaySingle (clip);
+	}
+
 }
 
 /*
