@@ -10,22 +10,24 @@ public class Player : MonoBehaviour {
 	bool jumpLoaded;
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
+	//Game Objects
 	public GameObject Platform;
 	public GameObject Deathblock;
-	public Vector3 spawnLocation;
 	public GameObject playerobject;
 	public GameObject playershadow;
 	public GameObject scoreGUI;
 	public GameObject coinGUI;
+	public GameObject Coin;
+	public Camera maincamera;
+	//Logic Variables
 	public bool canReplicate;
 	public bool right;
 	public float spaceBetweenObstacles;
 	public Color levelBasedColor;
 	public float scale;
-	public GameObject Coin;
-	public Camera maincamera;
 	public int coloralternation = 1;
-
+	public Vector3 spawnLocation;
+	public bool infiniteJumpAllowed;
 	//sprites
 	public static string currentSpriteName;
 	public Sprite Default;
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour {
 		musicSource.Play ();
 
 		jumpLoaded = false;
+		infiniteJumpAllowed = false;
 		canReplicate = false;
 		right = false;
 		spaceBetweenObstacles = 3.5f;
@@ -109,8 +112,6 @@ public class Player : MonoBehaviour {
 		}*/
 		if (Input.GetKey ("up") && jumpLoaded == true) {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
-		}
-		if (Input.GetKey ("up")) {
 			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 			if(coloralternation >= 1) {
 				playershadowcolor = new Color(1f, 0.54f, 0.54f);
@@ -129,7 +130,9 @@ public class Player : MonoBehaviour {
 			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
 		if (Input.GetKeyUp("up")) {
-			jumpLoaded = false;
+			if(!infiniteJumpAllowed) {
+				jumpLoaded = false;
+			}
 			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 			playershadowcolor = new Color(1f, 1f, 1f);
 			playershadowcolor.a = 0.2f;
@@ -140,6 +143,10 @@ public class Player : MonoBehaviour {
 			playershadow.transform.localScale = playershadowscale;
 		}
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
+
+		if (Input.GetKeyUp (KeyCode.Q)) {
+			StartCoroutine(InfiniteJumpPowerup());
+		}
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
@@ -331,6 +338,14 @@ public class Player : MonoBehaviour {
 		PlaySingle (clip);
 	}
 
+	//powerups
+	IEnumerator InfiniteJumpPowerup() {
+		Debug.Log ("called");
+		jumpLoaded = true;
+		infiniteJumpAllowed = true;
+		yield return new WaitForSeconds(10.0f);
+		infiniteJumpAllowed = false;
+	}
 }
 
 /*
