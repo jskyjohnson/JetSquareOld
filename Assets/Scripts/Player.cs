@@ -20,7 +20,6 @@ public class Player : MonoBehaviour {
 	public bool canReplicate;
 	public bool right;
 	public float spaceBetweenObstacles;
-	public bool hasCollided;
 	public Color levelBasedColor;
 	public float scale;
 	public GameObject Coin;
@@ -58,7 +57,6 @@ public class Player : MonoBehaviour {
 		jumpLoaded = false;
 		canReplicate = false;
 		right = false;
-		hasCollided = false;
 		spaceBetweenObstacles = 3.5f;
 		scale = 2.5f;
 		coins = PlayerPrefs.GetInt ("coins", 0);
@@ -155,7 +153,6 @@ public class Player : MonoBehaviour {
 		if (!Input.GetKey("up")) { //uncomment this on mobile
 			jumpLoaded = false;
 		}
-		hasCollided = false;
 	}
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
@@ -202,14 +199,13 @@ public class Player : MonoBehaviour {
 		}
 
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
-			RandomiseAudio(HitPlatform);
-
-			if (!hasCollided) {
+			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
+				RandomiseAudio(HitPlatform);
+				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+				playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
 				if (jumpLoaded == false) {
-					hasCollided = true;
+					coll.gameObject.GetComponent<PlatformScript>().hasCollided = true;
 					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
-					playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-					playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
 				}
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
