@@ -9,9 +9,11 @@ public class menuScript : MonoBehaviour {
 	int highscorevalue;
 	public Text highscore;
 	public Text coins;
+	public AudioSource menuSong;
 	int coinsvalue;
 	// Use this for initialization
 	void Start () {
+		menuSong.Play ();
 		Menu = Menu.GetComponent<Canvas> ();
 		playGame = playGame.GetComponent<Button> ();
 
