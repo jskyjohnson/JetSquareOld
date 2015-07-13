@@ -12,6 +12,7 @@ public class PurchaseScript : MonoBehaviour {
 	public bool contains;
 	public Sprite unknownImage;
 	void Start() {
+		PlayerPrefs.SetInt ("coins", 1000);
 	}
 
 	public void purchase() {

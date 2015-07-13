@@ -395,6 +395,7 @@ MonoBehaviour:
   - {fileID: 1277946682}
   - {fileID: 983943357}
   - {fileID: 1864714695}
+  - {fileID: 289390656}
   unknownImage: {fileID: 21300000, guid: 7b2a2a04cb62b4d82848f4370bdbf227, type: 3}
 --- !u!1 &324201701
 GameObject:

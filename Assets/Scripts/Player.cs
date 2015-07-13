@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 	public int score = 0;
 	public int coins;
 	public int initcoins = 0;
 
-	bool jumpLoaded;
+	public bool jumpLoaded;
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
 	//Game Objects
@@ -146,13 +147,6 @@ public class Player : MonoBehaviour {
 			playershadow.transform.localScale = playershadowscale;
 		}
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
-
-		if (Input.GetKeyUp (KeyCode.Q)) {
-			StartCoroutine(InfiniteJumpPowerup());
-		}
-		if (Input.GetKeyUp (KeyCode.W)) {
-			StartCoroutine (CoinMagnet());
-		}
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
@@ -325,8 +319,8 @@ public class Player : MonoBehaviour {
 				playerobject.GetComponent<SpriteRenderer>().sprite = DogePlayer;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
-				playerscale.x = 0.85f;
-				playerscale.y = 0.85f;
+				playerscale.x = 0.90f;
+				playerscale.y = 0.90f;
 				playerobject.transform.localScale = playerscale;
 			break;
 		}
@@ -342,20 +336,6 @@ public class Player : MonoBehaviour {
 
 		fxSource.pitch = randomPitch;
 		PlaySingle (clip);
-	}
-
-	//powerups
-	IEnumerator InfiniteJumpPowerup() {
-		jumpLoaded = true;
-		infiniteJumpAllowed = true;
-		yield return new WaitForSeconds(10.0f);
-		infiniteJumpAllowed = false;
-	}
-
-	IEnumerator CoinMagnet() {
-		coinMagnet = true;
-		yield return new WaitForSeconds(10.0f);
-		coinMagnet = false;
 	}
 }
 
