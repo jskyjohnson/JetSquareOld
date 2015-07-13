@@ -708,7 +708,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000772068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c574277f3e54c5eb9ac4c1d588aeed, type: 3}
+  m_Script: {fileID: 11500000, guid: c1f82cf442a0b2b46a407b8b107a1c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1108948522}
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1074521145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c574277f3e54c5eb9ac4c1d588aeed, type: 3}
+  m_Script: {fileID: 11500000, guid: c1f82cf442a0b2b46a407b8b107a1c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1108948522}
@@ -974,6 +974,7 @@ MonoBehaviour:
   score: 0
   coins: 0
   initcoins: 0
+  jumpLoaded: 0
   Platform: {fileID: 621568050}
   Deathblock: {fileID: 707843673}
   playerobject: {fileID: 1108948522}

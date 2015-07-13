@@ -178,29 +178,29 @@ public class Player : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
 		if (score < 10) {
-			spaceBetweenObstacles = 3.5f;
+			spaceBetweenObstacles = 3.3f;
 			scale = 1.1f;
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
 		} else if (score < 25 && score >= 10) {
 			scale = 1.0f;
-			spaceBetweenObstacles = 3.2f;
+			spaceBetweenObstacles = 3.1f;
 			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
 		} else if (score < 45 && score >= 25) {
 			scale = 0.9f;
-			spaceBetweenObstacles = 3.0f;
+			spaceBetweenObstacles = 2.9f;
 			levelBasedColor = new Color(0.8823f, 0.8705f, 0.6039f);//yellow
 		} else if (score < 70 && score >= 45) {
 			scale = 0.8f;
-			spaceBetweenObstacles = 2.6f;
+			spaceBetweenObstacles = 2.7f;
 			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
 		} else if (score < 100 && score >= 70) {
 			scale = 0.6f;
-			spaceBetweenObstacles = 2.4f;
+			spaceBetweenObstacles = 2.5f;
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
 			scale = 0.6f;
-			spaceBetweenObstacles = 2.1f;
+			spaceBetweenObstacles = 2.3f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		}
@@ -226,11 +226,11 @@ public class Player : MonoBehaviour {
 					
 					if (right == true) {
 						float randomnum = UnityEngine.Random.Range (4.6F, 5.9F);
-						CreatePlatform (randomnum + 0.8f + 3.0f, -7 + (-10 * (score + 1)), UnityEngine.Random.Range (50.0F, 60.0F), randomnum, levelBasedColor, scale);
+						CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (score + 1)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
 						right = false;
 					} else if (right == false) {
 						float randomnum = UnityEngine.Random.Range (0F, 1.3F);
-						CreatePlatform (randomnum - 0.8f - 3.0f, -7 + (-10 * (score + 1)), UnityEngine.Random.Range (300F, 310F), randomnum, levelBasedColor, scale);
+						CreatePlatform (randomnum - 0.8f - 3.0f, -6 + (-8 * (score + 1)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
 						right = true;
 					}
 				}
@@ -254,11 +254,11 @@ public class Player : MonoBehaviour {
 		platformScale.x = scale;
 		platform.transform.localScale = platformScale;
 		if (right == true) {
-			CreateObstacle (randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
+			CreateObstacle (randomnum, (int)((score + 1) * (-8.0f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (score + 1)));
 		} else {
-			CreateObstacle(randomnum, (int)((score + 1) * (-10.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-3.0f, 3.0f) + (float)(-10 * (score + 1)));
+			CreateObstacle(randomnum, (int)((score + 1) * (-8.0f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (score + 1)));
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
