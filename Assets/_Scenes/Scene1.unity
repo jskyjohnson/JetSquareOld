@@ -1115,6 +1115,7 @@ MonoBehaviour:
   coinGUI: {fileID: 949063058}
   Coin: {fileID: 1074521145}
   maincamera: {fileID: 1861154965}
+  deathAnimation: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
   canReplicate: 1
   right: 1
   spaceBetweenObstacles: 3

@@ -10,6 +10,7 @@ public class menuScript : MonoBehaviour {
 	public Text highscore;
 	public Text coins;
 	public AudioSource menuSong;
+
 	int coinsvalue;
 	// Use this for initialization
 	void Start () {

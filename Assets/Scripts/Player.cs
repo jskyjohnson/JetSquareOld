@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
 	public GameObject coinGUI;
 	public GameObject Coin;
 	public Camera maincamera;
+
+	public GameObject deathAnimation;
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;
@@ -28,9 +30,11 @@ public class Player : MonoBehaviour {
 	public float scale;
 	public int coloralternation = 1;
 	public Vector3 spawnLocation;
+
 	//powerup controller variables
 	public bool infiniteJumpAllowed;
 	public bool coinMagnet;
+
 	//sprites
 	public static string currentSpriteName;
 	public Sprite Default;
@@ -53,12 +57,14 @@ public class Player : MonoBehaviour {
 	public float lowPitch = .95f;
 	public float highPitch = 1.05f;
 
-
+	private bool dieing; 
+	private int dieingwaiter;
 	Quaternion platformAngle;
 	void Start () {
 		musicSource.clip = music;
 		musicSource.Play ();
-
+		dieingwaiter = 0;
+		dieing = false;
 		jumpLoaded = false;
 		infiniteJumpAllowed = false;
 		coinMagnet = false;
@@ -114,41 +120,42 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = playershadowscale;
 			}
 		}*/
-		if (Input.GetKey ("up") && jumpLoaded == true) {
-			GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
-			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-			if(coloralternation >= 1) {
-				playershadowcolor = new Color(1f, 0.54f, 0.54f);
-				coloralternation += 1;
-			} else if(coloralternation == 8) {
-				playershadowcolor = new Color(0.949f, 0.572f, 0.286f);
-				coloralternation = 1;
+
+			if (Input.GetKey ("up") && jumpLoaded == true) {
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				if (coloralternation >= 1) {
+					playershadowcolor = new Color (1f, 0.54f, 0.54f);
+					coloralternation += 1;
+				} else if (coloralternation == 8) {
+					playershadowcolor = new Color (0.949f, 0.572f, 0.286f);
+					coloralternation = 1;
+				}
+				playershadowcolor.a = 0.7f;
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				playershadowscale.x = 0.35f;
+				playershadowscale.y = 0.35f;
+				playershadow.transform.localScale = playershadowscale;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+				//
+				//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 			}
-			playershadowcolor.a = 0.7f;
-			Vector3 playershadowscale = playershadow.transform.localScale;
-			playershadowscale.x = 0.35f;
-			playershadowscale.y = 0.35f;
-			playershadow.transform.localScale = playershadowscale;
-			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			//
-			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-		}
-		if (Input.GetKeyUp("up")) {
-			if(!infiniteJumpAllowed) {
-				jumpLoaded = false;
+			if (Input.GetKeyUp ("up")) {
+				if (!infiniteJumpAllowed) {
+					jumpLoaded = false;
+				}
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				playershadowcolor = new Color (1f, 1f, 1f);
+				playershadowcolor.a = 0.2f;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				playershadowscale.x = 0.3f;
+				playershadowscale.y = 0.3f;
+				playershadow.transform.localScale = playershadowscale;
 			}
-			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-			playershadowcolor = new Color(1f, 1f, 1f);
-			playershadowcolor.a = 0.2f;
-			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			Vector3 playershadowscale = playershadow.transform.localScale;
-			playershadowscale.x = 0.3f;
-			playershadowscale.y = 0.3f;
-			playershadow.transform.localScale = playershadowscale;
-		}
+
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
 	}
-
 	void OnCollisionExit2D(Collision2D coll) {
 		/*foreach (Touch touch in Input.touches)
 		{
@@ -239,8 +246,9 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
-			StoreValues(score, coins);
-			Application.LoadLevel ("menu");
+			Instantiate(deathAnimation,this.transform.position,this.transform.rotation);
+			StoreValues (score, coins);
+			gameObject.active = false;
 		}
 	}
 	void CreatePlatform(float locx, int locy, float angle, float randomnum, Color platformcolor, float scale) {
