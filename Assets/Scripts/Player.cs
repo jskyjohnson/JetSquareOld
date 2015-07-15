@@ -22,10 +22,7 @@ public class Player : MonoBehaviour {
 	private GameObject obstacle;
 	public Camera maincamera;
 
-<<<<<<< HEAD
-=======
 	public GameObject deathAnimation;
->>>>>>> 4efe1a065ba812fa7265d737a246bc1f3886c67d
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;
@@ -36,7 +33,6 @@ public class Player : MonoBehaviour {
 	public int coloralternation = 1;
 	public int coinValue;
 	public Vector3 spawnLocation;
-<<<<<<< HEAD
 	public float lastPoint;
 	public bool generated;
 	public int generatedNumber;
@@ -45,13 +41,6 @@ public class Player : MonoBehaviour {
 	public bool coinMagnet;
 	public bool passObstacles;
 	public float areaSection;
-=======
-
-	//powerup controller variables
-	public bool infiniteJumpAllowed;
-	public bool coinMagnet;
-
->>>>>>> 4efe1a065ba812fa7265d737a246bc1f3886c67d
 	//sprites
 	public static string currentSpriteName;
 	public Sprite Default;
@@ -193,16 +182,6 @@ public class Player : MonoBehaviour {
 				playershadowscale.y = 0.3f;
 				playershadow.transform.localScale = playershadowscale;
 			}
-<<<<<<< HEAD
-			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-			playershadowcolor = new Color(1f, 1f, 1f);
-			playershadowcolor.a = 0.2f;
-			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			Vector3 playershadowscale = playershadow.transform.localScale;
-			playershadowscale.x = 0.3f;
-			playershadowscale.y = 0.3f;
-			playershadow.transform.localScale = playershadowscale;
-		}
 		if (passObstacles == true) {
 			foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
 				deathblock.GetComponent<Collider2D> ().isTrigger = true;
@@ -211,9 +190,6 @@ public class Player : MonoBehaviour {
 				deathblock.GetComponent<SpriteRenderer>().color = deathblockcolor;
 			}
 		}
-=======
-
->>>>>>> 4efe1a065ba812fa7265d737a246bc1f3886c67d
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
 	}
 	void OnCollisionExit2D(Collision2D coll) {
