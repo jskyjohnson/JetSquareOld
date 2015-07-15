@@ -7,14 +7,18 @@ public class PowerUpScript : MonoBehaviour {
 	public Text text;
 	public Text quantity;
 	public float JumpPowerupDuration;
+	public float CoinMagnetDuration;
+	public float PassObstaclesDuration;
 	// Use this for initialization
 	void Start () {
 		JumpPowerupDuration = 10.0f;
+		CoinMagnetDuration = 15.0f;
+		PassObstaclesDuration = 5.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		quantity.GetComponent<Text> ().text = PlayerPrefs.GetInt ("InfiniteJumpQuantity").ToString();
+		quantity.GetComponent<Text> ().text = PlayerPrefs.GetInt (quantity.name).ToString ();
 	}
 
 	public void StartInfiniteJump() {
@@ -24,7 +28,16 @@ public class PowerUpScript : MonoBehaviour {
 		}
 	}
 	public void StartCoinMagnet() {
-		StartCoroutine (CoinMagnet());
+		if (PlayerPrefs.GetInt ("CoinMagnetQuantity") > 0) {
+			StartCoroutine (CoinMagnet ());
+			StartCoroutine (countDown (CoinMagnetDuration));
+		}
+	}
+	public void StartPassObstacles() {
+		if (PlayerPrefs.GetInt ("PassObstaclesQuantity") > 0) {
+			StartCoroutine (PassObstacles ());
+			StartCoroutine (countDown (PassObstaclesDuration));
+		}
 	}
 
 	IEnumerator countDown(float init) {
@@ -39,16 +52,30 @@ public class PowerUpScript : MonoBehaviour {
 	}
 
 	IEnumerator InfiniteJumpPowerup() {
-		Image buttonImage = button.image;
 		player.GetComponent<Player>().jumpLoaded = true;
 		player.GetComponent<Player>().infiniteJumpAllowed = true;
+		PlayerPrefs.SetInt ("InfiniteJumpQuantity", PlayerPrefs.GetInt ("InfiniteJumpQuantity") - 1);
 		yield return new WaitForSeconds(JumpPowerupDuration);
 		player.GetComponent<Player>().infiniteJumpAllowed = false;
 	}
 	
 	IEnumerator CoinMagnet() {
 		player.GetComponent<Player>().coinMagnet = true;
-		yield return new WaitForSeconds(10.0f);
+		PlayerPrefs.SetInt ("CoinMagnetQuantity", PlayerPrefs.GetInt ("CoinMagnetQuantity") - 1);
+		yield return new WaitForSeconds(CoinMagnetDuration);
 		player.GetComponent<Player>().coinMagnet = false;
+	}
+
+	IEnumerator PassObstacles() {
+		player.GetComponent<Player> ().passObstacles = true;
+		PlayerPrefs.SetInt ("PassObstaclesQuantity", PlayerPrefs.GetInt ("PassObstaclesQuantity") - 1);
+		yield return new WaitForSeconds(PassObstaclesDuration);
+		player.GetComponent<Player> ().passObstacles = false;
+		foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
+			deathblock.GetComponent<Collider2D> ().isTrigger = false;
+			Color deathblockcolor = deathblock.GetComponent<SpriteRenderer>().color;
+			deathblockcolor.a = 1f;
+			deathblock.GetComponent<SpriteRenderer>().color = deathblockcolor;
+		}
 	}
 }

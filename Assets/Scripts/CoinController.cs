@@ -19,7 +19,7 @@ public class CoinController : MonoBehaviour {
 		if(player.GetComponent<Player> ().coinMagnet == true && this.gameObject.name == "Coin(Clone)") {
 			position = this.gameObject.transform.position;
 			playerPosition = player.transform.position;
-			if(Math.Abs(playerPosition.x - position.x) < 2.0f && Math.Abs(playerPosition.y - position.y) < 2.0f || willFollow == true) {
+			if(Math.Abs(playerPosition.x - position.x) < 5.0f && Math.Abs(playerPosition.y - position.y) < 5.0f || willFollow == true) {
 				Debug.Log ("this is being called");
 				willFollow = true;
 				float step = speed * Time.deltaTime;

@@ -19,18 +19,27 @@ public class Player : MonoBehaviour {
 	public GameObject scoreGUI;
 	public GameObject coinGUI;
 	public GameObject Coin;
+	private GameObject obstacle;
 	public Camera maincamera;
+
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;
 	public float spaceBetweenObstacles;
-	public Color levelBasedColor;
 	public float scale;
+	public Color levelBasedColor;
+	public Color coinColor;
 	public int coloralternation = 1;
+	public int coinValue;
 	public Vector3 spawnLocation;
+	public float lastPoint;
+	public bool generated;
+	public int generatedNumber;
 	//powerup controller variables
 	public bool infiniteJumpAllowed;
 	public bool coinMagnet;
+	public bool passObstacles;
+	public float areaSection;
 	//sprites
 	public static string currentSpriteName;
 	public Sprite Default;
@@ -73,11 +82,34 @@ public class Player : MonoBehaviour {
 		playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 		currentSpriteName = PlayerPrefs.GetString ("currentskin");
 		loadSkin ();
+		lastPoint = playerobject.transform.position.y;
+		generated = false;
+		generatedNumber = 2;
+		passObstacles = false;
+		areaSection = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//Handles movement
+		if ((playerobject.transform.position.y < lastPoint - 4.0f) && generated == false) {
+			generated = true;
+			areaSection += 1f;
+			if (right == true) {
+				float randomnum = UnityEngine.Random.Range (4.6F, 5.9F);
+				CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
+				right = false;
+			} else if (right == false) {
+				float randomnum = UnityEngine.Random.Range (0F, 1.3F);
+				CreatePlatform (randomnum - 0.8f - 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
+				right = true;
+			}
+		}
+		if ((playerobject.transform.position.y < lastPoint - 8.0f)) {
+			generated = false;
+			lastPoint = playerobject.transform.position.y;
+			generatedNumber += 1;
+		}
 		CreatePlayerShadow();
 		/*
 		foreach (Touch touch in Input.touches)
@@ -146,6 +178,14 @@ public class Player : MonoBehaviour {
 			playershadowscale.y = 0.3f;
 			playershadow.transform.localScale = playershadowscale;
 		}
+		if (passObstacles == true) {
+			foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
+				deathblock.GetComponent<Collider2D> ().isTrigger = true;
+				Color deathblockcolor = deathblock.GetComponent<SpriteRenderer>().color;
+				deathblockcolor.a = 0.5f;
+				deathblock.GetComponent<SpriteRenderer>().color = deathblockcolor;
+			}
+		}
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
 	}
 
@@ -168,8 +208,8 @@ public class Player : MonoBehaviour {
 			coinSource.clip=HitCoin;
 			coinSource.Play ();
 
-			coins += 1;
-			initcoins += 1;
+			coins += coinValue;
+			initcoins += coinValue;
 			Destroy(coll.gameObject);
 			coinGUI.GetComponent<GUIText>().text = initcoins.ToString();
 		}
@@ -178,28 +218,38 @@ public class Player : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
 		if (score < 10) {
+			coinValue = 1;
 			spaceBetweenObstacles = 3.3f;
 			scale = 1.1f;
+			coinColor = new Color(1f, 1f, 1f);
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
 		} else if (score < 25 && score >= 10) {
+			coinValue = 2;
 			scale = 1.0f;
 			spaceBetweenObstacles = 3.1f;
+			coinColor = new Color(0.847f, 0.255f, 0.255f);
 			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
 		} else if (score < 45 && score >= 25) {
+			coinValue = 2;
 			scale = 0.9f;
 			spaceBetweenObstacles = 2.9f;
 			levelBasedColor = new Color(0.8823f, 0.8705f, 0.6039f);//yellow
 		} else if (score < 70 && score >= 45) {
+			coinValue = 3;
 			scale = 0.8f;
+			coinColor = new Color(0.0705f, 0.2902f, 0.941f);
 			spaceBetweenObstacles = 2.7f;
 			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
 		} else if (score < 100 && score >= 70) {
+			coinValue = 3;
 			scale = 0.6f;
 			spaceBetweenObstacles = 2.5f;
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
+			coinValue = 4;
 			scale = 0.6f;
+			coinColor = new Color(0.941f, 0.0705f, 0.7725f);
 			spaceBetweenObstacles = 2.3f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
@@ -223,16 +273,6 @@ public class Player : MonoBehaviour {
 					//Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
 					//Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
 					//this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
-					
-					if (right == true) {
-						float randomnum = UnityEngine.Random.Range (4.6F, 5.9F);
-						CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (score + 1)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
-						right = false;
-					} else if (right == false) {
-						float randomnum = UnityEngine.Random.Range (0F, 1.3F);
-						CreatePlatform (randomnum - 0.8f - 3.0f, -6 + (-8 * (score + 1)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
-						right = true;
-					}
 				}
 				jumpLoaded = true;
 				scoreGUI.GetComponent<GUIText>().text = score.ToString();
@@ -254,16 +294,16 @@ public class Player : MonoBehaviour {
 		platformScale.x = scale;
 		platform.transform.localScale = platformScale;
 		if (right == true) {
-			CreateObstacle (randomnum, (int)((score + 1) * (-8.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (score + 1)));
+			CreateObstacle (randomnum, (int)((generatedNumber) * (-8.0f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (generatedNumber)));
 		} else {
-			CreateObstacle(randomnum, (int)((score + 1) * (-8.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (score + 1)));
+			CreateObstacle(randomnum, (int)((generatedNumber) * (-8.0f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (generatedNumber)));
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
 		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 6.1f), locy, 0);
-		GameObject obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
+		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
 		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 6.1f), locy, 0);
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
@@ -283,7 +323,8 @@ public class Player : MonoBehaviour {
 	}
 	void CreateCoin(float locx, float locy) {
 		spawnLocation = new Vector3 (locx, locy, 0);
-		Instantiate(Coin, spawnLocation, Quaternion.identity);
+		GameObject newCoin = (GameObject)Instantiate(Coin, spawnLocation, Quaternion.identity);
+		newCoin.GetComponent<SpriteRenderer> ().color = coinColor;
 	}
 	//loads the proper skin depending on the current configuration.
 	public void loadSkin() {
