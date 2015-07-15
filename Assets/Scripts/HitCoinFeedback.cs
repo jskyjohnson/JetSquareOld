@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class HitCoinFeedback : MonoBehaviour {
-
+	public int timer = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,6 +10,10 @@ public class HitCoinFeedback : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (timer > 200) {
+			Destroy (this);
+		} else {
+			timer++;
+		}
 	}
 }

@@ -15,7 +15,7 @@ public class FeedBackManager : MonoBehaviour {
 	
 	}
 	public void hitPlatform(Player player){
-		Instantiate (hitPlatformFeedback, player.transform.position, player.transform.rotation);
+	Instantiate (hitPlatformFeedback, player.transform.position, player.transform.rotation);
 	}
 	public void hitCoin(Player player){
 		Instantiate (hitCoinFeedback, player.transform.position, player.transform.rotation);
