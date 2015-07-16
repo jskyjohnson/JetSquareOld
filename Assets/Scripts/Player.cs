@@ -16,8 +16,8 @@ public class Player : MonoBehaviour {
 	public GameObject Deathblock;
 	public GameObject playerobject;
 	public GameObject playershadow;
-	public GameObject scoreGUI;
-	public GameObject coinGUI;
+	public Text scoreGUI;
+	public Text coinGUI;
 	public GameObject Coin;
 	private GameObject obstacle;
 	public Camera maincamera;
@@ -211,7 +211,7 @@ public class Player : MonoBehaviour {
 			coins += coinValue;
 			initcoins += coinValue;
 			Destroy(coll.gameObject);
-			coinGUI.GetComponent<GUIText>().text = initcoins.ToString();
+			coinGUI.GetComponent<Text>().text = initcoins.ToString();
 		}
 	}
 
@@ -276,7 +276,7 @@ public class Player : MonoBehaviour {
 					//this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
 				}
 				jumpsLoaded = 1;
-				scoreGUI.GetComponent<GUIText>().text = score.ToString();
+				scoreGUI.GetComponent<Text>().text = score.ToString();
 			}
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
