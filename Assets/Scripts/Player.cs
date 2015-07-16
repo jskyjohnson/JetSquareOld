@@ -156,17 +156,17 @@ public class Player : MonoBehaviour {
 			if (Input.GetKey ("up") && jumpsLoaded == 1) {
 				//GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 				jumpPowerInTime += Time.deltaTime;
-				Debug.Log (jumpPowerInTime);
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 					//playershadowcolor = new Color (1f, 0.54f, 0.54f);
-				playershadowcolor = new Color ((0.949f + (float)jumpPowerInTime * 0.08f), (0.572f + (float)jumpPowerInTime * 0.05f), 0.52f + (float)jumpPowerInTime * 0.5f);
-				playershadowcolor.a = 0.7f;
+				playershadowcolor = new Color ((0.929f + jumpPowerInTime * 0.056f), (0.54f - jumpPowerInTime * 0.52f), 0.54f - jumpPowerInTime * 0.52f);
+				playershadowcolor.a = 0.5f + jumpPowerInTime;
 				Vector3 playershadowscale = playershadow.transform.localScale;
 				playershadowscale.x = 0.35f;
 				playershadowscale.y = 0.35f;
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-				//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			Debug.Log (playershadow.GetComponent<SpriteRenderer> ().color);	
+			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 			}
 			if (Input.GetKeyUp ("up")) {
 				if (!infiniteJumpAllowed) {
