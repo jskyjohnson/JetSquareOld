@@ -15,7 +15,7 @@ public class PlayerDeath : MonoBehaviour {
 	void Update () {
 
 		counter++;
-		if (counter > 150) {
+		if (counter > 75) {
 
 			Application.LoadLevel ("menu");
 		}
