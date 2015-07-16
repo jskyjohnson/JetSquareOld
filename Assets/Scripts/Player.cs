@@ -102,11 +102,11 @@ public class Player : MonoBehaviour {
 			generated = true;
 			areaSection += 1f;
 			if (right == true) {
-				float randomnum = UnityEngine.Random.Range (4.6F, 5.9F);
+				float randomnum = UnityEngine.Random.Range (4.4F, 7.8F);
 				CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
 				right = false;
 			} else if (right == false) {
-				float randomnum = UnityEngine.Random.Range (0F, 1.3F);
+				float randomnum = UnityEngine.Random.Range (-2.0F, 1.5F);
 				CreatePlatform (randomnum - 0.8f - 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
 				right = true;
 			}
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour {
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 					//playershadowcolor = new Color (1f, 0.54f, 0.54f);
 				playershadowcolor = new Color ((0.929f + jumpPowerInTime * 0.056f), (0.54f - jumpPowerInTime * 0.52f), 0.54f - jumpPowerInTime * 0.52f);
-				playershadowcolor.a = 0.5f + jumpPowerInTime;
+				playershadowcolor.a = 0.2f + jumpPowerInTime * 2f;
 				Vector3 playershadowscale = playershadow.transform.localScale;
 				playershadowscale.x = 0.35f;
 				playershadowscale.y = 0.35f;
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour {
 					jumpsLoaded = 0;
 				}
 				Debug.Log ("Adding " + jumpPowerInTime + " force to playerobject");
-				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 13f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				playershadowcolor = new Color (1f, 1f, 1f);
@@ -221,38 +221,38 @@ public class Player : MonoBehaviour {
 		//handles change in rotation.
 		if (score < 10) {
 			coinValue = 1;
-			spaceBetweenObstacles = 3.3f;
-			scale = 1.1f;
+			spaceBetweenObstacles = 4f;
+			scale = 1.3f;
 			coinColor = new Color(1f, 1f, 1f);
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
 		} else if (score < 25 && score >= 10) {
 			coinValue = 2;
-			scale = 1.0f;
-			spaceBetweenObstacles = 3.1f;
+			scale = 1.2f;
+			spaceBetweenObstacles = 3.6f;
 			coinColor = new Color(0.847f, 0.255f, 0.255f);
 			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
 		} else if (score < 45 && score >= 25) {
 			coinValue = 2;
 			scale = 0.9f;
-			spaceBetweenObstacles = 2.9f;
+			spaceBetweenObstacles = 3.2f;
 			levelBasedColor = new Color(0.8823f, 0.8705f, 0.6039f);//yellow
 		} else if (score < 70 && score >= 45) {
 			coinValue = 3;
 			scale = 0.8f;
 			coinColor = new Color(0.0705f, 0.2902f, 0.941f);
-			spaceBetweenObstacles = 2.7f;
+			spaceBetweenObstacles = 2.9f;
 			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
 		} else if (score < 100 && score >= 70) {
 			coinValue = 3;
 			scale = 0.6f;
-			spaceBetweenObstacles = 2.5f;
+			spaceBetweenObstacles = 2.7f;
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
 			coinValue = 4;
 			scale = 0.6f;
 			coinColor = new Color(0.941f, 0.0705f, 0.7725f);
-			spaceBetweenObstacles = 2.3f;
+			spaceBetweenObstacles = 2.5f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		}
