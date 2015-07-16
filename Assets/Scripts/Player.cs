@@ -50,6 +50,7 @@ public class Player : MonoBehaviour {
 	public Sprite DogePlayer;
 	//shadows
 	public Sprite CircleShadow;
+	public FeedBackManager feedbackmanager;
 
 	//audio
 	public AudioSource fxSource;
@@ -205,7 +206,7 @@ public class Player : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
 		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
-
+			feedbackmanager.hitCoin(this);
 			coinSource.clip=HitCoin;
 			coinSource.Play ();
 
@@ -257,6 +258,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
+			feedbackmanager.hitPlatform(this);
 			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
 				RandomiseAudio(HitPlatform);
 				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
