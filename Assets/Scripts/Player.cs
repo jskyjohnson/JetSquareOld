@@ -98,9 +98,10 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Handles movement
-		if ((playerobject.transform.position.y < lastPoint - 4.0f) && generated == false) {
+		if ((playerobject.transform.position.y < lastPoint - 3.0f) && generated == false) {
 			generated = true;
 			areaSection += 1f;
+			Debug.Log (areaSection);
 			if (right == true) {
 				float randomnum = UnityEngine.Random.Range (4.4F, 7.8F);
 				CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
@@ -111,7 +112,7 @@ public class Player : MonoBehaviour {
 				right = true;
 			}
 		}
-		if ((playerobject.transform.position.y < lastPoint - 8.0f)) {
+		if ((playerobject.transform.position.y < lastPoint - 6.0f)) {
 			generated = false;
 			lastPoint = playerobject.transform.position.y;
 			generatedNumber += 1;
@@ -165,14 +166,12 @@ public class Player : MonoBehaviour {
 				playershadowscale.y = 0.35f;
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			Debug.Log (playershadow.GetComponent<SpriteRenderer> ().color);	
 			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 			}
 			if (Input.GetKeyUp ("up")) {
 				if (!infiniteJumpAllowed) {
 					jumpsLoaded = 0;
 				}
-				Debug.Log ("Adding " + jumpPowerInTime + " force to playerobject");
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
