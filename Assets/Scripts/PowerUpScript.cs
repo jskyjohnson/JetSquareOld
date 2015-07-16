@@ -52,7 +52,7 @@ public class PowerUpScript : MonoBehaviour {
 	}
 
 	IEnumerator InfiniteJumpPowerup() {
-		player.GetComponent<Player>().jumpLoaded = true;
+		player.GetComponent<Player>().jumpsLoaded = 1;
 		player.GetComponent<Player>().infiniteJumpAllowed = true;
 		PlayerPrefs.SetInt ("InfiniteJumpQuantity", PlayerPrefs.GetInt ("InfiniteJumpQuantity") - 1);
 		yield return new WaitForSeconds(JumpPowerupDuration);
