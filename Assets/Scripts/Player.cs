@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 	public int coins;
 	public int initcoins = 0;
 
-	public bool jumpLoaded;
+	public int jumpsLoaded;
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
 	//Game Objects
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour {
 	public float lastPoint;
 	public bool generated;
 	public int generatedNumber;
+	public float jumpPowerInTime;
 	//powerup controller variables
 	public bool infiniteJumpAllowed;
 	public bool coinMagnet;
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour {
 		musicSource.Play ();
 		dieingwaiter = 0;
 		dieing = false;
-		jumpLoaded = false;
+		jumpsLoaded = 0;
 		infiniteJumpAllowed = false;
 		coinMagnet = false;
 		canReplicate = false;
@@ -90,6 +91,7 @@ public class Player : MonoBehaviour {
 		generatedNumber = 2;
 		passObstacles = false;
 		areaSection = 0f;
+		jumpPowerInTime = 0f;
 	}
 	
 	// Update is called once per frame
@@ -150,29 +152,28 @@ public class Player : MonoBehaviour {
 			}
 		}*/
 
-			if (Input.GetKey ("up") && jumpLoaded == true) {
-				GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
+			if (Input.GetKey ("up") && jumpsLoaded == 1) {
+				//GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
+				jumpPowerInTime += Time.deltaTime;
+				Debug.Log (jumpPowerInTime);
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				if (coloralternation >= 1) {
-					playershadowcolor = new Color (1f, 0.54f, 0.54f);
-					coloralternation += 1;
-				} else if (coloralternation == 8) {
-					playershadowcolor = new Color (0.949f, 0.572f, 0.286f);
-					coloralternation = 1;
-				}
+					//playershadowcolor = new Color (1f, 0.54f, 0.54f);
+				playershadowcolor = new Color ((0.949f + (float)jumpPowerInTime * 0.08f), (0.572f + (float)jumpPowerInTime * 0.05f), 0.52f + (float)jumpPowerInTime * 0.5f);
 				playershadowcolor.a = 0.7f;
 				Vector3 playershadowscale = playershadow.transform.localScale;
 				playershadowscale.x = 0.35f;
 				playershadowscale.y = 0.35f;
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-				//
 				//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 			}
 			if (Input.GetKeyUp ("up")) {
 				if (!infiniteJumpAllowed) {
-					jumpLoaded = false;
+					jumpsLoaded = 0;
 				}
+				Debug.Log ("Adding " + jumpPowerInTime + " force to playerobject");
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 13f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
+				jumpPowerInTime = 0f;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				playershadowcolor = new Color (1f, 1f, 1f);
 				playershadowcolor.a = 0.2f;
@@ -200,9 +201,6 @@ public class Player : MonoBehaviour {
 				jumpLoaded = false;
 			}
 		}*/
-		if (!Input.GetKey("up")) { //uncomment this on mobile
-			jumpLoaded = false;
-		}
 	}
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
@@ -263,7 +261,7 @@ public class Player : MonoBehaviour {
 				RandomiseAudio(HitPlatform);
 				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 				playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-				if (jumpLoaded == false) {
+				if (jumpsLoaded == 0) {
 					coll.gameObject.GetComponent<PlatformScript>().hasCollided = true;
 					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
 				}
@@ -277,7 +275,7 @@ public class Player : MonoBehaviour {
 					//Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
 					//this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
 				}
-				jumpLoaded = true;
+				jumpsLoaded = 1;
 				scoreGUI.GetComponent<GUIText>().text = score.ToString();
 			}
 		}
