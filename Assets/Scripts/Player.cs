@@ -101,7 +101,6 @@ public class Player : MonoBehaviour {
 		if ((playerobject.transform.position.y < lastPoint - 3.0f) && generated == false) {
 			generated = true;
 			areaSection += 1f;
-			Debug.Log (areaSection);
 			if (right == true) {
 				float randomnum = UnityEngine.Random.Range (4.4F, 7.8F);
 				CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
