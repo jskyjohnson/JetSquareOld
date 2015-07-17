@@ -6,9 +6,12 @@ public class PlayerDeath : MonoBehaviour {
 	// Use this for initialization
 	private int counter;
 	public AudioSource deathsound;
+	public static PlayerDeath instance;
 	void Start () {
 		counter = 0;
 		deathsound.Play ();
+
+
 	}
 	
 	// Update is called once per frame

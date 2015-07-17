@@ -67,15 +67,12 @@ public class Player : MonoBehaviour {
 
 	public float lowPitch = .95f;
 	public float highPitch = 1.05f;
-
-	private bool dieing; 
-	private int dieingwaiter;
+	
 	Quaternion platformAngle;
 	void Start () {
 		musicSource.clip = music;
 		musicSource.Play ();
-		dieingwaiter = 0;
-		dieing = false;
+
 		jumpsLoaded = 0;
 		infiniteJumpAllowed = false;
 		coinMagnet = false;
@@ -207,7 +204,7 @@ public class Player : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
 		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
-			feedbackmanager.hitCoin(this);
+			feedbackmanager.hitCoin(this, coll);
 			coinSource.clip=HitCoin;
 			coinSource.Play ();
 
@@ -333,7 +330,7 @@ public class Player : MonoBehaviour {
 	}
 	//loads the proper skin depending on the current configuration.
 	public void loadSkin() {
-		Debug.Log (currentSpriteName);
+		//Debug.Log (currentSpriteName);
 		Vector3 playerscale = playerobject.transform.localScale;
 		switch (currentSpriteName) {
 			//cases have to be hardcoded because each case differs in some special way.
