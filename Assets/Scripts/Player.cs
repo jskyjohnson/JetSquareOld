@@ -48,6 +48,9 @@ public class Player : MonoBehaviour {
 	public Sprite CirclePlayer;
 	public Sprite TwoSquarePlayer;
 	public Sprite DogePlayer;
+	public Sprite Minecraft;
+	public Sprite Meatboy;
+	public Sprite Moon;
 	//shadows
 	public Sprite CircleShadow;
 	public FeedBackManager feedbackmanager;
@@ -336,6 +339,30 @@ public class Player : MonoBehaviour {
 			//cases have to be hardcoded because each case differs in some special way.
 			case "Default":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Default;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+			break;
+			case "Meatboy":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Meatboy;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
+			case "Moon":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<CircleCollider2D>();
+				playerscale.x = 0.75f;
+				playerscale.y = 0.75f;
+				playerobject.transform.localScale = playerscale;
+			break;
+			case "Minecraft":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Minecraft;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
