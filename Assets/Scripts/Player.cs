@@ -46,13 +46,16 @@ public class Player : MonoBehaviour {
 	public static string currentSpriteName;
 	public Sprite Default;
 	public Sprite CirclePlayer;
-	public Sprite TwoSquarePlayer;
 	public Sprite DogePlayer;
 	public Sprite Minecraft;
 	public Sprite Meatboy;
 	public Sprite Moon;
 	public Sprite Netflix;
 	public Sprite Superman;
+	public Sprite Pink;
+	public Sprite Purple;
+	public Sprite Teal;
+	public Sprite Green;
 	//shadows
 	public Sprite CircleShadow;
 	public FeedBackManager feedbackmanager;
@@ -371,8 +374,40 @@ public class Player : MonoBehaviour {
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
 				break;
+			case "Purple":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Purple;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
+			case "Pink":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Pink;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
+			case "Teal":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Teal;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
+			case "Green":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Green;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
 			case "Moon":
-				playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
+			playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
 				playerscale.x = 0.75f;
@@ -391,14 +426,6 @@ public class Player : MonoBehaviour {
 				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
-				playerscale.x = 0.85f;
-				playerscale.y = 0.85f;
-				playerobject.transform.localScale = playerscale;
-			break;
-			case "2SquarePlayer":
-				playerobject.GetComponent<SpriteRenderer>().sprite = TwoSquarePlayer;
-				Destroy (GetComponent<Collider2D>());
-				playerobject.AddComponent<PolygonCollider2D>();
 				playerscale.x = 0.85f;
 				playerscale.y = 0.85f;
 				playerobject.transform.localScale = playerscale;
