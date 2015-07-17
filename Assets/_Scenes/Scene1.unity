@@ -1553,6 +1553,8 @@ MonoBehaviour:
   Minecraft: {fileID: 21300000, guid: bbe4e58e471c041eb88d2a24ca78e857, type: 3}
   Meatboy: {fileID: 21300000, guid: 0667030043fda411cb34d1fa8a83a6ae, type: 3}
   Moon: {fileID: 21300000, guid: aafcd3035e2114fc3990477bbc016640, type: 3}
+  Netflix: {fileID: 21300000, guid: ad528edd396274e508e913abe392def2, type: 3}
+  Superman: {fileID: 21300000, guid: 95bf9e6f080c1423e825ef1d2eb4d47f, type: 3}
   CircleShadow: {fileID: 21300000, guid: f12128a55ba274e6f8a97f216d8b3152, type: 3}
   feedbackmanager: {fileID: 822714717}
   fxSource: {fileID: 1108948529}
