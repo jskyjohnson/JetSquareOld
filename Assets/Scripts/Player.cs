@@ -51,6 +51,8 @@ public class Player : MonoBehaviour {
 	public Sprite Minecraft;
 	public Sprite Meatboy;
 	public Sprite Moon;
+	public Sprite Netflix;
+	public Sprite Superman;
 	//shadows
 	public Sprite CircleShadow;
 	public FeedBackManager feedbackmanager;
@@ -347,6 +349,22 @@ public class Player : MonoBehaviour {
 			break;
 			case "Meatboy":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Meatboy;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
+			case "Netflix":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Netflix;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				break;
+			case "Superman":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Superman;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
