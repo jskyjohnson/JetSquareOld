@@ -56,8 +56,12 @@ public class Player : MonoBehaviour {
 	public Sprite Purple;
 	public Sprite Teal;
 	public Sprite Green;
-	//shadows
-	public Sprite CircleShadow;
+	//customization variables
+	public Color shadowcolor;
+	public Color fireshadowcolor;
+	public Vector3 shadowscale;
+	public Vector3 fireshadowscale;
+
 	public FeedBackManager feedbackmanager;
 
 	//audio
@@ -86,10 +90,6 @@ public class Player : MonoBehaviour {
 		spaceBetweenObstacles = 3.5f;
 		scale = 2.5f;
 		coins = PlayerPrefs.GetInt ("coins", 0);
-		Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-		playershadowcolor = new Color(1f, 1f, 1f);
-		playershadowcolor.a = 0.2f;
-		playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 		currentSpriteName = PlayerPrefs.GetString ("currentskin");
 		loadSkin ();
 		lastPoint = playerobject.transform.position.y;
@@ -108,11 +108,11 @@ public class Player : MonoBehaviour {
 			areaSection += 1f;
 			if (right == true) {
 				float randomnum = UnityEngine.Random.Range (4.4F, 7.8F);
-				CreatePlatform (randomnum + 0.8f + 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
+				CreatePlatform (randomnum + 0.8f + 3.0f, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
 				right = false;
 			} else if (right == false) {
 				float randomnum = UnityEngine.Random.Range (-2.0F, 1.5F);
-				CreatePlatform (randomnum - 0.8f - 3.0f, -6 + (-8 * (generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
+				CreatePlatform (randomnum - 0.8f - 3.0f, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
 				right = true;
 			}
 		}
@@ -162,15 +162,75 @@ public class Player : MonoBehaviour {
 				//GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-					//playershadowcolor = new Color (1f, 0.54f, 0.54f);
-				playershadowcolor = new Color ((0.929f + jumpPowerInTime * 0.056f), (0.54f - jumpPowerInTime * 0.52f), 0.54f - jumpPowerInTime * 0.52f);
-				playershadowcolor.a = 0.2f + jumpPowerInTime * 2f;
+				if(playershadowcolor.r < fireshadowcolor.r) {
+					playershadowcolor.r += 2f * Time.deltaTime;
+				} else if(playershadowcolor.r > fireshadowcolor.r) {
+					playershadowcolor.r -= 2f * Time.deltaTime;
+				}
+				if(playershadowcolor.g < fireshadowcolor.g) {
+					playershadowcolor.g += 2f * Time.deltaTime;
+				} else if(playershadowcolor.g > fireshadowcolor.g) {
+					playershadowcolor.g -= 2f * Time.deltaTime;
+				}
+				if(playershadowcolor.b < fireshadowcolor.b) {
+					playershadowcolor.b += 2f * Time.deltaTime;
+				} else if(playershadowcolor.b > fireshadowcolor.b) {
+					playershadowcolor.b -=  2f * Time.deltaTime;
+				}
+				if(playershadowcolor.a < fireshadowcolor.a) {
+					playershadowcolor.a += 4f * Time.deltaTime;
+				} else if(playershadowcolor.a > fireshadowcolor.a) {
+					playershadowcolor.a -= 4f * Time.deltaTime;
+				}
 				Vector3 playershadowscale = playershadow.transform.localScale;
-				playershadowscale.x = 0.35f;
-				playershadowscale.y = 0.35f;
+				if(playershadowscale.x > fireshadowscale.x) {
+					playershadowscale.x -= 0.7f * Time.deltaTime;
+				} else if(playershadowscale.x < fireshadowscale.x) {
+					playershadowscale.x += 0.7f * Time.deltaTime;
+				}
+				if(playershadowscale.y > fireshadowscale.y) {
+					playershadowscale.y -= 0.7f * Time.deltaTime;
+				} else if(playershadowscale.y < fireshadowscale.y) {
+					playershadowscale.y += 0.7f * Time.deltaTime;
+				}
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+				//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			} else {
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				if(playershadowcolor.r < shadowcolor.r) {
+					playershadowcolor.r += 1.6f * Time.deltaTime;
+				} else if(playershadowcolor.r > shadowcolor.r) {
+					playershadowcolor.r -= 1.6f * Time.deltaTime;
+				}
+				if(playershadowcolor.g < shadowcolor.g) {
+					playershadowcolor.g += 1.6f * Time.deltaTime;
+				} else if(playershadowcolor.g > shadowcolor.g) {
+					playershadowcolor.g -= 1.6f * Time.deltaTime;
+				}
+				if(playershadowcolor.b < shadowcolor.b) {
+					playershadowcolor.b += 1.6f * Time.deltaTime;
+				} else if(playershadowcolor.b > shadowcolor.b) {
+					playershadowcolor.b -= 1.6f * Time.deltaTime;
+				}
+				if(playershadowcolor.a < shadowcolor.a) {
+					playershadowcolor.a += 2f * Time.deltaTime;
+				} else if(playershadowcolor.a > shadowcolor.a) {
+					playershadowcolor.a -= 2f * Time.deltaTime;
+				}
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				if(playershadowscale.x > shadowscale.x) {
+					playershadowscale.x -= 0.6f * Time.deltaTime;
+				} else if(playershadowscale.x < shadowscale.x) {
+					playershadowscale.x += 0.6f * Time.deltaTime;
+				}
+				if(playershadowscale.y > shadowscale.y) {
+					playershadowscale.y -= 0.6f * Time.deltaTime;
+				} else if(playershadowscale.y < shadowscale.y) {
+					playershadowscale.y += 0.6f * Time.deltaTime;
+				}
+				playershadow.transform.localScale = playershadowscale;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (Input.GetKeyUp ("up")) {
 				if (!infiniteJumpAllowed) {
@@ -178,14 +238,10 @@ public class Player : MonoBehaviour {
 				}
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
-				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				playershadowcolor = new Color (1f, 1f, 1f);
-				playershadowcolor.a = 0.2f;
-				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-				Vector3 playershadowscale = playershadow.transform.localScale;
-				playershadowscale.x = 0.3f;
-				playershadowscale.y = 0.3f;
-				playershadow.transform.localScale = playershadowscale;
+				//Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				//playershadowcolor = new Color (1f, 1f, 1f);
+				//playershadowcolor.a = 0.2f;
+				//playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 		if (passObstacles == true) {
 			foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
@@ -222,40 +278,40 @@ public class Player : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
-		if (score < 10) {
+		if (score < 5) {
 			coinValue = 1;
 			spaceBetweenObstacles = 4f;
-			scale = 1.3f;
+			scale = 1.2f;
 			coinColor = new Color(1f, 1f, 1f);
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
-		} else if (score < 25 && score >= 10) {
+		} else if (score < 10 && score >= 5) {
 			coinValue = 2;
-			scale = 1.2f;
-			spaceBetweenObstacles = 3.6f;
+			scale = 1.1f;
+			spaceBetweenObstacles = 3.8f;
 			coinColor = new Color(0.847f, 0.255f, 0.255f);
 			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
-		} else if (score < 45 && score >= 25) {
+		} else if (score < 20 && score >= 10) {
 			coinValue = 2;
-			scale = 0.9f;
-			spaceBetweenObstacles = 3.2f;
+			scale = 1.0f;
+			spaceBetweenObstacles = 3.6f;
 			levelBasedColor = new Color(0.8823f, 0.8705f, 0.6039f);//yellow
-		} else if (score < 70 && score >= 45) {
+		} else if (score < 30 && score >= 20) {
+			coinValue = 3;
+			scale = 0.9f;
+			coinColor = new Color(0.0705f, 0.2902f, 0.941f);
+			spaceBetweenObstacles = 3.4f;
+			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
+		} else if (score < 50 && score >= 30) {
 			coinValue = 3;
 			scale = 0.8f;
-			coinColor = new Color(0.0705f, 0.2902f, 0.941f);
-			spaceBetweenObstacles = 2.9f;
-			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
-		} else if (score < 100 && score >= 70) {
-			coinValue = 3;
-			scale = 0.6f;
-			spaceBetweenObstacles = 2.7f;
+			spaceBetweenObstacles = 3.2f;
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
 			coinValue = 4;
-			scale = 0.6f;
+			scale = 0.7f;
 			coinColor = new Color(0.941f, 0.0705f, 0.7725f);
-			spaceBetweenObstacles = 2.5f;
+			spaceBetweenObstacles = 3.0f;
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		}
@@ -290,7 +346,7 @@ public class Player : MonoBehaviour {
 			gameObject.active = false;
 		}
 	}
-	void CreatePlatform(float locx, int locy, float angle, float randomnum, Color platformcolor, float scale) {
+	void CreatePlatform(float locx, float locy, float angle, float randomnum, Color platformcolor, float scale) {
 		spawnLocation = new Vector3 (locx, locy, 0);
 		platformAngle = Quaternion.identity;
 		platformAngle.eulerAngles = new Vector3(0.0f, 0.0f, angle);
@@ -346,6 +402,15 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(1f, 0.54f, 0.54f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
 			break;
 			case "Meatboy":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Meatboy;
@@ -378,6 +443,15 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0.239f, 0.765f, 1f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Pink":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Pink;
@@ -386,6 +460,15 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(1f, 0.427f, 0.984f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Teal":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Teal;

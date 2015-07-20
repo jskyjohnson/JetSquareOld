@@ -3,11 +3,14 @@ using System.Collections;
 
 public class PlayerShadow : MonoBehaviour {
 	public GameObject playershadow;
+	public bool isTrail;
 	// Use this for initialization
 	void Start () {
 		if (this.name == "playershadow(Clone)") {
-			playershadow.GetComponent<Rigidbody2D>().velocity = new Vector3 (UnityEngine.Random.Range (-5.0f, 5.0f), UnityEngine.Random.Range (-5.0f, 5.0f), UnityEngine.Random.Range (-5.0f, 5.0f));
-			Destroy (this.gameObject, 0.3f);
+			if(!isTrail) {
+				playershadow.GetComponent<Rigidbody2D>().velocity = new Vector3 (UnityEngine.Random.Range (-2.0f, 2.0f), UnityEngine.Random.Range (-2.0f, 2.0f), UnityEngine.Random.Range (-2.0f, 2.0f));
+			}
+			Destroy (this.gameObject, 0.37f);
 
 		}
 	}
