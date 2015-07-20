@@ -1529,7 +1529,10 @@ MonoBehaviour:
   Purple: {fileID: 21300000, guid: e56bf8706e02f4a9c984e3ad937d7a0e, type: 3}
   Teal: {fileID: 21300000, guid: ee1251b54e9cf41d4b944898f4952e54, type: 3}
   Green: {fileID: 21300000, guid: 395f6a6726b8e43a39ab1890ee587cd6, type: 3}
-  CircleShadow: {fileID: 21300000, guid: f12128a55ba274e6f8a97f216d8b3152, type: 3}
+  shadowcolor: {r: 0, g: 0, b: 0, a: 0}
+  fireshadowcolor: {r: 0, g: 0, b: 0, a: 0}
+  shadowscale: {x: 0, y: 0, z: 0}
+  fireshadowscale: {x: 0, y: 0, z: 0}
   feedbackmanager: {fileID: 822714717}
   fxSource: {fileID: 1108948529}
   musicSource: {fileID: 1108948528}
@@ -2211,6 +2214,45 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607111597}
+--- !u!1 &1607578748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1607578750}
+  - 114: {fileID: 1607578749}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1607578749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607578748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f653b695c6ed64b56a82558d88fbc0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1607578750
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607578748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .413510382, y: -1.41666579, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &1625328900
 GameObject:
   m_ObjectHideFlags: 0

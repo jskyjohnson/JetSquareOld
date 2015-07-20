@@ -20,8 +20,9 @@ public class AdsManager : MonoBehaviour {
 		PlayerPrefs.SetInt ("adIteration", PlayerPrefs.GetInt ("adIteration") + 1);
 		notAdIteration = true;
 		Debug.Log (PlayerPrefs.GetInt ("adIteration"));
-		if (PlayerPrefs.GetInt ("adIteration") == 2) {
+		if (PlayerPrefs.GetInt ("adIteration") >= 3) {
 			notAdIteration = false;
+			Debug.Log (Advertisement.IsReady (null));
 			if (Advertisement.IsReady (null)) {
 				Advertisement.Show (null, new ShowOptions {
 					pause = true,
