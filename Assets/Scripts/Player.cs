@@ -343,6 +343,7 @@ public class Player : MonoBehaviour {
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
 			Instantiate(deathAnimation,this.transform.position,this.transform.rotation);
 			StoreValues (score, coins);
+			AdsManager.loadAd ();
 			gameObject.active = false;
 		}
 	}

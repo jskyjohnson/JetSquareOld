@@ -7,6 +7,7 @@ public class PlayerDeath : MonoBehaviour {
 	private int counter;
 	public AudioSource deathsound;
 	public static PlayerDeath instance;
+	public Camera maincamera;
 	void Start () {
 		counter = 0;
 		deathsound.Play ();
@@ -18,8 +19,7 @@ public class PlayerDeath : MonoBehaviour {
 	void Update () {
 
 		counter++;
-		if (counter > 75) {
-
+		if (counter > 75 && AdsManager.notAdIteration) {
 			Application.LoadLevel ("menu");
 		}
 	}
