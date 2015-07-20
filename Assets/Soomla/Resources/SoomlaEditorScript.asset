@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e0a197f1a5042dc8fb2cd6ad519b70, type: 3}
+  m_Name: SoomlaEditorScript
+  m_EditorClassIdentifier: 
+  SoomlaSettings:
+    values:
+    - name: 536f6f6d6c61536563726574
+      value: 534554204f4e4c59204f4e4345
+    - name: 4465627567556e6974794d65737361676573
+      value: 54727565
+    - name: SoomlaSecret
+      value: JOHNSONYAN1234567890
+    - name: DebugUnityMessages
+      value: True
+    - name: GPlayBP
+      value: True
+    - name: AndroidPublicKey
+      value: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg6yzW/BQEbI1t/A1hxcyxpKpI6vlGcGCIDCATLDDxJtl/+mbisC7ltOGqHMEemVN4I1XrRk0WSpsY6IQS1ragAQOiMziHQrqsQi3DegMMYidN5j2FI5qha85ATMkQabLW9E7BRzblv8EevXdCAKWqGybX0OxtaMEyhM+JlCwwk/5/hONu0Vpiryay67dThIIp9Qw69s23JS/v1H1ulgSApjYuyIe4m3lIUK3NNLdYAcQbc+QfrWzCUUmbHfGhkYPuokbbRezUI6CL5VlxsIFSnmgVxK9ODwpxf2gSibXGvlB6YQPdfernU2l8fMkgM8N6AFj3WQPnh+3OTm9789LDwIDAQAB
+    - name: AndroidTestPurchases
+      value: True
+    - name: PlaySsvValidation
+      value: False
+    - name: PlayClientId
+      value: YOUR CLIENT ID
+    - name: PlayClientSecret
+      value: YOUR CLIENT SECRET
+    - name: PlayRefreshToken
+      value: YOUR REFRESH TOKEN
+    - name: DebugMessages
+      value: False
+    - name: NoneBP
+      value: False
