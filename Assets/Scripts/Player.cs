@@ -477,6 +477,15 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0.058f, 0.706f, 0.737f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Green":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Green;
@@ -485,6 +494,15 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0.043f, 0.722f, 0.498f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Moon":
 			playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
