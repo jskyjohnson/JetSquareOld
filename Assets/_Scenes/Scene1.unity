@@ -1235,7 +1235,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .279411793, g: 1, b: .940365255, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1643,7 +1643,7 @@ MonoBehaviour:
   coinGUI: {fileID: 1482865729}
   Coin: {fileID: 1074521145}
   maincamera: {fileID: 1861154965}
-  backgroundCube: {fileID: 2021682826}
+  backgroundCube: {fileID: 2021682832}
   deathAnimation: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
   canReplicate: 1
   right: 1
@@ -2583,7 +2583,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .5, g: .958620667, b: 1, a: 1}
+  m_BackGroundColor: {r: .279411793, g: 1, b: .940365255, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2736,4 +2736,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114ce0e438e0ca246a23067a8852b3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 2021682831}
+  backlight: {fileID: 908189362}
