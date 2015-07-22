@@ -7,8 +7,7 @@ public class Player : MonoBehaviour {
 	public int score = 0;
 	public int coins;
 	public int initcoins = 0;
-
-	public int jumpsLoaded;
+	
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
 	//Game Objects
@@ -37,8 +36,8 @@ public class Player : MonoBehaviour {
 	public bool generated;
 	public int generatedNumber;
 	public float jumpPowerInTime;
+	public float createShadowTime;
 	//powerup controller variables
-	public bool infiniteJumpAllowed;
 	public bool coinMagnet;
 	public bool passObstacles;
 	public float areaSection;
@@ -81,9 +80,6 @@ public class Player : MonoBehaviour {
 	void Start () {
 		musicSource.clip = music;
 		musicSource.Play ();
-
-		jumpsLoaded = 0;
-		infiniteJumpAllowed = false;
 		coinMagnet = false;
 		canReplicate = false;
 		right = false;
@@ -98,6 +94,7 @@ public class Player : MonoBehaviour {
 		passObstacles = false;
 		areaSection = 0f;
 		jumpPowerInTime = 0f;
+		createShadowTime = 0f;
 	}
 	
 	// Update is called once per frame
@@ -121,28 +118,30 @@ public class Player : MonoBehaviour {
 			lastPoint = playerobject.transform.position.y;
 			generatedNumber += 1;
 		}
-		CreatePlayerShadow();
-
+		createShadowTime += Time.deltaTime;
+		if (createShadowTime > 0.05f) {
+			CreatePlayerShadow ();
+		}
 		foreach (Touch touch in Input.touches)
 		{
-			if (touch.phase == TouchPhase.Stationary && jumpsLoaded == 1)
+			if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
 			{
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < fireshadowcolor.r) {
-					playershadowcolor.r += 2f * Time.deltaTime;
+					playershadowcolor.r += 5f * Time.deltaTime;
 				} else if(playershadowcolor.r > fireshadowcolor.r) {
-					playershadowcolor.r -= 2f * Time.deltaTime;
+					playershadowcolor.r -= 5f * Time.deltaTime;
 				}
 				if(playershadowcolor.g < fireshadowcolor.g) {
-					playershadowcolor.g += 2f * Time.deltaTime;
+					playershadowcolor.g += 5f * Time.deltaTime;
 				} else if(playershadowcolor.g > fireshadowcolor.g) {
-					playershadowcolor.g -= 2f * Time.deltaTime;
+					playershadowcolor.g -= 5f * Time.deltaTime;
 				}
 				if(playershadowcolor.b < fireshadowcolor.b) {
-					playershadowcolor.b += 2f * Time.deltaTime;
+					playershadowcolor.b += 5f * Time.deltaTime;
 				} else if(playershadowcolor.b > fireshadowcolor.b) {
-					playershadowcolor.b -=  2f * Time.deltaTime;
+					playershadowcolor.b -=  5f * Time.deltaTime;
 				}
 				if(playershadowcolor.a < fireshadowcolor.a) {
 					playershadowcolor.a += 4f * Time.deltaTime;
@@ -151,33 +150,33 @@ public class Player : MonoBehaviour {
 				}
 				Vector3 playershadowscale = playershadow.transform.localScale;
 				if(playershadowscale.x > fireshadowscale.x) {
-					playershadowscale.x -= 0.7f * Time.deltaTime;
+					playershadowscale.x -= 1.6f * Time.deltaTime;
 				} else if(playershadowscale.x < fireshadowscale.x) {
-					playershadowscale.x += 0.7f * Time.deltaTime;
+					playershadowscale.x += 1.6f * Time.deltaTime;
 				}
 				if(playershadowscale.y > fireshadowscale.y) {
-					playershadowscale.y -= 0.7f * Time.deltaTime;
+					playershadowscale.y -= 1.6f * Time.deltaTime;
 				} else if(playershadowscale.y < fireshadowscale.y) {
-					playershadowscale.y += 0.7f * Time.deltaTime;
+					playershadowscale.y += 1.6f * Time.deltaTime;
 				}
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			} else {
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < shadowcolor.r) {
-					playershadowcolor.r += 1.6f * Time.deltaTime;
+					playershadowcolor.r += 4f * Time.deltaTime;
 				} else if(playershadowcolor.r > shadowcolor.r) {
-					playershadowcolor.r -= 1.6f * Time.deltaTime;
+					playershadowcolor.r -= 4f * Time.deltaTime;
 				}
 				if(playershadowcolor.g < shadowcolor.g) {
-					playershadowcolor.g += 1.6f * Time.deltaTime;
+					playershadowcolor.g += 4f * Time.deltaTime;
 				} else if(playershadowcolor.g > shadowcolor.g) {
-					playershadowcolor.g -= 1.6f * Time.deltaTime;
+					playershadowcolor.g -= 4f * Time.deltaTime;
 				}
 				if(playershadowcolor.b < shadowcolor.b) {
-					playershadowcolor.b += 1.6f * Time.deltaTime;
+					playershadowcolor.b += 4f * Time.deltaTime;
 				} else if(playershadowcolor.b > shadowcolor.b) {
-					playershadowcolor.b -= 1.6f * Time.deltaTime;
+					playershadowcolor.b -= 4f * Time.deltaTime;
 				}
 				if(playershadowcolor.a < shadowcolor.a) {
 					playershadowcolor.a += 2f * Time.deltaTime;
@@ -199,15 +198,12 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (touch.phase == TouchPhase.Ended) {
-				if (!infiniteJumpAllowed) {
-					jumpsLoaded = 0;
-				}
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 			}
 		}
-		/*
-			if (Input.GetKey ("up") && jumpsLoaded == 1) {
+
+			if (Input.GetKey ("up")) {
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < fireshadowcolor.r) {
@@ -280,12 +276,9 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (Input.GetKeyUp ("up")) {
-				if (!infiniteJumpAllowed) {
-					jumpsLoaded = 0;
-				}
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
-			}*/
+			}
 		if (passObstacles == true) {
 			foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
 				deathblock.GetComponent<Collider2D> ().isTrigger = true;
@@ -365,21 +358,14 @@ public class Player : MonoBehaviour {
 				RandomiseAudio(HitPlatform);
 				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 				playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-				if (jumpsLoaded == 0) {
-					coll.gameObject.GetComponent<PlatformScript>().hasCollided = true;
-					//playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
-				}
+				coll.gameObject.GetComponent<PlatformScript>().hasCollided = true;
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
 				sinAngle = -(float)(Math.Sin (3.14f * (rot.z / 180f)));
 				if(coll.gameObject.GetComponent<PlatformScript>().givenScore == false) {
 					score += 1;
 					coll.gameObject.GetComponent<PlatformScript>().givenScore = true;
-					//Color platformcolor = coll.gameObject.GetComponent<SpriteRenderer> ().color;
-					//Color currentcolor = this.gameObject.GetComponent<SpriteRenderer> ().color;
-					//this.gameObject.GetComponent<SpriteRenderer> ().color = new Color ((platformcolor.r + currentcolor.r) / 2f, (platformcolor.g + currentcolor.g) / 2f, (platformcolor.b + currentcolor.b) / 2f);
 				}
-				jumpsLoaded = 1;
 				scoreGUI.GetComponent<Text>().text = score.ToString();
 			}
 		}
@@ -419,6 +405,7 @@ public class Player : MonoBehaviour {
 	void CreatePlayerShadow() {
 		spawnLocation = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
 		Instantiate(playershadow, spawnLocation, Quaternion.identity);
+		createShadowTime = 0.0f;
 	}
 	void StoreValues(int newHighscore, int newCoins)
 	{

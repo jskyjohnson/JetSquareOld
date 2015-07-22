@@ -20,13 +20,7 @@ public class PowerUpScript : MonoBehaviour {
 	void Update () {
 		quantity.GetComponent<Text> ().text = PlayerPrefs.GetInt (quantity.name).ToString ();
 	}
-
-	public void StartInfiniteJump() {
-		if (PlayerPrefs.GetInt ("InfiniteJumpQuantity") > 0) {
-			StartCoroutine (InfiniteJumpPowerup ());
-			StartCoroutine (countDown (JumpPowerupDuration));
-		}
-	}
+	
 	public void StartCoinMagnet() {
 		if (PlayerPrefs.GetInt ("CoinMagnetQuantity") > 0) {
 			StartCoroutine (CoinMagnet ());
@@ -51,14 +45,6 @@ public class PowerUpScript : MonoBehaviour {
 		button.interactable = true;
 	}
 
-	IEnumerator InfiniteJumpPowerup() {
-		player.GetComponent<Player>().jumpsLoaded = 1;
-		player.GetComponent<Player>().infiniteJumpAllowed = true;
-		PlayerPrefs.SetInt ("InfiniteJumpQuantity", PlayerPrefs.GetInt ("InfiniteJumpQuantity") - 1);
-		yield return new WaitForSeconds(JumpPowerupDuration);
-		player.GetComponent<Player>().infiniteJumpAllowed = false;
-	}
-	
 	IEnumerator CoinMagnet() {
 		player.GetComponent<Player>().coinMagnet = true;
 		PlayerPrefs.SetInt ("CoinMagnetQuantity", PlayerPrefs.GetInt ("CoinMagnetQuantity") - 1);
