@@ -9,6 +9,9 @@ public class menuScript : MonoBehaviour {
 	int highscorevalue;
 	public Text highscore;
 	public Text coins;
+	public GameObject shop;
+	public GameObject playbutton;
+	public GameObject player;
 	//public AudioSource menuSong;
 
 	int coinsvalue;
@@ -20,11 +23,11 @@ public class menuScript : MonoBehaviour {
 
 		highscorevalue = PlayerPrefs.GetInt ("highscore");
 		highscore = highscore.GetComponent<Text>();
-		highscore.text = "Highscore: " + highscorevalue;
+		highscore.text = highscorevalue.ToString ();
 
 		coinsvalue = PlayerPrefs.GetInt ("coins");
 		coins = coins.GetComponent<Text> ();
-		coins.text = "Total Coins: " + coinsvalue;
+		coins.text = coinsvalue.ToString();
 
 		if (!(Array.IndexOf (PlayerPrefsX.GetStringArray ("purchased"), "Default") >= 0)) {
 			PlayerPrefsX.SetStringArray ("purchased", new string[]{"Default"});
@@ -39,8 +42,11 @@ public class menuScript : MonoBehaviour {
 
 	public void Play() {
 		//Debug.Log ("Clicked");
-		Destroy (GameObject.Find ("Score"));
-		Application.LoadLevel ("Scene1");
+		Destroy (shop);
+		Destroy (playbutton);
+		player.GetComponent<Rigidbody2D> ().isKinematic = false;
+		coins.text = "0";
+		highscore.text = "0";
 	}
 
 	public void Shop() {

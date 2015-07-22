@@ -16,10 +16,9 @@ public class PlayerDeath : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		counter += Time.deltaTime;
-		if (counter > 0.3f && AdsManager.notAdIteration) {
-			Application.LoadLevel ("menu");
+		if (counter > 0.3f) {
+			AdsManager.loadAd();
 		}
 	}
 }

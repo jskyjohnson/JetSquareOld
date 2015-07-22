@@ -40,7 +40,7 @@ using Soomla.Store;
 			};
 		}
 		public void back() {
-			Application.LoadLevel ("Menu");
+			Application.LoadLevel ("Scene1");
 		}
 
 		public static void loadcoinvalue(int coinsvalue) {

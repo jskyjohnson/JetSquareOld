@@ -25,12 +25,12 @@ public class AdsManager : MonoBehaviour {
 				Advertisement.Show (null, new ShowOptions {
 					pause = true,
 					resultCallback = ShowResult => {
-						Application.LoadLevel ("menu");
+						Application.LoadLevel ("Scene1");
 						PlayerPrefs.SetInt ("adIteration", 0);
 					}
 				});
 			} else {
-				Application.LoadLevel ("menu");
+				Application.LoadLevel ("Scene1");
 				PlayerPrefs.SetInt ("adIteration", 0);
 			}
 		}

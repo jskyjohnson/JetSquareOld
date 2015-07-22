@@ -96,6 +96,7 @@ public class Player : MonoBehaviour {
 		areaSection = 0f;
 		jumpPowerInTime = 0f;
 		createShadowTime = 0f;
+		playerobject.GetComponent<Rigidbody2D> ().isKinematic = true;
 	}
 	
 	// Update is called once per frame
@@ -376,7 +377,6 @@ public class Player : MonoBehaviour {
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
 			Instantiate(deathAnimation,this.transform.position,this.transform.rotation);
 			StoreValues (score, coins);
-			AdsManager.loadAd ();
 			gameObject.active = false;
 		}
 	}
