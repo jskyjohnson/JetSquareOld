@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 	public GameObject Coin;
 	private GameObject obstacle;
 	public Camera maincamera;
+	public BackgroundCube backgroundCube;
 
 	public GameObject deathAnimation;
 	//Logic Variables
@@ -302,6 +303,7 @@ public class Player : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
 		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
 			feedbackmanager.hitCoin(this, coll);
+			backgroundCube.randTorHitCoin();
 			coinSource.clip=HitCoin;
 			coinSource.Play ();
 
@@ -314,6 +316,7 @@ public class Player : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
+		//backgroundCube.GetComponent<Rigidbody> ().AddTorque (new Vector3 (UnityEngine.Random.Range (-1, 1), UnityEngine.Random.Range (-1, 1), UnityEngine.Random.Range (-1, 1))*UnityEngine.Random.Range(10,50));
 		if (score < 5) {
 			coinValue = 1;
 			spaceBetweenObstacles = 4f;
@@ -351,8 +354,9 @@ public class Player : MonoBehaviour {
 			levelBasedColor = new Color(0.6f, 1f, 1f);
 			levelBasedColor = new Color(0.88235f, 0.4666f, 0.83529f);//pink
 		}
-
+		backgroundCube.setColor (levelBasedColor);
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
+			backgroundCube.randTorHit();
 			feedbackmanager.hitPlatform(this);
 			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
 				RandomiseAudio(HitPlatform);

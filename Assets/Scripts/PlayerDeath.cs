@@ -7,7 +7,6 @@ public class PlayerDeath : MonoBehaviour {
 	private float counter;
 	public AudioSource deathsound;
 	public static PlayerDeath instance;
-	public Camera maincamera;
 	void Start () {
 		counter = 0f;
 		//deathsound.Play ();
