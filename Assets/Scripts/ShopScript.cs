@@ -31,7 +31,7 @@ using Soomla.Store;
 				switch(pvi.ID) {
 				case AppAssets.COINS_200_ID:
 					PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 200);
-					ShopScript.loadcoinvalue (PlayerPrefs.GetInt ("coins"));
+					loadcoinvalue (PlayerPrefs.GetInt ("coins"));
 					break;
 				case AppAssets.NO_ADS_LIFETIME_PRODUCT_ID:
 				Debug.Log ("THIS HSOULD HSOW UP!!!!!");

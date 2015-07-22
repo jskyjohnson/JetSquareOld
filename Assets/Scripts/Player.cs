@@ -122,44 +122,11 @@ public class Player : MonoBehaviour {
 			generatedNumber += 1;
 		}
 		CreatePlayerShadow();
-		/*
+
 		foreach (Touch touch in Input.touches)
 		{
-			if (touch.phase == TouchPhase.Stationary && jumpLoaded == true)
+			if (touch.phase == TouchPhase.Stationary && jumpsLoaded == 1)
 			{
-				GetComponent<Rigidbody2D>().AddForce(new Vector2((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
-			}
-			if (touch.phase == TouchPhase.Stationary) {
-				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				if(coloralternation >= 1) {
-					playershadowcolor = new Color(1f, 0.54f, 0.54f);
-					coloralternation += 1;
-				} else if(coloralternation == 8) {
-					playershadowcolor = new Color(0.949f, 0.572f, 0.286f);
-					coloralternation = 1;
-				}
-				playershadowcolor.a = 0.7f;
-				Vector3 playershadowscale = playershadow.transform.localScale;
-				playershadowscale.x = 0.35f;
-				playershadowscale.y = 0.35f;
-				playershadow.transform.localScale = playershadowscale;
-				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			}
-			if (touch.phase == TouchPhase.Ended) {
-				jumpLoaded = false;
-				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				playershadowcolor = new Color(1f, 1f, 1f);
-				playershadowcolor.a = 0.2f;
-				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-				Vector3 playershadowscale = playershadow.transform.localScale;
-				playershadowscale.x = 0.3f;
-				playershadowscale.y = 0.3f;
-				playershadow.transform.localScale = playershadowscale;
-			}
-		}*/
-
-			if (Input.GetKey ("up") && jumpsLoaded == 1) {
-				//GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 0.30f), (cosAngle * 1.8f)), ForceMode2D.Impulse);
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < fireshadowcolor.r) {
@@ -195,7 +162,87 @@ public class Player : MonoBehaviour {
 				}
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-				//this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			} else {
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				if(playershadowcolor.r < shadowcolor.r) {
+					playershadowcolor.r += 1.6f * Time.deltaTime;
+				} else if(playershadowcolor.r > shadowcolor.r) {
+					playershadowcolor.r -= 1.6f * Time.deltaTime;
+				}
+				if(playershadowcolor.g < shadowcolor.g) {
+					playershadowcolor.g += 1.6f * Time.deltaTime;
+				} else if(playershadowcolor.g > shadowcolor.g) {
+					playershadowcolor.g -= 1.6f * Time.deltaTime;
+				}
+				if(playershadowcolor.b < shadowcolor.b) {
+					playershadowcolor.b += 1.6f * Time.deltaTime;
+				} else if(playershadowcolor.b > shadowcolor.b) {
+					playershadowcolor.b -= 1.6f * Time.deltaTime;
+				}
+				if(playershadowcolor.a < shadowcolor.a) {
+					playershadowcolor.a += 2f * Time.deltaTime;
+				} else if(playershadowcolor.a > shadowcolor.a) {
+					playershadowcolor.a -= 2f * Time.deltaTime;
+				}
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				if(playershadowscale.x > shadowscale.x) {
+					playershadowscale.x -= 0.6f * Time.deltaTime;
+				} else if(playershadowscale.x < shadowscale.x) {
+					playershadowscale.x += 0.6f * Time.deltaTime;
+				}
+				if(playershadowscale.y > shadowscale.y) {
+					playershadowscale.y -= 0.6f * Time.deltaTime;
+				} else if(playershadowscale.y < shadowscale.y) {
+					playershadowscale.y += 0.6f * Time.deltaTime;
+				}
+				playershadow.transform.localScale = playershadowscale;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+			}
+			if (touch.phase == TouchPhase.Ended) {
+				if (!infiniteJumpAllowed) {
+					jumpsLoaded = 0;
+				}
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
+				jumpPowerInTime = 0f;
+			}
+		}
+		/*
+			if (Input.GetKey ("up") && jumpsLoaded == 1) {
+				jumpPowerInTime += Time.deltaTime;
+				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+				if(playershadowcolor.r < fireshadowcolor.r) {
+					playershadowcolor.r += 2f * Time.deltaTime;
+				} else if(playershadowcolor.r > fireshadowcolor.r) {
+					playershadowcolor.r -= 2f * Time.deltaTime;
+				}
+				if(playershadowcolor.g < fireshadowcolor.g) {
+					playershadowcolor.g += 2f * Time.deltaTime;
+				} else if(playershadowcolor.g > fireshadowcolor.g) {
+					playershadowcolor.g -= 2f * Time.deltaTime;
+				}
+				if(playershadowcolor.b < fireshadowcolor.b) {
+					playershadowcolor.b += 2f * Time.deltaTime;
+				} else if(playershadowcolor.b > fireshadowcolor.b) {
+					playershadowcolor.b -=  2f * Time.deltaTime;
+				}
+				if(playershadowcolor.a < fireshadowcolor.a) {
+					playershadowcolor.a += 4f * Time.deltaTime;
+				} else if(playershadowcolor.a > fireshadowcolor.a) {
+					playershadowcolor.a -= 4f * Time.deltaTime;
+				}
+				Vector3 playershadowscale = playershadow.transform.localScale;
+				if(playershadowscale.x > fireshadowscale.x) {
+					playershadowscale.x -= 0.7f * Time.deltaTime;
+				} else if(playershadowscale.x < fireshadowscale.x) {
+					playershadowscale.x += 0.7f * Time.deltaTime;
+				}
+				if(playershadowscale.y > fireshadowscale.y) {
+					playershadowscale.y -= 0.7f * Time.deltaTime;
+				} else if(playershadowscale.y < fireshadowscale.y) {
+					playershadowscale.y += 0.7f * Time.deltaTime;
+				}
+				playershadow.transform.localScale = playershadowscale;
+				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			} else {
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < shadowcolor.r) {
@@ -238,11 +285,7 @@ public class Player : MonoBehaviour {
 				}
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
-				//Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				//playershadowcolor = new Color (1f, 1f, 1f);
-				//playershadowcolor.a = 0.2f;
-				//playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			}
+			}*/
 		if (passObstacles == true) {
 			foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
 				deathblock.GetComponent<Collider2D> ().isTrigger = true;

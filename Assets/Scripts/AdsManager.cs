@@ -7,7 +7,6 @@ public class AdsManager : MonoBehaviour {
 	public static bool notAdIteration;
 	void Awake() {
 		if (Advertisement.isSupported) {
-			Advertisement.allowPrecache = true;
 			Advertisement.Initialize ("56206", true);
 		} else {
 			Debug.Log("Platform not supported");
