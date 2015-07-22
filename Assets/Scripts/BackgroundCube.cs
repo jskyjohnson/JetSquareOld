@@ -21,7 +21,6 @@ public class BackgroundCube : MonoBehaviour {
 
 
 		if (timeremaining < 0f) {
-			Debug.Log ("asdfasdf");
 			Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1) * Time.deltaTime);
 			rb.AddTorque (randVec * 2, ForceMode.VelocityChange);
 			timeremaining = torquetimeout;
