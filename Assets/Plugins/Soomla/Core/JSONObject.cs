@@ -270,7 +270,7 @@ public class JSONObject : NullCheckable {
 	/// <param name="strict">Whether to be strict in the parsing. For example, non-strict parsing will successfully 
 	/// parse "a string" into a string-type </param>
 	/// <returns></returns>
-	public static JSONObject Create(string val, int maxDepth = -2, bool storeExcessLevels = false, bool strict = false) {
+	public static JSONObject Create(string val, int maxDepth= -2, bool storeExcessLevels = false, bool strict = false) {
 		JSONObject obj = Create();
 		obj.Parse(val, maxDepth, storeExcessLevels, strict);
 		return obj;

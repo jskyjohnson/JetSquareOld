@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
 	public GameObject Coin;
 	private GameObject obstacle;
 	public Camera maincamera;
+	public GameObject backgroundCube;
 
 	public GameObject deathAnimation;
 	//Logic Variables
@@ -278,6 +279,7 @@ public class Player : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D coll) {
 		//handles change in rotation.
+		backgroundCube.GetComponent<Rigidbody> ().AddTorque (new Vector3 (UnityEngine.Random.Range (-1, 1), UnityEngine.Random.Range (-1, 1), UnityEngine.Random.Range (-1, 1))*UnityEngine.Random.Range(10,50));
 		if (score < 5) {
 			coinValue = 1;
 			spaceBetweenObstacles = 4f;
