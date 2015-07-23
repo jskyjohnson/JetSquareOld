@@ -18,7 +18,12 @@ public class PlayerDeath : MonoBehaviour {
 	void Update () {
 		counter += Time.deltaTime;
 		if (counter > 0.3f) {
+			Debug.Log (PlayerPrefs.GetInt ("adIteration"));
+			if(PlayerPrefs.GetInt ("adIteration") < 4 || PlayerPrefs.GetString("ads") == "false") {
+				Application.LoadLevel ("Scene1");
+			}
 			AdsManager.loadAd();
+			Destroy (this);
 		}
 	}
 }

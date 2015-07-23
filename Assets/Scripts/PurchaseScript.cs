@@ -15,7 +15,6 @@ public class PurchaseScript : MonoBehaviour {
 
 	public bool isSkin;
 	void Start() {
-		PlayerPrefs.SetInt ("coins", 1000);
 		if (!isSkin) {
 			text.GetComponent<Text>().text =  cost + " (" + PlayerPrefs.GetInt (button.name) +")";
 		}

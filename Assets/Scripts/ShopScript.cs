@@ -27,17 +27,7 @@ using Soomla.Store;
 			//StoreEvents.OnSoomlaStoreInitialized += onSoomlaStoreInitialized;
 			SoomlaStore.Initialize (new AppAssets ());
 			//StoreEvents.OnItemPurchaseStarted += (PurchasableVirtualItem pvi, string str, Dictionary<string, string> dic) => {};
-			StoreEvents.OnItemPurchased += (PurchasableVirtualItem pvi, string payload) => { 
-				switch(pvi.ID) {
-				case AppAssets.COINS_200_ID:
-					PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 200);
-					loadcoinvalue (PlayerPrefs.GetInt ("coins"));
-					break;
-				case AppAssets.NO_ADS_LIFETIME_PRODUCT_ID:
-				Debug.Log ("THIS HSOULD HSOW UP!!!!!");
-					break;
-				}
-			};
+			StoreEvents.OnItemPurchased += onItemPurchased;
 		}
 		public void back() {
 			Application.LoadLevel ("Scene1");
@@ -46,7 +36,26 @@ using Soomla.Store;
 		public static void loadcoinvalue(int coinsvalue) {
 			coins.text = "Total Coins: " + coinsvalue;
 		}
-		public void resetSkinsButtons() {
+		public void onItemPurchased( PurchasableVirtualItem pvi, string payload) { 
+		switch(pvi.ID) {
+			case AppAssets.COINS_1200_ID:
+				PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 1200);
+				loadcoinvalue (PlayerPrefs.GetInt ("coins"));
+				break;
+			case AppAssets.COINS_3000_ID:
+				PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 3000);
+				loadcoinvalue (PlayerPrefs.GetInt ("coins"));
+				break;
+			case AppAssets.COINS_10000_ID:
+				PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 10000);
+				loadcoinvalue (PlayerPrefs.GetInt ("coins"));
+				break;
+			case AppAssets.NO_ADS_LIFETIME_PRODUCT_ID:
+				PlayerPrefs.SetString ("ads", "false");
+				break;
+			}
+		}
+	public void resetSkinsButtons() {
 			foreach (Button button in skinsButtons) {
 				currentskins = ShopScript.currentskins;
 				bool contains = false;
@@ -82,6 +91,7 @@ using Soomla.Store;
 			foreach (VirtualGood vg in StoreInfo.Goods) {
 				if(vg.Name == name) {
 					try {
+					Debug.Log (vg.Name);
 						StoreInventory.BuyItem (vg.ItemId);
 					} catch (Exception e) {
 						Debug.Log ("SOOMLA" + e.Message);

@@ -16,10 +16,9 @@ public class AdsManager : MonoBehaviour {
 		notAdIteration = true;
 	}
 	public static void loadAd() {
-		PlayerPrefs.SetInt ("adIteration", PlayerPrefs.GetInt ("adIteration") + 1);
 		notAdIteration = true;
 		Debug.Log (PlayerPrefs.GetInt ("adIteration"));
-		if (PlayerPrefs.GetInt ("adIteration") >= 3) {
+		if (PlayerPrefs.GetInt ("adIteration") >= 4 & PlayerPrefs.GetString("ads") != "false") {
 			notAdIteration = false;
 			if (Advertisement.IsReady (null)) {
 				Advertisement.Show (null, new ShowOptions {
@@ -34,5 +33,6 @@ public class AdsManager : MonoBehaviour {
 				PlayerPrefs.SetInt ("adIteration", 0);
 			}
 		}
+		PlayerPrefs.SetInt ("adIteration", PlayerPrefs.GetInt ("adIteration") + 1);
 	}
 }

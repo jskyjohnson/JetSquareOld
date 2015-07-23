@@ -38,6 +38,9 @@ public class Player : MonoBehaviour {
 	public int generatedNumber;
 	public float jumpPowerInTime;
 	public float createShadowTime;
+	public int jumpsCount;
+	public float leftBoundary;
+	public float rightBoundary;
 	//powerup controller variables
 	public bool coinMagnet;
 	public bool passObstacles;
@@ -85,10 +88,10 @@ public class Player : MonoBehaviour {
 		canReplicate = false;
 		right = false;
 		spaceBetweenObstacles = 3.5f;
-		scale = 2.5f;
 		coins = PlayerPrefs.GetInt ("coins", 0);
 		currentSpriteName = PlayerPrefs.GetString ("currentskin");
 		loadSkin ();
+		scale = 1.2f;
 		lastPoint = playerobject.transform.position.y;
 		generated = false;
 		generatedNumber = 2;
@@ -97,21 +100,29 @@ public class Player : MonoBehaviour {
 		jumpPowerInTime = 0f;
 		createShadowTime = 0f;
 		playerobject.GetComponent<Rigidbody2D> ().isKinematic = true;
+		jumpsCount = 0;
+		leftBoundary = -(maincamera.orthographicSize * maincamera.aspect) + 2.8593f;
+		rightBoundary = maincamera.orthographicSize * maincamera.aspect + 2.8593f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Handles movement
+		//if you go outside the sides
+		if (playerobject.transform.position.x > rightBoundary || playerobject.transform.position.x < leftBoundary) {
+			die ();
+		}
+		//Handles movement and shadow
 		if ((playerobject.transform.position.y < lastPoint - 3.0f) && generated == false) {
 			generated = true;
 			areaSection += 1f;
 			if (right == true) {
-				float randomnum = UnityEngine.Random.Range (4.4F, 7.8F);
-				CreatePlatform (randomnum + 0.8f + 3.0f, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum, levelBasedColor, scale);
+				Debug.Log (rightBoundary);
+				float randomnum = UnityEngine.Random.Range (8.2F, rightBoundary + (2.8f - scale * 1.2f));
+				CreatePlatform (randomnum, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum - 3.8f, levelBasedColor, scale);
 				right = false;
 			} else if (right == false) {
-				float randomnum = UnityEngine.Random.Range (-2.0F, 1.5F);
-				CreatePlatform (randomnum - 0.8f - 3.0f, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum, levelBasedColor, scale);
+				float randomnum = UnityEngine.Random.Range (leftBoundary - (2.8f - scale * 1.2f), -2.3F);
+				CreatePlatform (randomnum, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum + 3.8f, levelBasedColor, scale);
 				right = true;
 			}
 		}
@@ -126,7 +137,7 @@ public class Player : MonoBehaviour {
 		}
 		foreach (Touch touch in Input.touches)
 		{
-			if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
+			if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved && jumpsCount < 2)
 			{
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
@@ -200,12 +211,13 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (touch.phase == TouchPhase.Ended) {
+				jumpsCount += 1;
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 			}
 		}
 
-			if (Input.GetKey ("up")) {
+			if (Input.GetKey ("up") && jumpsCount < 2) {
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < fireshadowcolor.r) {
@@ -278,6 +290,7 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (Input.GetKeyUp ("up")) {
+				jumpsCount += 1;
 				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 			}
@@ -320,22 +333,22 @@ public class Player : MonoBehaviour {
 		//backgroundCube.GetComponent<Rigidbody> ().AddTorque (new Vector3 (UnityEngine.Random.Range (-1, 1), UnityEngine.Random.Range (-1, 1), UnityEngine.Random.Range (-1, 1))*UnityEngine.Random.Range(10,50));
 		if (score < 5) {
 			coinValue = 1;
-			spaceBetweenObstacles = 4f;
+			spaceBetweenObstacles = 4.5f;
 			scale = 1.2f;
 			coinColor = new Color(1f, 1f, 1f);
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
 		} else if (score < 10 && score >= 5) {
 			coinValue = 2;
 			scale = 1.1f;
-			spaceBetweenObstacles = 3.8f;
+			spaceBetweenObstacles = 4.1f;
 			coinColor = new Color(0.847f, 0.255f, 0.255f);
 			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
 		} else if (score < 20 && score >= 10) {
 			coinValue = 2;
 			scale = 1.0f;
-			spaceBetweenObstacles = 3.6f;
-			levelBasedColor = new Color(0.8823f, 0.8705f, 0.6039f);//yellow
+			spaceBetweenObstacles = 3.7f;
+			levelBasedColor = new Color(1.0f, 0.6666f, 0.4117f);//orange
 		} else if (score < 30 && score >= 20) {
 			coinValue = 3;
 			scale = 0.9f;
@@ -357,6 +370,7 @@ public class Player : MonoBehaviour {
 		}
 		backgroundCube.setColor (levelBasedColor);
 		if (coll.gameObject.name == "Platform" || coll.gameObject.name == "Platform(Clone)") {
+			jumpsCount = 0;
 			backgroundCube.randTorHit();
 			feedbackmanager.hitPlatform(this);
 			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
@@ -375,9 +389,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if (coll.gameObject.name == "DeathBlock" || coll.gameObject.name == "DeathBlockToClone" || coll.gameObject.name == "DeathBlockToClone(Clone)") {
-			Instantiate(deathAnimation,this.transform.position,this.transform.rotation);
-			StoreValues (score, coins);
-			gameObject.active = false;
+			die ();
 		}
 	}
 	void CreatePlatform(float locx, float locy, float angle, float randomnum, Color platformcolor, float scale) {
@@ -431,6 +443,7 @@ public class Player : MonoBehaviour {
 		switch (currentSpriteName) {
 			//cases have to be hardcoded because each case differs in some special way.
 			case "Default":
+			case "":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Default;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -572,6 +585,13 @@ public class Player : MonoBehaviour {
 				playerobject.transform.localScale = playerscale;
 			break;
 		}
+	}
+
+	public void die() {
+		Instantiate(deathAnimation,this.transform.position,this.transform.rotation);
+		PlayerPrefs.SetInt ("LastScore", score);
+		StoreValues (score, coins);
+		gameObject.active = false;
 	}
 
 	//Audio Methods

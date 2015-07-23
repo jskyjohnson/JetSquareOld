@@ -28,7 +28,7 @@ using Soomla.Store;
 		/// see parent.
 		/// </summary>
 		public int GetVersion() {
-			return 0;
+			return 1;
 		}
 		
 		/// <summary>
@@ -42,7 +42,7 @@ using Soomla.Store;
 		/// see parent.
 		/// </summary>
 		public VirtualGood[] GetGoods() {
-			return new VirtualGood[] {COINS_200_ITEM, NO_ADS_LTVG};
+			return new VirtualGood[] {COINS_1200_ITEM, COINS_3000_ITEM, COINS_10000_ITEM, NO_ADS_LTVG};
 		}
 		
 		/// <summary>
@@ -61,17 +61,33 @@ using Soomla.Store;
 		
 		/** Static Final Members **/
 		
-		public const string COINS_200_ID = "coins200";
+		public const string COINS_1200_ID = "coins1200";
 
-		public const string NO_ADS_LIFETIME_PRODUCT_ID = "android.test.purchased";//"no_ads";
+		public const string COINS_3000_ID = "coins3000";
+
+		public const string COINS_10000_ID = "coins10000";
+
+		public const string NO_ADS_LIFETIME_PRODUCT_ID = "no_ads";//"no_ads";
 		
-		public static VirtualGood COINS_200_ITEM = new SingleUseVG(
-			"200 Coins",                                       		// name
-			"Get 200 Coins", // description
-			"coins200",                                       		// item id
-			new PurchaseWithMarket(new MarketItem(COINS_200_ID, 0.99))); // the way this virtual good is purchased
+		public static SingleUseVG COINS_1200_ITEM = new SingleUseVG(
+			"1200 Coins",                                       		// name
+			"Get 1200 Coins", // description
+			"coins1200",                                       		// item id
+			new PurchaseWithMarket(new MarketItem(COINS_1200_ID, 0.99))); // the way this virtual good is purchased
 
-		/** LifeTimeVGs **/
+		public static SingleUseVG COINS_3000_ITEM = new SingleUseVG(
+			"3000 Coins",                                       		// name
+			"Get 3000 Coins", // description
+			"coins3000",                                       		// item id
+			new PurchaseWithMarket(new MarketItem(COINS_3000_ID, 1.99))); // the way this virtual good is purchased
+
+		public static SingleUseVG COINS_10000_ITEM = new SingleUseVG(
+			"10000 Coins",                                       		// name
+			"Get 10000 Coins", // description
+			"coins10000",                                       		// item id
+			new PurchaseWithMarket(new MarketItem(COINS_10000_ID, 2.99))); // the way this virtual good is purchased
+
+	/** LifeTimeVGs **/
 		// Note: create non-consumable items using LifeTimeVG with PuchaseType of PurchaseWithMarket
 		public static LifetimeVG NO_ADS_LTVG = new LifetimeVG(
 			"No Ads", 														// name
