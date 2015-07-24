@@ -15,18 +15,11 @@ public class FeedBackManager : MonoBehaviour {
 		}
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	public void hitPlatform(Player player){
 		Instantiate (hitPlatformFeedback, player.transform.position, player.transform.rotation);
 	
 	}
 	public void hitCoin(Player player, Collider2D thiscoin){
-		//Instantiate (hitCoinFeedback, player.transform.position, player.transform.rotation);
-
 		for (int i = 0; i < Random.Range(3,7); i++) {
 			Vector3 newspawn;
 			newspawn = new Vector3 (thiscoin.transform.position.x, thiscoin.transform.position.y, 0);

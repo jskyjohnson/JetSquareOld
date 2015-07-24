@@ -17,9 +17,6 @@ public class BackgroundCube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
-
-
 		if (timeremaining < 0f) {
 			Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1) * Time.deltaTime);
 			rb.AddTorque (randVec * 2, ForceMode.VelocityChange);

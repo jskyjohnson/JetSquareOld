@@ -16,23 +16,56 @@ public class AdsManager : MonoBehaviour {
 		notAdIteration = true;
 	}
 	public static void loadAd() {
-		notAdIteration = true;
-		Debug.Log (PlayerPrefs.GetInt ("adIteration"));
-		if (PlayerPrefs.GetInt ("adIteration") >= 4 & PlayerPrefs.GetString("ads") != "false") {
-			notAdIteration = false;
-			if (Advertisement.IsReady (null)) {
-				Advertisement.Show (null, new ShowOptions {
-					pause = true,
-					resultCallback = ShowResult => {
+		if ((PlayerPrefs.GetInt ("GameTime") >= 70 || PlayerPrefs.GetInt ("adIteration") >= 6) && PlayerPrefs.GetString("ads") != "false") {
+			float randomNum = UnityEngine.Random.Range (0f, 100f);
+			if(randomNum > 40f) {
+				if(Advertisement.isReady("pictureZone")) {
+					Debug.Log ("showing picture");
+					Advertisement.Show ("pictureZone", new ShowOptions {
+						resultCallback = ShowResult => {
+							PlayerPrefs.SetInt ("GameTime", 0);
+							PlayerPrefs.SetInt ("adIteration", 0);
+							Application.LoadLevel ("Scene1");
+						}
+					});
+				} else {
+					if (Advertisement.IsReady (null)) {
+						Advertisement.Show (null, new ShowOptions {
+							resultCallback = ShowResult => {
+								PlayerPrefs.SetInt ("GameTime", 0);
+								PlayerPrefs.SetInt ("adIteration", 0);
+								Application.LoadLevel ("Scene1");
+							}
+						});
+					} else {
 						Application.LoadLevel ("Scene1");
-						PlayerPrefs.SetInt ("adIteration", 0);
 					}
-				});
+				}
 			} else {
-				Application.LoadLevel ("Scene1");
-				PlayerPrefs.SetInt ("adIteration", 0);
+				if(Advertisement.isReady(null)) {
+					Advertisement.Show (null, new ShowOptions {
+						pause = true,
+						resultCallback = ShowResult => {
+							PlayerPrefs.SetInt ("GameTime", 0);
+							PlayerPrefs.SetInt ("adIteration", 0);
+							Application.LoadLevel ("Scene1");
+						}
+					});
+				} else {
+					if (Advertisement.IsReady ("pictureZone")) {
+						Advertisement.Show ("pictureZone", new ShowOptions {
+							pause = true,
+							resultCallback = ShowResult => {
+								PlayerPrefs.SetInt ("GameTime", 0);
+								PlayerPrefs.SetInt ("adIteration", 0);
+								Application.LoadLevel ("Scene1");
+							}
+						});
+					} else {
+						Application.LoadLevel ("Scene1");
+					}
+				}
 			}
 		}
-		PlayerPrefs.SetInt ("adIteration", PlayerPrefs.GetInt ("adIteration") + 1);
 	}
 }

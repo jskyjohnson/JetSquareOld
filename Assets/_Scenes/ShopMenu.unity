@@ -910,7 +910,7 @@ GameObject:
   - 114: {fileID: 355783120}
   - 114: {fileID: 355783119}
   m_Layer: 5
-  m_Name: PassObstaclesQuantity
+  m_Name: GuardianQuantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

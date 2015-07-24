@@ -11,11 +11,6 @@ public class PlayerShadow : MonoBehaviour {
 				playershadow.GetComponent<Rigidbody2D>().velocity = new Vector3 (UnityEngine.Random.Range (-2.0f, 2.0f), UnityEngine.Random.Range (-2.0f, 2.0f), UnityEngine.Random.Range (-2.0f, 2.0f));
 			}
 			Destroy (this.gameObject, 0.37f);
-
 		}
-	}
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

@@ -9,20 +9,20 @@ public class PlayerDeath : MonoBehaviour {
 	public static PlayerDeath instance;
 	void Start () {
 		counter = 0f;
-		//deathsound.Play ();
-
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		counter += Time.deltaTime;
 		if (counter > 0.3f) {
-			Debug.Log (PlayerPrefs.GetInt ("adIteration"));
-			if(PlayerPrefs.GetInt ("adIteration") < 4 || PlayerPrefs.GetString("ads") == "false") {
-				Application.LoadLevel ("Scene1");
+			if(!Player.guardianAngel) {
+				Debug.Log (PlayerPrefs.GetInt ("adIteration"));
+				PlayerPrefs.SetInt ("adIteration", PlayerPrefs.GetInt ("adIteration") + 1);
+				if(PlayerPrefs.GetInt ("GameTime") < 70 && PlayerPrefs.GetInt ("adIteration") < 6 || PlayerPrefs.GetString("ads") == "false") {
+					Application.LoadLevel ("Scene1");
+				}
+				AdsManager.loadAd();
 			}
-			AdsManager.loadAd();
 			Destroy (this);
 		}
 	}

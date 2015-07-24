@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 	public int score = 0;
@@ -33,18 +34,15 @@ public class Player : MonoBehaviour {
 	public int coloralternation = 1;
 	public int coinValue;
 	public Vector3 spawnLocation;
-	public float lastPoint;
-	public bool generated;
-	public int generatedNumber;
 	public float jumpPowerInTime;
 	public float createShadowTime;
 	public int jumpsCount;
 	public float leftBoundary;
 	public float rightBoundary;
+	public float timePassed;
 	//powerup controller variables
 	public bool coinMagnet;
-	public bool passObstacles;
-	public float areaSection;
+	public static bool guardianAngel = false;
 	//sprites
 	public static string currentSpriteName;
 	public Sprite Default;
@@ -81,7 +79,12 @@ public class Player : MonoBehaviour {
 	public float highPitch = 1.05f;
 	
 	Quaternion platformAngle;
+	void Awake() {
+		Application.targetFrameRate = 300;
+	}
+
 	void Start () {
+		timePassed = 0f;
 		musicSource.clip = music;
 		musicSource.Play ();
 		coinMagnet = false;
@@ -92,45 +95,22 @@ public class Player : MonoBehaviour {
 		currentSpriteName = PlayerPrefs.GetString ("currentskin");
 		loadSkin ();
 		scale = 1.2f;
-		lastPoint = playerobject.transform.position.y;
-		generated = false;
-		generatedNumber = 2;
-		passObstacles = false;
-		areaSection = 0f;
 		jumpPowerInTime = 0f;
 		createShadowTime = 0f;
 		playerobject.GetComponent<Rigidbody2D> ().isKinematic = true;
-		jumpsCount = 0;
+		jumpsCount = 2;
 		leftBoundary = -(maincamera.orthographicSize * maincamera.aspect) + 2.8593f;
 		rightBoundary = maincamera.orthographicSize * maincamera.aspect + 2.8593f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		timePassed += Time.deltaTime;
 		//if you go outside the sides
 		if (playerobject.transform.position.x > rightBoundary || playerobject.transform.position.x < leftBoundary) {
 			die ();
 		}
 		//Handles movement and shadow
-		if ((playerobject.transform.position.y < lastPoint - 3.0f) && generated == false) {
-			generated = true;
-			areaSection += 1f;
-			if (right == true) {
-				Debug.Log (rightBoundary);
-				float randomnum = UnityEngine.Random.Range (8.2F, rightBoundary + (2.8f - scale * 1.2f));
-				CreatePlatform (randomnum, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum - 3.8f, levelBasedColor, scale);
-				right = false;
-			} else if (right == false) {
-				float randomnum = UnityEngine.Random.Range (leftBoundary - (2.8f - scale * 1.2f), -2.3F);
-				CreatePlatform (randomnum, -5.5f + (-8f * (float)(generatedNumber)), UnityEngine.Random.Range (298F, 318F), randomnum + 3.8f, levelBasedColor, scale);
-				right = true;
-			}
-		}
-		if ((playerobject.transform.position.y < lastPoint - 6.0f)) {
-			generated = false;
-			lastPoint = playerobject.transform.position.y;
-			generatedNumber += 1;
-		}
 		createShadowTime += Time.deltaTime;
 		if (createShadowTime > 0.05f) {
 			CreatePlayerShadow ();
@@ -212,8 +192,13 @@ public class Player : MonoBehaviour {
 			}
 			if (touch.phase == TouchPhase.Ended) {
 				jumpsCount += 1;
-				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 140f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
+				if(right == true) {
+					playerobject.GetComponent<Rigidbody2D>().AddTorque (-35f);
+				} else {
+					playerobject.GetComponent<Rigidbody2D>().AddTorque (35f);
+				}
 			}
 		}
 
@@ -291,17 +276,14 @@ public class Player : MonoBehaviour {
 			}
 			if (Input.GetKeyUp ("up")) {
 				jumpsCount += 1;
-				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 69f) * jumpPowerInTime), ForceMode2D.Impulse);
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 100f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
+				if(right && jumpsCount == 1) {
+					playerobject.GetComponent<Rigidbody2D>().AddTorque (-15f);
+				} else if (jumpsCount == 1) {
+					playerobject.GetComponent<Rigidbody2D>().AddTorque (15f);
+				}
 			}
-		if (passObstacles == true) {
-			foreach (GameObject deathblock in GameObject.FindGameObjectsWithTag("DeathBlock")) {
-				deathblock.GetComponent<Collider2D> ().isTrigger = true;
-				Color deathblockcolor = deathblock.GetComponent<SpriteRenderer>().color;
-				deathblockcolor.a = 0.5f;
-				deathblock.GetComponent<SpriteRenderer>().color = deathblockcolor;
-			}
-		}
 		maincamera.backgroundColor = Color.Lerp(maincamera.backgroundColor, levelBasedColor, Time.deltaTime);
 	}
 	void OnCollisionExit2D(Collision2D coll) {
@@ -373,10 +355,22 @@ public class Player : MonoBehaviour {
 			jumpsCount = 0;
 			backgroundCube.randTorHit();
 			feedbackmanager.hitPlatform(this);
-			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
+			if((!coll.gameObject.GetComponent<PlatformScript>().hasCollided) || guardianAngel) {
 				RandomiseAudio(HitPlatform);
 				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 				playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+			}
+			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
+				coll.gameObject.GetComponent<PlatformScript>().contactpoint = playerobject.transform.position;
+				if (right == true) {
+					float randomnum = UnityEngine.Random.Range (12.8F, rightBoundary + (4.8f - scale * 1.2f));
+					CreatePlatform (randomnum, -8.6f + (-9.5f * (float)(score + 2f)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum - 6.6f, levelBasedColor, scale);
+					right = false;
+				} else if (right == false) {
+					float randomnum = UnityEngine.Random.Range (leftBoundary - (4.8f - scale * 1.2f), -5.3F);
+					CreatePlatform (randomnum, -8.6f + (-9.5f * (float)(score + 2f)), UnityEngine.Random.Range (298F, 318F), randomnum + 6.6f, levelBasedColor, scale);
+					right = true;
+				}
 				coll.gameObject.GetComponent<PlatformScript>().hasCollided = true;
 				Vector3 rot = coll.gameObject.transform.rotation.eulerAngles;
 				cosAngle = (float)(Math.Cos (3.14f * (rot.z / 180f)));
@@ -403,11 +397,11 @@ public class Player : MonoBehaviour {
 		platformScale.x = scale;
 		platform.transform.localScale = platformScale;
 		if (right == true) {
-			CreateObstacle (randomnum, (int)((generatedNumber) * (-8.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (generatedNumber)));
+			CreateObstacle (randomnum, (int)((score + 2f) * (-9.5f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-9.5 * (score + 2f)));
 		} else {
-			CreateObstacle(randomnum, (int)((generatedNumber) * (-8.0f)), spaceBetweenObstacles, platformcolor);
-			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-8 * (generatedNumber)));
+			CreateObstacle(randomnum, (int)((score + 2f) * (-9.5f)), spaceBetweenObstacles, platformcolor);
+			CreateCoin (randomnum + UnityEngine.Random.Range ((-spaceBetweenObstacles/2f) + 0.5f, (spaceBetweenObstacles/2f) - 0.5f), UnityEngine.Random.Range (-2.0f, 2.0f) + (float)(-9.5 * (score + 2f)));
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
@@ -579,19 +573,25 @@ public class Player : MonoBehaviour {
 			case "DogePlayer":
 				playerobject.GetComponent<SpriteRenderer>().sprite = DogePlayer;
 				Destroy (GetComponent<Collider2D>());
-				playerobject.AddComponent<CircleCollider2D>();
-				playerscale.x = 0.90f;
-				playerscale.y = 0.90f;
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.73f;
+				playerscale.y = 0.73f;
 				playerobject.transform.localScale = playerscale;
 			break;
 		}
 	}
 
 	public void die() {
-		Instantiate(deathAnimation,this.transform.position,this.transform.rotation);
-		PlayerPrefs.SetInt ("LastScore", score);
-		StoreValues (score, coins);
-		gameObject.active = false;
+		Debug.Log ("timePassed " + PlayerPrefs.GetInt ("GameTime"));
+		PlayerPrefs.SetInt ("GameTime", (int) timePassed + PlayerPrefs.GetInt ("GameTime"));
+		Instantiate (deathAnimation, this.transform.position, this.transform.rotation);
+		if (!guardianAngel) {
+			PlayerPrefs.SetInt ("LastScore", score);
+			StoreValues (score, coins);
+			gameObject.active = false;
+		} else {
+			revive ();
+		}
 	}
 
 	//Audio Methods
@@ -604,6 +604,33 @@ public class Player : MonoBehaviour {
 
 		fxSource.pitch = randomPitch;
 		PlaySingle (clip);
+	}
+	public void revive() {
+		GameObject closest = null;
+		float closestvalue = Mathf.Infinity;
+		foreach (GameObject platform in GameObject.FindGameObjectsWithTag("Platform")) {
+			if(platform.GetComponent<PlatformScript>().hasCollided == true) {
+				float testValue = (platform.transform.position - playerobject.transform.position).sqrMagnitude;
+				if(testValue < closestvalue) {
+					closest = platform;
+					closestvalue = testValue;
+				}
+			}
+		}
+		Vector3 revivalposition = closest.GetComponent<PlatformScript>().contactpoint;
+		revivalposition.y += 2.0f;
+		playerobject.transform.position = revivalposition;
+		playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+		playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+		playerobject.GetComponent<Rigidbody2D> ().isKinematic = true;
+		StartCoroutine (GuardianAngelDelay());
+	}
+
+	IEnumerator GuardianAngelDelay() {
+		yield return new WaitForSeconds(3.0f);
+		playerobject.GetComponent<Rigidbody2D> ().isKinematic = false;
+		jumpsCount = 0;
+		guardianAngel = false;
 	}
 }
 

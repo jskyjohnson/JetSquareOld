@@ -5,9 +5,6 @@ public class CameraController : MonoBehaviour {
 	public GameObject player;
 	public float xOffset = 0.0f;
 	public float zOffset = 0.0f;
-	private void Start()
-	{
-	}
 
 	private void Update()
 	{
