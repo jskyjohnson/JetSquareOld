@@ -6,6 +6,7 @@ public class BackgroundCube : MonoBehaviour {
 	public Light backlight;
 	public int timer;
 	public float torquetimeout = 0.42857142857f;
+	public Camera mainCam;
 
 	private float timeremaining;
 	// Use this for initialization
@@ -13,6 +14,7 @@ public class BackgroundCube : MonoBehaviour {
 		timeremaining = torquetimeout;
 		rb = GetComponent<Rigidbody> ();
 		timer = 0;
+		setColor (mainCam.backgroundColor);
 	}
 	
 	// Update is called once per frame
@@ -21,11 +23,11 @@ public class BackgroundCube : MonoBehaviour {
 
 
 		if (timeremaining < 0f) {
-			Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1) * Time.deltaTime);
-			rb.AddTorque (randVec * 2, ForceMode.VelocityChange);
-			timeremaining = torquetimeout;
+			//Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1) * Time.deltaTime);
+			//rb.AddTorque (randVec * 2, ForceMode.VelocityChange);
+			//timeremaining = torquetimeout;
 		} else {
-			timeremaining -= Time.deltaTime;
+			//timeremaining -= Time.deltaTime;
 		}
 	}
 	public void randTorHit(){
