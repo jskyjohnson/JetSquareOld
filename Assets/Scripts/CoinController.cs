@@ -8,6 +8,7 @@ public class CoinController : MonoBehaviour {
 	public Vector3 playerPosition;
 	public float speed;
 	public bool willFollow;
+	public GameObject feedback;
 	// Use this for initialization
 	void Start () {
 		willFollow = false;

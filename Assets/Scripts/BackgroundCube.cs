@@ -7,7 +7,7 @@ public class BackgroundCube : MonoBehaviour {
 	public int timer;
 	public float torquetimeout = 0.42857142857f;
 	public Camera mainCam;
-
+	public bool isScene1;
 	private float timeremaining;
 	// Use this for initialization
 	void Start () {
@@ -19,21 +19,23 @@ public class BackgroundCube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (timeremaining < 0f) {
-			//Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1) * Time.deltaTime);
-			//rb.AddTorque (randVec * 2, ForceMode.VelocityChange);
-			//timeremaining = torquetimeout;
-		} else {
-			//timeremaining -= Time.deltaTime;
+		if (!isScene1) {
+			if (timeremaining < 0f) {
+				Vector3 randVec = new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), Random.Range (-1f, 1f));
+				rb.AddTorque (randVec*30f, ForceMode.Acceleration);
+				timeremaining = torquetimeout;
+			} else {
+				timeremaining -= Time.deltaTime;
+			}
 		}
 	}
 	public void randTorHit(){
-		Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1));
-		rb.AddTorque (randVec*10, ForceMode.Acceleration);
+		Vector3 randVec = new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), Random.Range (-1f, 1f));
+		rb.AddTorque (randVec*30f, ForceMode.Acceleration);
 	}
 	public void randTorHitCoin(){
-		Vector3 randVec = new Vector3 (Random.Range (-1, 1), Random.Range (-1, 1), Random.Range (-1, 1));
-		rb.AddTorque (randVec*20, ForceMode.Acceleration);
+		Vector3 randVec = new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), Random.Range (-1f, 1f));
+		rb.AddTorque (randVec*10f, ForceMode.Acceleration);
 	}
 	public void setColor(Color color){
 		backlight.color = color;

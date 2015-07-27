@@ -42,6 +42,7 @@ public class Player : MonoBehaviour {
 	public float timePassed;
 	//powerup controller variables
 	public bool coinMagnet;
+	public bool hasDied;
 	public static bool guardianAngel = false;
 	//sprites
 	public static string currentSpriteName;
@@ -117,166 +118,166 @@ public class Player : MonoBehaviour {
 		}
 		foreach (Touch touch in Input.touches)
 		{
-			if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved && jumpsCount < 2)
+			if ((touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved) && jumpsCount < 2)
 			{
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < fireshadowcolor.r) {
-					playershadowcolor.r += 5f * Time.deltaTime;
+					playershadowcolor.r += 4f * Time.deltaTime;
 				} else if(playershadowcolor.r > fireshadowcolor.r) {
-					playershadowcolor.r -= 5f * Time.deltaTime;
+					playershadowcolor.r -= 4f * Time.deltaTime;
 				}
 				if(playershadowcolor.g < fireshadowcolor.g) {
-					playershadowcolor.g += 5f * Time.deltaTime;
+					playershadowcolor.g += 4f * Time.deltaTime;
 				} else if(playershadowcolor.g > fireshadowcolor.g) {
-					playershadowcolor.g -= 5f * Time.deltaTime;
+					playershadowcolor.g -= 4f * Time.deltaTime;
 				}
 				if(playershadowcolor.b < fireshadowcolor.b) {
-					playershadowcolor.b += 5f * Time.deltaTime;
+					playershadowcolor.b += 4f * Time.deltaTime;
 				} else if(playershadowcolor.b > fireshadowcolor.b) {
-					playershadowcolor.b -=  5f * Time.deltaTime;
+					playershadowcolor.b -= 4f * Time.deltaTime;
 				}
 				if(playershadowcolor.a < fireshadowcolor.a) {
-					playershadowcolor.a += 4f * Time.deltaTime;
+					playershadowcolor.a += 8f * Time.deltaTime;
 				} else if(playershadowcolor.a > fireshadowcolor.a) {
-					playershadowcolor.a -= 4f * Time.deltaTime;
+					playershadowcolor.a -= 8f * Time.deltaTime;
 				}
 				Vector3 playershadowscale = playershadow.transform.localScale;
 				if(playershadowscale.x > fireshadowscale.x) {
-					playershadowscale.x -= 1.6f * Time.deltaTime;
+					playershadowscale.x -= 1.4f * Time.deltaTime;
 				} else if(playershadowscale.x < fireshadowscale.x) {
-					playershadowscale.x += 1.6f * Time.deltaTime;
+					playershadowscale.x += 1.4f * Time.deltaTime;
 				}
 				if(playershadowscale.y > fireshadowscale.y) {
-					playershadowscale.y -= 1.6f * Time.deltaTime;
+					playershadowscale.y -= 1.4f * Time.deltaTime;
 				} else if(playershadowscale.y < fireshadowscale.y) {
-					playershadowscale.y += 1.6f * Time.deltaTime;
+					playershadowscale.y += 1.4f * Time.deltaTime;
 				}
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			} else {
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < shadowcolor.r) {
-					playershadowcolor.r += 4f * Time.deltaTime;
+					playershadowcolor.r += 2.8f * Time.deltaTime;
 				} else if(playershadowcolor.r > shadowcolor.r) {
-					playershadowcolor.r -= 4f * Time.deltaTime;
+					playershadowcolor.r -= 2.8f * Time.deltaTime;
 				}
 				if(playershadowcolor.g < shadowcolor.g) {
-					playershadowcolor.g += 4f * Time.deltaTime;
+					playershadowcolor.g += 2.8f * Time.deltaTime;
 				} else if(playershadowcolor.g > shadowcolor.g) {
-					playershadowcolor.g -= 4f * Time.deltaTime;
+					playershadowcolor.g -= 2.8f * Time.deltaTime;
 				}
 				if(playershadowcolor.b < shadowcolor.b) {
-					playershadowcolor.b += 4f * Time.deltaTime;
+					playershadowcolor.b += 2.8f * Time.deltaTime;
 				} else if(playershadowcolor.b > shadowcolor.b) {
-					playershadowcolor.b -= 4f * Time.deltaTime;
+					playershadowcolor.b -= 2.8f * Time.deltaTime;
 				}
 				if(playershadowcolor.a < shadowcolor.a) {
-					playershadowcolor.a += 2f * Time.deltaTime;
+					playershadowcolor.a += 3f * Time.deltaTime;
 				} else if(playershadowcolor.a > shadowcolor.a) {
-					playershadowcolor.a -= 2f * Time.deltaTime;
+					playershadowcolor.a -= 3f * Time.deltaTime;
 				}
 				Vector3 playershadowscale = playershadow.transform.localScale;
 				if(playershadowscale.x > shadowscale.x) {
-					playershadowscale.x -= 0.6f * Time.deltaTime;
+					playershadowscale.x -= 1f * Time.deltaTime;
 				} else if(playershadowscale.x < shadowscale.x) {
-					playershadowscale.x += 0.6f * Time.deltaTime;
+					playershadowscale.x += 1f * Time.deltaTime;
 				}
 				if(playershadowscale.y > shadowscale.y) {
-					playershadowscale.y -= 0.6f * Time.deltaTime;
+					playershadowscale.y -= 1f * Time.deltaTime;
 				} else if(playershadowscale.y < shadowscale.y) {
-					playershadowscale.y += 0.6f * Time.deltaTime;
+					playershadowscale.y += 1f * Time.deltaTime;
 				}
 				playershadow.transform.localScale = playershadowscale;
 				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (touch.phase == TouchPhase.Ended) {
 				jumpsCount += 1;
-				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 140f) * jumpPowerInTime), ForceMode2D.Impulse);
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 150f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
-				if(right == true) {
-					playerobject.GetComponent<Rigidbody2D>().AddTorque (-35f);
-				} else {
-					playerobject.GetComponent<Rigidbody2D>().AddTorque (35f);
+				if(right && jumpsCount == 1) {
+					playerobject.GetComponent<Rigidbody2D>().AddTorque (-15f);
+				} else if (jumpsCount == 1) {
+					playerobject.GetComponent<Rigidbody2D>().AddTorque (15f);
 				}
 			}
 		}
 
-			if (Input.GetKey ("up") && jumpsCount < 2) {
-				jumpPowerInTime += Time.deltaTime;
-				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				if(playershadowcolor.r < fireshadowcolor.r) {
-					playershadowcolor.r += 2f * Time.deltaTime;
-				} else if(playershadowcolor.r > fireshadowcolor.r) {
-					playershadowcolor.r -= 2f * Time.deltaTime;
-				}
-				if(playershadowcolor.g < fireshadowcolor.g) {
-					playershadowcolor.g += 2f * Time.deltaTime;
-				} else if(playershadowcolor.g > fireshadowcolor.g) {
-					playershadowcolor.g -= 2f * Time.deltaTime;
-				}
-				if(playershadowcolor.b < fireshadowcolor.b) {
-					playershadowcolor.b += 2f * Time.deltaTime;
-				} else if(playershadowcolor.b > fireshadowcolor.b) {
-					playershadowcolor.b -=  2f * Time.deltaTime;
-				}
-				if(playershadowcolor.a < fireshadowcolor.a) {
-					playershadowcolor.a += 4f * Time.deltaTime;
-				} else if(playershadowcolor.a > fireshadowcolor.a) {
-					playershadowcolor.a -= 4f * Time.deltaTime;
-				}
-				Vector3 playershadowscale = playershadow.transform.localScale;
-				if(playershadowscale.x > fireshadowscale.x) {
-					playershadowscale.x -= 0.7f * Time.deltaTime;
-				} else if(playershadowscale.x < fireshadowscale.x) {
-					playershadowscale.x += 0.7f * Time.deltaTime;
-				}
-				if(playershadowscale.y > fireshadowscale.y) {
-					playershadowscale.y -= 0.7f * Time.deltaTime;
-				} else if(playershadowscale.y < fireshadowscale.y) {
-					playershadowscale.y += 0.7f * Time.deltaTime;
-				}
-				playershadow.transform.localScale = playershadowscale;
-				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
-			} else {
-				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
-				if(playershadowcolor.r < shadowcolor.r) {
-					playershadowcolor.r += 1.6f * Time.deltaTime;
-				} else if(playershadowcolor.r > shadowcolor.r) {
-					playershadowcolor.r -= 1.6f * Time.deltaTime;
-				}
-				if(playershadowcolor.g < shadowcolor.g) {
-					playershadowcolor.g += 1.6f * Time.deltaTime;
-				} else if(playershadowcolor.g > shadowcolor.g) {
-					playershadowcolor.g -= 1.6f * Time.deltaTime;
-				}
-				if(playershadowcolor.b < shadowcolor.b) {
-					playershadowcolor.b += 1.6f * Time.deltaTime;
-				} else if(playershadowcolor.b > shadowcolor.b) {
-					playershadowcolor.b -= 1.6f * Time.deltaTime;
-				}
-				if(playershadowcolor.a < shadowcolor.a) {
-					playershadowcolor.a += 2f * Time.deltaTime;
-				} else if(playershadowcolor.a > shadowcolor.a) {
-					playershadowcolor.a -= 2f * Time.deltaTime;
-				}
-				Vector3 playershadowscale = playershadow.transform.localScale;
-				if(playershadowscale.x > shadowscale.x) {
-					playershadowscale.x -= 0.6f * Time.deltaTime;
-				} else if(playershadowscale.x < shadowscale.x) {
-					playershadowscale.x += 0.6f * Time.deltaTime;
-				}
-				if(playershadowscale.y > shadowscale.y) {
-					playershadowscale.y -= 0.6f * Time.deltaTime;
-				} else if(playershadowscale.y < shadowscale.y) {
-					playershadowscale.y += 0.6f * Time.deltaTime;
-				}
-				playershadow.transform.localScale = playershadowscale;
-				playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+		if (Input.GetKey ("up") && jumpsCount < 2) {
+			jumpPowerInTime += Time.deltaTime;
+			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+			if(playershadowcolor.r < fireshadowcolor.r) {
+				playershadowcolor.r += 2f * Time.deltaTime;
+			} else if(playershadowcolor.r > fireshadowcolor.r) {
+				playershadowcolor.r -= 2f * Time.deltaTime;
+			}
+			if(playershadowcolor.g < fireshadowcolor.g) {
+				playershadowcolor.g += 2f * Time.deltaTime;
+			} else if(playershadowcolor.g > fireshadowcolor.g) {
+				playershadowcolor.g -= 2f * Time.deltaTime;
+			}
+			if(playershadowcolor.b < fireshadowcolor.b) {
+				playershadowcolor.b += 2f * Time.deltaTime;
+			} else if(playershadowcolor.b > fireshadowcolor.b) {
+				playershadowcolor.b -=  2f * Time.deltaTime;
+			}
+			if(playershadowcolor.a < fireshadowcolor.a) {
+				playershadowcolor.a += 4f * Time.deltaTime;
+			} else if(playershadowcolor.a > fireshadowcolor.a) {
+				playershadowcolor.a -= 4f * Time.deltaTime;
+			}
+			Vector3 playershadowscale = playershadow.transform.localScale;
+			if(playershadowscale.x > fireshadowscale.x) {
+				playershadowscale.x -= 0.7f * Time.deltaTime;
+			} else if(playershadowscale.x < fireshadowscale.x) {
+				playershadowscale.x += 0.7f * Time.deltaTime;
+			}
+			if(playershadowscale.y > fireshadowscale.y) {
+				playershadowscale.y -= 0.7f * Time.deltaTime;
+			} else if(playershadowscale.y < fireshadowscale.y) {
+				playershadowscale.y += 0.7f * Time.deltaTime;
+			}
+			playershadow.transform.localScale = playershadowscale;
+			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
+		} else {
+			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
+			if(playershadowcolor.r < shadowcolor.r) {
+				playershadowcolor.r += 1.6f * Time.deltaTime;
+			} else if(playershadowcolor.r > shadowcolor.r) {
+				playershadowcolor.r -= 1.6f * Time.deltaTime;
+			}
+			if(playershadowcolor.g < shadowcolor.g) {
+				playershadowcolor.g += 1.6f * Time.deltaTime;
+			} else if(playershadowcolor.g > shadowcolor.g) {
+				playershadowcolor.g -= 1.6f * Time.deltaTime;
+			}
+			if(playershadowcolor.b < shadowcolor.b) {
+				playershadowcolor.b += 1.6f * Time.deltaTime;
+			} else if(playershadowcolor.b > shadowcolor.b) {
+				playershadowcolor.b -= 1.6f * Time.deltaTime;
+			}
+			if(playershadowcolor.a < shadowcolor.a) {
+				playershadowcolor.a += 2f * Time.deltaTime;
+			} else if(playershadowcolor.a > shadowcolor.a) {
+				playershadowcolor.a -= 2f * Time.deltaTime;
+			}
+			Vector3 playershadowscale = playershadow.transform.localScale;
+			if(playershadowscale.x > shadowscale.x) {
+				playershadowscale.x -= 0.6f * Time.deltaTime;
+			} else if(playershadowscale.x < shadowscale.x) {
+				playershadowscale.x += 0.6f * Time.deltaTime;
+			}
+			if(playershadowscale.y > shadowscale.y) {
+				playershadowscale.y -= 0.6f * Time.deltaTime;
+			} else if(playershadowscale.y < shadowscale.y) {
+				playershadowscale.y += 0.6f * Time.deltaTime;
+			}
+			playershadow.transform.localScale = playershadowscale;
+			playershadow.GetComponent<SpriteRenderer> ().color = playershadowcolor;
 			}
 			if (Input.GetKeyUp ("up")) {
 				jumpsCount += 1;
-				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 100f) * jumpPowerInTime), ForceMode2D.Impulse);
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 150f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 				if(right && jumpsCount == 1) {
 					playerobject.GetComponent<Rigidbody2D>().AddTorque (-15f);
@@ -298,7 +299,7 @@ public class Player : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D coll){ //This is called when an object collides with something but goes through
 		if (coll.gameObject.name == "Coin" || coll.gameObject.name == "Coin(Clone)") {
-			feedbackmanager.hitCoin(this, coll);
+			feedbackmanager.hitCoin(this, coll, coll.gameObject.GetComponent<SpriteRenderer>().color);
 			backgroundCube.randTorHitCoin();
 			coinSource.clip=HitCoin;
 			coinSource.Play ();
@@ -355,10 +356,11 @@ public class Player : MonoBehaviour {
 			jumpsCount = 0;
 			backgroundCube.randTorHit();
 			feedbackmanager.hitPlatform(this);
-			if((!coll.gameObject.GetComponent<PlatformScript>().hasCollided) || guardianAngel) {
+			if((!coll.gameObject.GetComponent<PlatformScript>().hasCollided) || hasDied) {
 				RandomiseAudio(HitPlatform);
 				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 				playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+				hasDied = false;
 			}
 			if (!coll.gameObject.GetComponent<PlatformScript>().hasCollided) {
 				coll.gameObject.GetComponent<PlatformScript>().contactpoint = playerobject.transform.position;
@@ -550,8 +552,8 @@ public class Player : MonoBehaviour {
 			playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
-				playerscale.x = 0.75f;
-				playerscale.y = 0.75f;
+				playerscale.x = 0.65f;
+				playerscale.y = 0.65f;
 				playerobject.transform.localScale = playerscale;
 			break;
 			case "Minecraft":
@@ -585,6 +587,7 @@ public class Player : MonoBehaviour {
 		Debug.Log ("timePassed " + PlayerPrefs.GetInt ("GameTime"));
 		PlayerPrefs.SetInt ("GameTime", (int) timePassed + PlayerPrefs.GetInt ("GameTime"));
 		Instantiate (deathAnimation, this.transform.position, this.transform.rotation);
+		hasDied = true;
 		if (!guardianAngel) {
 			PlayerPrefs.SetInt ("LastScore", score);
 			StoreValues (score, coins);
@@ -610,7 +613,7 @@ public class Player : MonoBehaviour {
 		float closestvalue = Mathf.Infinity;
 		foreach (GameObject platform in GameObject.FindGameObjectsWithTag("Platform")) {
 			if(platform.GetComponent<PlatformScript>().hasCollided == true) {
-				float testValue = (platform.transform.position - playerobject.transform.position).sqrMagnitude;
+				float testValue = (platform.transform.position.y - playerobject.transform.position.y);
 				if(testValue < closestvalue) {
 					closest = platform;
 					closestvalue = testValue;
