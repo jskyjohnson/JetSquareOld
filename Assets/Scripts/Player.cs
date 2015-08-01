@@ -567,10 +567,18 @@ public class Player : MonoBehaviour {
 				playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
-				playerscale.x = 0.65f;
-				playerscale.y = 0.65f;
+				playerscale.x = 0.76f;
+				playerscale.y = 0.76f;
 				playerobject.transform.localScale = playerscale;
 				thisDeath = MoonDeath;
+
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0.3f, 0.3f, 0.3f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
 			break;
 			case "CirclePlayer":
 				PlayerShadow.isTrail = false;
