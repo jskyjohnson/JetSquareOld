@@ -23,7 +23,19 @@ public class Player : MonoBehaviour {
 	public Camera maincamera;
 	public BackgroundCube backgroundCube;
 
-	public GameObject deathAnimation;
+	public GameObject thisDeath;
+	public GameObject DefaultDeath;
+	public GameObject CirclePlayerDeath;
+	public GameObject DogePlayerDeath;
+	public GameObject MinecraftDeath;
+	public GameObject MeatboyDeath;
+	public GameObject MoonDeath;
+	public GameObject NetflixDeath;
+	public GameObject SupermanDeath;
+	public GameObject PinkDeath;
+	public GameObject PurpleDeath;
+	public GameObject TealDeath;
+	public GameObject GreenDeath;
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;
@@ -455,6 +467,7 @@ public class Player : MonoBehaviour {
 				fireshadowscale = new Vector3(1f, 1f, 1f);
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
 				playershadow.transform.localScale = shadowscale;
+				thisDeath = DefaultDeath;
 			break;
 			case "Meatboy":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Meatboy;
@@ -463,6 +476,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = MeatboyDeath;
 				break;
 			case "Netflix":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Netflix;
@@ -471,6 +485,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = NetflixDeath;	
 				break;
 			case "Superman":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Superman;
@@ -479,6 +494,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = SupermanDeath;
 				break;
 			case "Purple":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Purple;
@@ -487,7 +503,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = PurpleDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -504,7 +520,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = PinkDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -521,7 +537,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = TealDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -538,7 +554,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = GreenDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -555,6 +571,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.65f;
 				playerscale.y = 0.65f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = MoonDeath;
 			break;
 			case "Minecraft":
 				playerobject.GetComponent<SpriteRenderer>().sprite = Minecraft;
@@ -563,6 +580,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = MinecraftDeath;
 			break;
 			case "CirclePlayer":
 				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
@@ -571,6 +589,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.85f;
 				playerscale.y = 0.85f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = CirclePlayerDeath;
 			break;
 			case "DogePlayer":
 				playerobject.GetComponent<SpriteRenderer>().sprite = DogePlayer;
@@ -579,6 +598,8 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.73f;
 				playerscale.y = 0.73f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = DogePlayerDeath;
+				
 			break;
 		}
 	}
@@ -586,7 +607,8 @@ public class Player : MonoBehaviour {
 	public void die() {
 		Debug.Log ("timePassed " + PlayerPrefs.GetInt ("GameTime"));
 		PlayerPrefs.SetInt ("GameTime", (int) timePassed + PlayerPrefs.GetInt ("GameTime"));
-		Instantiate (deathAnimation, this.transform.position, this.transform.rotation);
+		playerDeather ();
+
 		hasDied = true;
 		if (!guardianAngel) {
 			PlayerPrefs.SetInt ("LastScore", score);
@@ -634,6 +656,9 @@ public class Player : MonoBehaviour {
 		playerobject.GetComponent<Rigidbody2D> ().isKinematic = false;
 		jumpsCount = 0;
 		guardianAngel = false;
+	}
+	void playerDeather(){
+		Instantiate (thisDeath, this.transform.position, this.transform.rotation);
 	}
 }
 

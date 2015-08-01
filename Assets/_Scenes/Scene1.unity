@@ -2868,7 +2868,19 @@ MonoBehaviour:
   Coin: {fileID: 1074521145}
   maincamera: {fileID: 1861154965}
   backgroundCube: {fileID: 2021682832}
-  deathAnimation: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
+  thisDeath: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
+  DefaultDeath: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
+  CirclePlayerDeath: {fileID: 0}
+  DogePlayerDeath: {fileID: 0}
+  MinecraftDeath: {fileID: 0}
+  MeatboyDeath: {fileID: 0}
+  MoonDeath: {fileID: 0}
+  NetflixDeath: {fileID: 0}
+  SupermanDeath: {fileID: 0}
+  PinkDeath: {fileID: 0}
+  PurpleDeath: {fileID: 0}
+  TealDeath: {fileID: 0}
+  GreenDeath: {fileID: 0}
   canReplicate: 1
   right: 1
   spaceBetweenObstacles: 3
