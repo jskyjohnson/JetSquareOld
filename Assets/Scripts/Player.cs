@@ -48,16 +48,28 @@ public class Player : MonoBehaviour {
 	public static string currentSpriteName;
 	public Sprite Default;
 	public Sprite CirclePlayer;
-	public Sprite DogePlayer;
-	public Sprite Minecraft;
-	public Sprite Meatboy;
 	public Sprite Moon;
-	public Sprite Netflix;
-	public Sprite Superman;
 	public Sprite Pink;
 	public Sprite Purple;
 	public Sprite Teal;
 	public Sprite Green;
+	public Sprite Mellon;
+	public Sprite eightBall;
+	public Sprite TennisBall;
+	public Sprite ToungeFace;
+	public Sprite Cat;
+	public Sprite CarotFace;
+	public Sprite xface;
+	public Sprite Bat;
+	public Sprite BatMan;
+	public Sprite IronMan;
+	public Sprite CaptainA;
+	public Sprite SpiderMan;
+	public Sprite Nyanco;
+	public Sprite CircleShadow;
+	public Sprite meowShadow;
+	public Sprite BatShadow;
+	public Sprite kawaishadow;
 	//customization variables
 	public Color shadowcolor;
 	public Color fireshadowcolor;
@@ -80,6 +92,7 @@ public class Player : MonoBehaviour {
 	public float highPitch = 1.05f;
 	
 	Quaternion platformAngle;
+	public float shadowTimeIntervalCreation;
 	void Awake() {
 		Application.targetFrameRate = 300;
 	}
@@ -106,6 +119,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (shadowTimeIntervalCreation);
 		timePassed += Time.deltaTime;
 		//if you go outside the sides
 		if (playerobject.transform.position.x > rightBoundary || playerobject.transform.position.x < leftBoundary) {
@@ -113,8 +127,14 @@ public class Player : MonoBehaviour {
 		}
 		//Handles movement and shadow
 		createShadowTime += Time.deltaTime;
-		if (createShadowTime > 0.05f) {
-			CreatePlayerShadow ();
+		if (shadowTimeIntervalCreation == 0 || shadowTimeIntervalCreation == null) {
+			if (createShadowTime > 0.05f) {
+				CreatePlayerShadow ();
+			}
+		} else {
+			if (createShadowTime > shadowTimeIntervalCreation) {
+				CreatePlayerShadow ();
+			}
 		}
 		foreach (Touch touch in Input.touches)
 		{
@@ -440,6 +460,7 @@ public class Player : MonoBehaviour {
 			//cases have to be hardcoded because each case differs in some special way.
 			case "Default":
 			case "":
+				PlayerShadow.isTrail = false;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Default;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -456,31 +477,8 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
 				playershadow.transform.localScale = shadowscale;
 			break;
-			case "Meatboy":
-				playerobject.GetComponent<SpriteRenderer>().sprite = Meatboy;
-				Destroy (GetComponent<Collider2D>());
-				playerobject.AddComponent<BoxCollider2D>();
-				playerscale.x = 0.6f;
-				playerscale.y = 0.6f;
-				playerobject.transform.localScale = playerscale;
-				break;
-			case "Netflix":
-				playerobject.GetComponent<SpriteRenderer>().sprite = Netflix;
-				Destroy (GetComponent<Collider2D>());
-				playerobject.AddComponent<BoxCollider2D>();
-				playerscale.x = 0.6f;
-				playerscale.y = 0.6f;
-				playerobject.transform.localScale = playerscale;
-				break;
-			case "Superman":
-				playerobject.GetComponent<SpriteRenderer>().sprite = Superman;
-				Destroy (GetComponent<Collider2D>());
-				playerobject.AddComponent<BoxCollider2D>();
-				playerscale.x = 0.6f;
-				playerscale.y = 0.6f;
-				playerobject.transform.localScale = playerscale;
-				break;
 			case "Purple":
+				PlayerShadow.isTrail = false;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Purple;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -498,6 +496,7 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Pink":
+				PlayerShadow.isTrail = false;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Pink;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -515,6 +514,7 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Teal":
+				PlayerShadow.isTrail = false;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Teal;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -532,6 +532,7 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Green":
+				PlayerShadow.isTrail = false;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Green;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -549,37 +550,283 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = shadowscale;
 				break;
 			case "Moon":
-			playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
 				playerscale.x = 0.65f;
 				playerscale.y = 0.65f;
 				playerobject.transform.localScale = playerscale;
 			break;
-			case "Minecraft":
-				playerobject.GetComponent<SpriteRenderer>().sprite = Minecraft;
+			case "CirclePlayer":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<CircleCollider2D>();
+				playerscale.x = 0.76f;
+				playerscale.y = 0.76f;
+				playerobject.transform.localScale = playerscale;
+
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(1f, 0.54f, 0.54f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+			break;
+			case "8Ball":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = eightBall;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<CircleCollider2D>();
+				playerscale.x = 0.76f;
+				playerscale.y = 0.76f;
+				playerobject.transform.localScale = playerscale;
+
+				shadowcolor = new Color(0.5f, 0.5f, 0.5f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0f, 0f, 0f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "TennisBall":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = TennisBall;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<CircleCollider2D>();
+				playerscale.x = 0.76f;
+				playerscale.y = 0.76f;
+				playerobject.transform.localScale = playerscale;
+				
+				shadowcolor = new Color(0.961f, 1f, 0.867f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0.682f, 1f, 0.1176f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Mellon":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Mellon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-			break;
-			case "CirclePlayer":
-				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
-				Destroy (GetComponent<Collider2D>());
-				playerobject.AddComponent<CircleCollider2D>();
-				playerscale.x = 0.85f;
-				playerscale.y = 0.85f;
-				playerobject.transform.localScale = playerscale;
-			break;
-			case "DogePlayer":
-				playerobject.GetComponent<SpriteRenderer>().sprite = DogePlayer;
+				
+				//shadow customization
+				shadowcolor = new Color(0.9254f, 0.635f, 0.961f);
+				shadowcolor.a = 0.3f;
+				shadowscale = new Vector3(0.5f, 0.5f, 1f);
+				fireshadowcolor = new Color(1f, 0.427f, 0.984f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().sprite = CircleShadow;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Cat":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Cat;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
-				playerscale.x = 0.73f;
-				playerscale.y = 0.73f;
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-			break;
+				
+				//shadow customization
+				shadowcolor = new Color(0.4f, 0.4f, 0.4f);
+				shadowcolor.a = 0f;
+				shadowscale = new Vector3(2f, 2f, 2f);
+				fireshadowcolor = new Color(0f, 0f, 0f);
+				fireshadowscale = new Vector3(6f, 6f, 6f);
+				shadowTimeIntervalCreation = 0.2f;
+				playershadow.GetComponent<SpriteRenderer>().sprite = meowShadow;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "toungeface":
+				playerobject.GetComponent<SpriteRenderer>().sprite = ToungeFace;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.6f, 0.6f, 1f);
+				fireshadowcolor = new Color(0.9f, 0.9f, 0.9f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				fireshadowcolor.a = 0.6f;
+				shadowTimeIntervalCreation = 0.03f;
+				PlayerShadow.isTrail = true;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.GetComponent<SpriteRenderer>().sprite = ToungeFace;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "carotface":
+				PlayerShadow.isTrail = true;
+				playerobject.GetComponent<SpriteRenderer>().sprite = CarotFace;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.6f, 0.6f, 1f);
+				fireshadowcolor = new Color(0.9f, 0.9f, 0.9f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				fireshadowcolor.a = 0.6f;
+				shadowTimeIntervalCreation = 0.03f;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.GetComponent<SpriteRenderer>().sprite = CarotFace;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Bat":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Bat;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				shadowcolor = new Color(0f, 0f, 0f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0.137f, 0.0666f, 0.388f);
+				fireshadowscale = new Vector3(1.4f, 1.4f, 1f);
+				fireshadowcolor.a = 0.6f;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.GetComponent<SpriteRenderer>().sprite = CircleShadow;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "xface":
+				playerobject.GetComponent<SpriteRenderer>().sprite = xface;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.6f, 0.6f, 1f);
+				fireshadowcolor = new Color(0.9f, 0.9f, 0.9f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				fireshadowcolor.a = 0.6f;
+				shadowTimeIntervalCreation = 0.03f;
+				PlayerShadow.isTrail = true;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.GetComponent<SpriteRenderer>().sprite = xface;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Batman":
+				PlayerShadow.isTrail = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = BatMan;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				shadowcolor = new Color(0f, 0f, 0f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(1.0f, 1.0f, 1f);
+				fireshadowcolor = new Color(0f, 0.0f, 0f);
+				fireshadowscale = new Vector3(1.8f, 1.8f, 1f);
+				fireshadowcolor.a = 0.6f;
+				shadowTimeIntervalCreation = 0.1f;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.GetComponent<SpriteRenderer>().sprite = BatShadow;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Ironman":
+				playerobject.GetComponent<SpriteRenderer>().sprite = IronMan;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				PlayerShadow.isTrail = true;
+				//shadow customization
+				shadowcolor = new Color(1f, 0.3137f, 0.3137f);
+				shadowcolor.a = 0.9f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0f, 1f, 1f);
+				fireshadowscale = new Vector3(0.5f, 0.5f, 1f);
+				shadowTimeIntervalCreation = 0.01f;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "CaptainA":
+				playerobject.GetComponent<SpriteRenderer>().sprite = CaptainA;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				PlayerShadow.isTrail = false;
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.2f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(1f, 0.54f, 0.54f);
+				fireshadowscale = new Vector3(1f, 1f, 1f);
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Spiderman":
+				playerobject.GetComponent<SpriteRenderer>().sprite = SpiderMan;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				PlayerShadow.isTrail = true;
+				//shadow customization
+				shadowcolor = new Color(1f,1f, 1f);
+				shadowcolor.a = 0.5f;
+				shadowscale = new Vector3(0.1f, 0.1f, 1f);
+				fireshadowcolor = new Color(1f, 1f, 1f);
+				fireshadowscale = new Vector3(0.3f, 0.3f, 1f);
+				shadowTimeIntervalCreation = 0.001f;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.transform.localScale = shadowscale;
+				break;
+			case "Nyanco":
+				playerobject.GetComponent<SpriteRenderer>().sprite = Nyanco;
+				Destroy (GetComponent<Collider2D>());
+				playerobject.AddComponent<BoxCollider2D>();
+				playerscale.x = 0.6f;
+				playerscale.y = 0.6f;
+				playerobject.transform.localScale = playerscale;
+				
+				//shadow customization
+				PlayerShadow.isTrail = false;
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0f;
+				shadowscale = new Vector3(3f, 3f, 1f);
+				fireshadowcolor = new Color(1f, 1f, 1f);
+				fireshadowscale = new Vector3(3.6f, 3.6f, 1f);
+				shadowTimeIntervalCreation = 0.15f;
+				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
+				playershadow.GetComponent<SpriteRenderer>().sprite = kawaishadow;
+				playershadow.transform.localScale = shadowscale;
+				break;
 		}
 	}
 

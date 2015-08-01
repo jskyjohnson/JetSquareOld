@@ -28,7 +28,7 @@ using Soomla.Store;
 		/// see parent.
 		/// </summary>
 		public int GetVersion() {
-			return 1;
+			return 2;
 		}
 		
 		/// <summary>

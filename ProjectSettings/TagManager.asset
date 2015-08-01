@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - New Tag
+  - DeathBlock
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - 
   - DeathBlock
-  - 
-  - 
+  - Player
+  - Shadow
   - 
   - 
   - 

@@ -945,7 +945,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Invite your friends 20 coins each
+  m_Text: 'Invite your friends 15 coins each!
+
+'
 --- !u!222 &385720522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2213,7 +2215,7 @@ GameObject:
   - 212: {fileID: 809382179}
   - 114: {fileID: 809382178}
   - 50: {fileID: 809382181}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: playershadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2232,7 +2234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playershadow: {fileID: 809382177}
-  isTrail: 0
 --- !u!212 &809382179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2814,7 +2815,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f60c4f294fa7d44aca9a97ec32938eef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1108948525
@@ -2888,16 +2889,28 @@ MonoBehaviour:
   hasDied: 0
   Default: {fileID: 21300000, guid: f60c4f294fa7d44aca9a97ec32938eef, type: 3}
   CirclePlayer: {fileID: 21300000, guid: d7ed877daade8435dbd7f011fdfca916, type: 3}
-  DogePlayer: {fileID: 21300000, guid: 2c6068e5687354a67b72c0a5eff75e73, type: 3}
-  Minecraft: {fileID: 21300000, guid: bbe4e58e471c041eb88d2a24ca78e857, type: 3}
-  Meatboy: {fileID: 21300000, guid: 0667030043fda411cb34d1fa8a83a6ae, type: 3}
   Moon: {fileID: 21300000, guid: aafcd3035e2114fc3990477bbc016640, type: 3}
-  Netflix: {fileID: 21300000, guid: ad528edd396274e508e913abe392def2, type: 3}
-  Superman: {fileID: 21300000, guid: 95bf9e6f080c1423e825ef1d2eb4d47f, type: 3}
   Pink: {fileID: 21300000, guid: c7359ef9a64e1486d9a11b5448b6624d, type: 3}
   Purple: {fileID: 21300000, guid: e56bf8706e02f4a9c984e3ad937d7a0e, type: 3}
   Teal: {fileID: 21300000, guid: ee1251b54e9cf41d4b944898f4952e54, type: 3}
   Green: {fileID: 21300000, guid: 395f6a6726b8e43a39ab1890ee587cd6, type: 3}
+  Mellon: {fileID: 21300000, guid: b6d72d6d7e69b410183b063e9a22d596, type: 3}
+  eightBall: {fileID: 21300000, guid: 785ea459283c14d2382c4dc6dce2d889, type: 3}
+  TennisBall: {fileID: 21300000, guid: f2bda1aa7e7424e648c8769d8ff342f5, type: 3}
+  ToungeFace: {fileID: 21300000, guid: 8b3b2ae249cee42239dff1e5380d3ea2, type: 3}
+  Cat: {fileID: 21300000, guid: 3a4259abe9b204c2fb0c597d2f5a6b19, type: 3}
+  CarotFace: {fileID: 21300000, guid: f18d8c62a65c74cc7b0224c6305cb063, type: 3}
+  xface: {fileID: 21300000, guid: dc9358ef7b905413c8961c1c98973867, type: 3}
+  Bat: {fileID: 21300000, guid: 1644c5cae52d045859e36b2c0f17c91c, type: 3}
+  BatMan: {fileID: 21300000, guid: a7c5fd090b4a6434d847794949cab554, type: 3}
+  IronMan: {fileID: 21300000, guid: fc1ca9b1e84bd45b8b38888cae4f25a8, type: 3}
+  CaptainA: {fileID: 21300000, guid: 3b394e6e4367d486982e3617363e0acf, type: 3}
+  SpiderMan: {fileID: 21300000, guid: ae82ae244c60f4c5ca0c59d7837cb565, type: 3}
+  Nyanco: {fileID: 21300000, guid: fdb5f2a68073144b5bfc8ecee445ec07, type: 3}
+  CircleShadow: {fileID: 21300000, guid: 3013105fe4fae43f3ac5279891e8a88f, type: 3}
+  meowShadow: {fileID: 21300000, guid: 60bc4b6e80197492e9d257d1bdea717d, type: 3}
+  BatShadow: {fileID: 21300000, guid: 80ae30851d83f46f5a0cf93b97800c99, type: 3}
+  kawaishadow: {fileID: 21300000, guid: 7486b006e910940b0946389daca48e6e, type: 3}
   shadowcolor: {r: 0, g: 0, b: 0, a: 0}
   fireshadowcolor: {r: 0, g: 0, b: 0, a: 0}
   shadowscale: {x: 0, y: 0, z: 0}
@@ -2912,6 +2925,7 @@ MonoBehaviour:
   HitDeathBlock: {fileID: 8300000, guid: 635766fc3bda2b24d9ef053ea4e0a2d6, type: 3}
   lowPitch: .949999988
   highPitch: 1.04999995
+  shadowTimeIntervalCreation: 0
 --- !u!82 &1108948528
 AudioSource:
   m_ObjectHideFlags: 0

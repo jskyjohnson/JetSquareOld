@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerShadow : MonoBehaviour {
 	public GameObject playershadow;
-	public bool isTrail;
+	public static bool isTrail;
 	// Use this for initialization
 	void Start () {
 		if (this.name == "playershadow(Clone)") {

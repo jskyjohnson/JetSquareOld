@@ -62,7 +62,7 @@ public class FBHolder : MonoBehaviour {
 		// for every user invited, do something
 		for(int i = 1; i <= numberOfInvites; i++)
 		{
-			PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 20);
+			PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 15);
 		}
 		Application.LoadLevel ("Scene1");
 	}
