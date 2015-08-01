@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 8405adc31d0e9004bbe4c3079c5d52c8
+timeCreated: 1438447362
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: minecraftDeath_0
+    21300002: minecraftDeath_1
+    21300004: minecraftDeath_2
+    21300006: minecraftDeath_3
+    21300008: minecraftDeath_4
+    21300010: minecraftDeath_5
+    21300012: minecraftDeath_6
+    21300014: minecraftDeath_7
+    21300016: minecraftDeath_8
+    21300018: minecraftDeath_9
+    21300020: minecraftDeath_10
+    21300022: minecraftDeath_11
+    21300024: minecraftDeath_12
+    21300026: minecraftDeath_13
+    21300028: minecraftDeath_14
+    21300030: minecraftDeath_15
+    21300032: minecraftDeath_16
+    21300034: minecraftDeath_17
+    21300036: minecraftDeath_18
+    21300038: minecraftDeath_19
+    21300040: minecraftDeath_20
+    21300042: minecraftDeath_21
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: minecraftDeath_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_2
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_3
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_4
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_5
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_6
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_7
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_9
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_10
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_11
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_12
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_13
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_14
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_15
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_17
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_18
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_19
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_20
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: minecraftDeath_21
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

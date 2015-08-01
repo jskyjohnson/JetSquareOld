@@ -2870,11 +2870,11 @@ MonoBehaviour:
   backgroundCube: {fileID: 2021682832}
   thisDeath: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
   DefaultDeath: {fileID: 152324, guid: 9b24070d38fcec148b4230e11e4c001f, type: 2}
-  CirclePlayerDeath: {fileID: 0}
-  DogePlayerDeath: {fileID: 0}
-  MinecraftDeath: {fileID: 0}
-  MeatboyDeath: {fileID: 0}
-  MoonDeath: {fileID: 0}
+  CirclePlayerDeath: {fileID: 189132, guid: 2179a0c9a09e92c45b187a90d6f677ca, type: 2}
+  DogePlayerDeath: {fileID: 124160, guid: f991ba2f8094e8d48b394d6e9b76311f, type: 2}
+  MinecraftDeath: {fileID: 116610, guid: 9b0d0d013d189ea47bfb5e70c1134e20, type: 2}
+  MeatboyDeath: {fileID: 184200, guid: dba4bda0bf427f24f84260cc244de26d, type: 2}
+  MoonDeath: {fileID: 196738, guid: 3ce687018e9fa7a4ebdbc1c54e7a33f3, type: 2}
   NetflixDeath: {fileID: 0}
   SupermanDeath: {fileID: 0}
   PinkDeath: {fileID: 0}
