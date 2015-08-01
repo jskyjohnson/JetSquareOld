@@ -2876,12 +2876,23 @@ MonoBehaviour:
   MinecraftDeath: {fileID: 116610, guid: 9b0d0d013d189ea47bfb5e70c1134e20, type: 2}
   MeatboyDeath: {fileID: 184200, guid: dba4bda0bf427f24f84260cc244de26d, type: 2}
   MoonDeath: {fileID: 196738, guid: 3ce687018e9fa7a4ebdbc1c54e7a33f3, type: 2}
-  NetflixDeath: {fileID: 0}
-  SupermanDeath: {fileID: 0}
-  PinkDeath: {fileID: 0}
-  PurpleDeath: {fileID: 0}
-  TealDeath: {fileID: 0}
-  GreenDeath: {fileID: 0}
+  PinkDeath: {fileID: 149312, guid: b00bb530e0830e84ebd5262d35230f4a, type: 2}
+  PurpleDeath: {fileID: 139000, guid: ca41fd95debc8e74dba54efe1b6024c0, type: 2}
+  TealDeath: {fileID: 192902, guid: ad4fb525b60cb0c418b6558289a982f5, type: 2}
+  GreenDeath: {fileID: 134768, guid: 73c8394754aff2b41b91fe0bc2509d2b, type: 2}
+  MellonDeath: {fileID: 199654, guid: 00a85a81001b3bb439727a7b4388706a, type: 2}
+  eightBallDeath: {fileID: 141190, guid: 02fa5167e8413964bae6ef64ac4775cd, type: 2}
+  TennisBallDeath: {fileID: 128586, guid: d4472c3f790ac574ba671e0c99ea55fd, type: 2}
+  ToungeFaceDeath: {fileID: 154694, guid: 28c365264a12e634daed47742b2b97d7, type: 2}
+  CatDeath: {fileID: 145282, guid: d65336abcc653444c9aed29648872f5f, type: 2}
+  CarotFaceDeath: {fileID: 191898, guid: 8a507015cf7780842b664452a550433a, type: 2}
+  xfaceDeath: {fileID: 143758, guid: 7fdf31bb52f05d546a4714802c01869d, type: 2}
+  BatDeath: {fileID: 115106, guid: 1be4ed1ada0f62340834f044669217a6, type: 2}
+  BatManDeath: {fileID: 154858, guid: f660ba2b66ea4f94cb1cb74733c29779, type: 2}
+  IronManDeath: {fileID: 116004, guid: 88dd0d7169ed46a4e87fb302bebe4cc8, type: 2}
+  CaptainADeath: {fileID: 147994, guid: dda7958d5611f0e418bcb3c0476abb6c, type: 2}
+  SpiderManDeath: {fileID: 162560, guid: b69eaf30f7bf05640bc503948fdb2817, type: 2}
+  NyancoDeath: {fileID: 126170, guid: 397fbfac0562e60498c2f97c94d8ae0c, type: 2}
   canReplicate: 1
   right: 1
   spaceBetweenObstacles: 3
