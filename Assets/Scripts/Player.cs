@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 	public int score = 0;
 	public int coins;
 	public int initcoins = 0;
-	
+
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
 	//Game Objects
@@ -23,7 +23,19 @@ public class Player : MonoBehaviour {
 	public Camera maincamera;
 	public BackgroundCube backgroundCube;
 
-	public GameObject deathAnimation;
+	public GameObject thisDeath;
+	public GameObject DefaultDeath;
+	public GameObject CirclePlayerDeath;
+	public GameObject DogePlayerDeath;
+	public GameObject MinecraftDeath;
+	public GameObject MeatboyDeath;
+	public GameObject MoonDeath;
+	public GameObject NetflixDeath;
+	public GameObject SupermanDeath;
+	public GameObject PinkDeath;
+	public GameObject PurpleDeath;
+	public GameObject TealDeath;
+	public GameObject GreenDeath;
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;
@@ -90,7 +102,7 @@ public class Player : MonoBehaviour {
 
 	public float lowPitch = .95f;
 	public float highPitch = 1.05f;
-	
+
 	Quaternion platformAngle;
 	public float shadowTimeIntervalCreation;
 	void Awake() {
@@ -116,7 +128,7 @@ public class Player : MonoBehaviour {
 		leftBoundary = -(maincamera.orthographicSize * maincamera.aspect) + 2.8593f;
 		rightBoundary = maincamera.orthographicSize * maincamera.aspect + 2.8593f;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Debug.Log (shadowTimeIntervalCreation);
@@ -441,7 +453,7 @@ public class Player : MonoBehaviour {
 	}
 	void StoreValues(int newHighscore, int newCoins)
 	{
-		int oldHighscore = PlayerPrefs.GetInt("highscore", 0);    
+		int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
 		if(newHighscore > oldHighscore)
 			PlayerPrefs.SetInt("highscore", newHighscore);
 		PlayerPrefs.SetInt("coins", newCoins);
@@ -467,7 +479,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -476,6 +488,7 @@ public class Player : MonoBehaviour {
 				fireshadowscale = new Vector3(1f, 1f, 1f);
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
 				playershadow.transform.localScale = shadowscale;
+				thisDeath = DefaultDeath;
 			break;
 			case "Purple":
 				PlayerShadow.isTrail = false;
@@ -485,7 +498,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = PurpleDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -503,7 +516,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = PinkDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -521,7 +534,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = TealDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -539,7 +552,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = GreenDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -557,6 +570,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.65f;
 				playerscale.y = 0.65f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = MoonDeath;
 			break;
 			case "CirclePlayer":
 				PlayerShadow.isTrail = false;
@@ -600,7 +614,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.76f;
 				playerscale.y = 0.76f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				shadowcolor = new Color(0.961f, 1f, 0.867f);
 				shadowcolor.a = 0.2f;
 				shadowscale = new Vector3(0.3f, 0.3f, 1f);
@@ -617,7 +631,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(0.9254f, 0.635f, 0.961f);
 				shadowcolor.a = 0.3f;
@@ -636,7 +650,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(0.4f, 0.4f, 0.4f);
 				shadowcolor.a = 0f;
@@ -655,7 +669,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -677,7 +691,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -698,7 +712,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(0f, 0f, 0f);
 				shadowcolor.a = 0.2f;
@@ -717,7 +731,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -739,7 +753,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				shadowcolor = new Color(0f, 0f, 0f);
 				shadowcolor.a = 0.2f;
@@ -777,7 +791,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				PlayerShadow.isTrail = false;
 				shadowcolor = new Color(1f, 1f, 1f);
@@ -795,7 +809,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				PlayerShadow.isTrail = true;
 				//shadow customization
 				shadowcolor = new Color(1f,1f, 1f);
@@ -814,7 +828,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				
+
 				//shadow customization
 				PlayerShadow.isTrail = false;
 				shadowcolor = new Color(1f, 1f, 1f);
@@ -833,7 +847,8 @@ public class Player : MonoBehaviour {
 	public void die() {
 		Debug.Log ("timePassed " + PlayerPrefs.GetInt ("GameTime"));
 		PlayerPrefs.SetInt ("GameTime", (int) timePassed + PlayerPrefs.GetInt ("GameTime"));
-		Instantiate (deathAnimation, this.transform.position, this.transform.rotation);
+		playerDeather ();
+
 		hasDied = true;
 		if (!guardianAngel) {
 			PlayerPrefs.SetInt ("LastScore", score);
@@ -881,6 +896,9 @@ public class Player : MonoBehaviour {
 		playerobject.GetComponent<Rigidbody2D> ().isKinematic = false;
 		jumpsCount = 0;
 		guardianAngel = false;
+	}
+	void playerDeather(){
+		Instantiate (thisDeath, this.transform.position, this.transform.rotation);
 	}
 }
 

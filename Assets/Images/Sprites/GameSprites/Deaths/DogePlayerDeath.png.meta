@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 1b9234fa0e8e99c438d705b1cf0736d5
+timeCreated: 1438445561
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DogePlayerDeath_0
+    21300002: DogePlayerDeath_1
+    21300004: DogePlayerDeath_2
+    21300006: DogePlayerDeath_3
+    21300008: DogePlayerDeath_4
+    21300010: DogePlayerDeath_5
+    21300012: DogePlayerDeath_6
+    21300014: DogePlayerDeath_7
+    21300016: DogePlayerDeath_8
+    21300018: DogePlayerDeath_9
+    21300020: DogePlayerDeath_10
+    21300022: DogePlayerDeath_11
+    21300024: DogePlayerDeath_12
+    21300026: DogePlayerDeath_13
+    21300028: DogePlayerDeath_14
+    21300030: DogePlayerDeath_15
+    21300032: DogePlayerDeath_16
+    21300034: DogePlayerDeath_17
+    21300036: DogePlayerDeath_18
+    21300038: DogePlayerDeath_19
+    21300040: DogePlayerDeath_20
+    21300042: DogePlayerDeath_21
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 101
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DogePlayerDeath_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_2
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_3
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_4
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_5
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_6
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_7
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 200
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_9
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_10
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_11
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_12
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_13
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_14
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_15
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 100
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_17
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_18
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_19
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_20
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DogePlayerDeath_21
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 0
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
