@@ -23,19 +23,30 @@ public class Player : MonoBehaviour {
 	public Camera maincamera;
 	public BackgroundCube backgroundCube;
 
-	public GameObject thisDeath;
-	public GameObject DefaultDeath;
-	public GameObject CirclePlayerDeath;
+	public GameObject thisDeath;//
+	public GameObject DefaultDeath;//
+	public GameObject CirclePlayerDeath;//
 	public GameObject DogePlayerDeath;
 	public GameObject MinecraftDeath;
 	public GameObject MeatboyDeath;
-	public GameObject MoonDeath;
-	public GameObject NetflixDeath;
-	public GameObject SupermanDeath;
-	public GameObject PinkDeath;
-	public GameObject PurpleDeath;
-	public GameObject TealDeath;
-	public GameObject GreenDeath;
+	public GameObject MoonDeath;//
+	public GameObject PinkDeath;//
+	public GameObject PurpleDeath;//
+	public GameObject TealDeath;//
+	public GameObject GreenDeath;//
+	public GameObject MellonDeath;
+	public GameObject eightBallDeath;
+	public GameObject TennisBallDeath;
+	public GameObject ToungeFaceDeath;
+	public GameObject CatDeath;
+	public GameObject CarotFaceDeath;
+	public GameObject xfaceDeath;
+	public GameObject BatDeath;
+	public GameObject BatManDeath;
+	public GameObject IronManDeath;
+	public GameObject CaptainADeath;
+	public GameObject SpiderManDeath;
+	public GameObject NyancoDeath;
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;
@@ -58,13 +69,13 @@ public class Player : MonoBehaviour {
 	public static bool guardianAngel = false;
 	//sprites
 	public static string currentSpriteName;
-	public Sprite Default;
-	public Sprite CirclePlayer;
-	public Sprite Moon;
-	public Sprite Pink;
-	public Sprite Purple;
-	public Sprite Teal;
-	public Sprite Green;
+	public Sprite Default;//
+	public Sprite CirclePlayer;//
+	public Sprite Moon;//
+	public Sprite Pink;//
+	public Sprite Purple;//
+	public Sprite Teal;//
+	public Sprite Green;//
 	public Sprite Mellon;
 	public Sprite eightBall;
 	public Sprite TennisBall;
@@ -580,7 +591,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.76f;
 				playerscale.y = 0.76f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = CirclePlayerDeath;
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
 				shadowscale = new Vector3(0.3f, 0.3f, 1f);
@@ -597,6 +608,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.76f;
 				playerscale.y = 0.76f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = eightBallDeath;
 
 				shadowcolor = new Color(0.5f, 0.5f, 0.5f);
 				shadowcolor.a = 0.2f;
@@ -614,6 +626,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.76f;
 				playerscale.y = 0.76f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = TennisBallDeath;
 
 				shadowcolor = new Color(0.961f, 1f, 0.867f);
 				shadowcolor.a = 0.2f;
@@ -631,6 +644,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = MellonDeath;
 
 				//shadow customization
 				shadowcolor = new Color(0.9254f, 0.635f, 0.961f);
@@ -650,6 +664,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = CatDeath;
 
 				//shadow customization
 				shadowcolor = new Color(0.4f, 0.4f, 0.4f);
@@ -669,6 +684,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = ToungeFaceDeath;
 
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
@@ -692,6 +708,7 @@ public class Player : MonoBehaviour {
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
 
+				thisDeath = CarotFaceDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -712,6 +729,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
+				thisDeath = BatDeath;
 
 				//shadow customization
 				shadowcolor = new Color(0f, 0f, 0f);
@@ -731,7 +749,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = xfaceDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
@@ -753,7 +771,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = BatManDeath;
 				//shadow customization
 				shadowcolor = new Color(0f, 0f, 0f);
 				shadowcolor.a = 0.2f;
@@ -774,6 +792,7 @@ public class Player : MonoBehaviour {
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
 				PlayerShadow.isTrail = true;
+				thisDeath = IronManDeath;
 				//shadow customization
 				shadowcolor = new Color(1f, 0.3137f, 0.3137f);
 				shadowcolor.a = 0.9f;
@@ -791,7 +810,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = CaptainADeath;
 				//shadow customization
 				PlayerShadow.isTrail = false;
 				shadowcolor = new Color(1f, 1f, 1f);
@@ -809,7 +828,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = SpiderManDeath;
 				PlayerShadow.isTrail = true;
 				//shadow customization
 				shadowcolor = new Color(1f,1f, 1f);
@@ -828,7 +847,7 @@ public class Player : MonoBehaviour {
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-
+				thisDeath = NyancoDeath;
 				//shadow customization
 				PlayerShadow.isTrail = false;
 				shadowcolor = new Color(1f, 1f, 1f);
