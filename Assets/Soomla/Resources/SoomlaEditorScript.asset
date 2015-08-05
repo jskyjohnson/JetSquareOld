@@ -24,9 +24,9 @@ MonoBehaviour:
     - name: GPlayBP
       value: True
     - name: AndroidPublicKey
-      value: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg6yzW/BQEbI1t/A1hxcyxpKpI6vlGcGCIDCATLDDxJtl/+mbisC7ltOGqHMEemVN4I1XrRk0WSpsY6IQS1ragAQOiMziHQrqsQi3DegMMYidN5j2FI5qha85ATMkQabLW9E7BRzblv8EevXdCAKWqGybX0OxtaMEyhM+JlCwwk/5/hONu0Vpiryay67dThIIp9Qw69s23JS/v1H1ulgSApjYuyIe4m3lIUK3NNLdYAcQbc+QfrWzCUUmbHfGhkYPuokbbRezUI6CL5VlxsIFSnmgVxK9ODwpxf2gSibXGvlB6YQPdfernU2l8fMkgM8N6AFj3WQPnh+3OTm9789LDwIDAQAB
+      value: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmnmeCm9mJSJv3jAwxTE4W+4xPOAmywf0uHurdItZYoAFr+n/LgNJJyFFQ7IgmZIHlWKg6jOl9XKqFNB2WjqkTp/QB3YFtSZ2JIbPMQNm5AJfW6E8R2RzrNJNYQH3GP5PyKKud6ll6lZ0U7V87m3u/PyZ3QNdrS6u/3WoExPidBSGCgfmkdiXzF35luZC5L6XuiCEB1SbKZ/KoS58u8fUjRUnEND9CTePJG/4WWd/79iLSq/2AMXGXz9NWcOLDhcKCGimrBsPWrROB6Eit+T2+GyAoQMrCwUCnfT6ekFp3x227COwdAbe69zhxanN/H9chZfRdQAA4rH3ltJl3CM2UQIDAQAB
     - name: AndroidTestPurchases
-      value: True
+      value: False
     - name: PlaySsvValidation
       value: False
     - name: PlayClientId

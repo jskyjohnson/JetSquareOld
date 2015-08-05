@@ -7,7 +7,12 @@ public class AdsManager : MonoBehaviour {
 	public static bool notAdIteration;
 	void Awake() {
 		if (Advertisement.isSupported) {
-			Advertisement.Initialize ("56206", true);
+			if(Application.platform == RuntimePlatform.Android) {
+				Advertisement.Initialize ("56206", true);
+			}
+			else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+				Advertisement.Initialize("59157", true);
+			}
 		} else {
 			Debug.Log("Platform not supported");
 		}
@@ -16,7 +21,7 @@ public class AdsManager : MonoBehaviour {
 		notAdIteration = true;
 	}
 	public static void loadAd() {
-		if ((PlayerPrefs.GetInt ("GameTime") >= 50 || PlayerPrefs.GetInt ("adIteration") >= 6) && PlayerPrefs.GetString("ads") != "false") {
+		if ((PlayerPrefs.GetInt ("GameTime") >= 100 || PlayerPrefs.GetInt ("adIteration") >= 6) && PlayerPrefs.GetString("ads") != "false") {
 			float randomNum = UnityEngine.Random.Range (0f, 100f);
 			if(randomNum > 40f) {
 				if(Advertisement.isReady("pictureZone")) {

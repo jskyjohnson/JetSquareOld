@@ -9,10 +9,13 @@ public class CoinController : MonoBehaviour {
 	public float speed;
 	public bool willFollow;
 	public GameObject feedback;
+	public int coinValue;
 	// Use this for initialization
 	void Start () {
 		willFollow = false;
 		speed = 2.0f;
+		if (coinValue == 0)
+			coinValue = 1;
 	}
 	
 	// Update is called once per frame

@@ -79,7 +79,7 @@ namespace Soomla.Store {
 					AndroidJavaObject jniGooglePlayIabService = jniGooglePlayIabServiceClass.CallStatic<AndroidJavaObject>("getInstance");
 					jniGooglePlayIabService.Call("setPublicKey", StoreSettings.AndroidPublicKey);
 
-
+					if (StoreSettings.PlaySsvValidation) {
 					using(AndroidJavaObject obj_HashMap = new AndroidJavaObject("java.util.HashMap"))
 					{
 						IntPtr method_Put = AndroidJNIHelper.GetMethodID(obj_HashMap.GetRawClass(), "put",
@@ -138,7 +138,7 @@ namespace Soomla.Store {
 						jniGooglePlayIabService.Call("configVerifyPurchases", obj_HashMap);
                     }
                     
-                    jniGooglePlayIabServiceClass.SetStatic("AllowAndroidTestPurchases", StoreSettings.AndroidTestPurchases);
+						jniGooglePlayIabServiceClass.SetStatic("AllowAndroidTestPurchases", StoreSettings.AndroidTestPurchases); }
 				}
 
 			}

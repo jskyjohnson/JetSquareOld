@@ -55,6 +55,9 @@ public class menuScript : MonoBehaviour {
 		foreach (GameObject item in instructions) {
 			item.SetActive(false);
 		}
+		if (PlayerPrefs.GetString ("DontShowShare") == "True") {
+			share.SetActive (false);
+		}
 	}
 	public void Play() {
 		//Debug.Log ("Clicked");
@@ -89,7 +92,10 @@ public class menuScript : MonoBehaviour {
 
 	public void showMenu() {
 		foreach (GameObject item in menuObjects) {
-			item.SetActive(true);
+			if (PlayerPrefs.GetString ("DontShowShare") == "True" && item.Equals(share)) {
+			} else {
+				item.SetActive(true);
+			}
 		}
 		foreach (GameObject item in instructions) {
 			item.SetActive(false);

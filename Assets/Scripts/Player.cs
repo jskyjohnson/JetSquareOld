@@ -138,11 +138,11 @@ public class Player : MonoBehaviour {
 		jumpsCount = 2;
 		leftBoundary = -(maincamera.orthographicSize * maincamera.aspect) + 2.8593f;
 		rightBoundary = maincamera.orthographicSize * maincamera.aspect + 2.8593f;
+		coinValue = 1;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (shadowTimeIntervalCreation);
 		timePassed += Time.deltaTime;
 		//if you go outside the sides
 		if (playerobject.transform.position.x > rightBoundary || playerobject.transform.position.x < leftBoundary) {
@@ -347,8 +347,8 @@ public class Player : MonoBehaviour {
 			coinSource.clip=HitCoin;
 			coinSource.Play ();
 
-			coins += coinValue;
-			initcoins += coinValue;
+			coins += coll.gameObject.GetComponent<CoinController> ().coinValue;
+			initcoins += coll.gameObject.GetComponent<CoinController> ().coinValue;
 			Destroy(coll.gameObject);
 			coinGUI.GetComponent<Text>().text = initcoins.ToString();
 		}
@@ -364,26 +364,26 @@ public class Player : MonoBehaviour {
 			coinColor = new Color(1f, 1f, 1f);
 			levelBasedColor = new Color(0.46666f, 0.88235f, 0.866666f); //baby blue/green
 		} else if (score < 10 && score >= 5) {
-			coinValue = 2;
+			coinValue = 1;
 			scale = 1.1f;
 			spaceBetweenObstacles = 4.1f;
-			coinColor = new Color(0.847f, 0.255f, 0.255f);
 			//previousColor = levelBasedColor;
 			levelBasedColor = new Color(0.50196f, 0.8313f, 0.61176f); //green
 		} else if (score < 20 && score >= 10) {
 			coinValue = 2;
 			scale = 1.0f;
 			spaceBetweenObstacles = 3.7f;
+			coinColor = new Color(0.847f, 0.255f, 0.255f);
 			levelBasedColor = new Color(1.0f, 0.6666f, 0.4117f);//orange
 		} else if (score < 30 && score >= 20) {
-			coinValue = 3;
+			coinValue = 2;
 			scale = 0.9f;
-			coinColor = new Color(0.0705f, 0.2902f, 0.941f);
 			spaceBetweenObstacles = 3.4f;
 			levelBasedColor = new Color(0.5137f, 0.50196f, 0.83137f); //purple
 		} else if (score < 50 && score >= 30) {
 			coinValue = 3;
 			scale = 0.8f;
+			coinColor = new Color(0.0705f, 0.2902f, 0.941f);
 			spaceBetweenObstacles = 3.2f;
 			levelBasedColor = new Color(0.8823f, 0.4666f, 0.4666f); //red
 		} else {
@@ -450,10 +450,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 	void CreateObstacle(float spaceloc, int locy, float spacelen, Color platformcolor) {
-		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 6.1f), locy, 0);
+		spawnLocation = new Vector3 ((spaceloc - (0.5f * spacelen) - 9.0f), locy, 0);
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
-		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 6.1f), locy, 0);
+		spawnLocation = new Vector3 ((spaceloc + (0.5f * spacelen) + 9.0f), locy, 0);
 		obstacle = (GameObject)Instantiate(Deathblock, spawnLocation, Quaternion.identity);
 		//obstacle.GetComponent<SpriteRenderer> ().color = platformcolor;
 	}
@@ -474,6 +474,7 @@ public class Player : MonoBehaviour {
 		spawnLocation = new Vector3 (locx, locy, 0);
 		GameObject newCoin = (GameObject)Instantiate(Coin, spawnLocation, Quaternion.identity);
 		newCoin.GetComponent<SpriteRenderer> ().color = coinColor;
+		newCoin.GetComponent<CoinController> ().coinValue = coinValue;
 	}
 	//loads the proper skin depending on the current configuration.
 	public void loadSkin() {
