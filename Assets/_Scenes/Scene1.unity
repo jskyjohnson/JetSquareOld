@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b9cd35857d743b1a69d192f70ee3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1108948522}
+  player: {fileID: 0}
   button: {fileID: 129909056}
   text: {fileID: 451475579}
   quantity: {fileID: 1202378736}
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b9cd35857d743b1a69d192f70ee3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1108948522}
+  player: {fileID: 0}
   button: {fileID: 450682879}
   text: {fileID: 1450341437}
   quantity: {fileID: 1607111599}
@@ -1550,7 +1550,7 @@ MonoBehaviour:
   givenScore: 0
   hasCollided: 0
   contactpoint: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
+  player: {fileID: 1108948522}
 --- !u!1 &639949950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   speed: 0
   willFollow: 0
-  feedback: {fileID: 0}
+  feedback: {fileID: 822714716}
   coinValue: 0
 --- !u!1 &1010258948
 GameObject:
@@ -2877,7 +2877,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b48e442f71bbde042ba9214ef35329dc, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3015,7 +3015,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2d10da5000fd045468c9ff9114592a88, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3227,7 +3227,7 @@ MonoBehaviour:
   leaderboard: {fileID: 2099816009}
   highscoretext: {fileID: 1684573621}
   share: {fileID: 745269493}
-  mainMenu: {fileID: 0}
+  mainMenu: {fileID: 1171692557}
   invite: {fileID: 0}
   fadeIn: 0
   opacity: 0

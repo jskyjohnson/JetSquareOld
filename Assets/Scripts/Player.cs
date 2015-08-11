@@ -122,8 +122,6 @@ public class Player : MonoBehaviour {
 
 	void Start () {
 		timePassed = 0f;
-		musicSource.clip = music;
-		musicSource.Play ();
 		coinMagnet = false;
 		canReplicate = false;
 		right = false;
@@ -409,11 +407,21 @@ public class Player : MonoBehaviour {
 				coll.gameObject.GetComponent<PlatformScript>().contactpoint = playerobject.transform.position;
 				if (right == true) {
 					float randomnum = UnityEngine.Random.Range (12.8F, rightBoundary + (4.8f - scale * 1.2f));
-					CreatePlatform (randomnum, -8.6f + (-9.5f * (float)(score + 2f)), UnityEngine.Random.Range (42.0F, 62.0F), randomnum - 6.6f, levelBasedColor, scale);
+					float angle = UnityEngine.Random.Range (42.0F, 62.0F);
+					if(angle > 50f) {
+						CreatePlatform (randomnum, -8f + (-9.5f * (float)(score + 2f)), angle, randomnum - 6.6f, levelBasedColor, scale);
+					} else {
+						CreatePlatform (randomnum, -8.6f + (-9.5f * (float)(score + 2f)), angle, randomnum - 6.6f, levelBasedColor, scale);
+					}
 					right = false;
 				} else if (right == false) {
 					float randomnum = UnityEngine.Random.Range (leftBoundary - (4.8f - scale * 1.2f), -5.3F);
-					CreatePlatform (randomnum, -8.6f + (-9.5f * (float)(score + 2f)), UnityEngine.Random.Range (298F, 318F), randomnum + 6.6f, levelBasedColor, scale);
+					float angle = UnityEngine.Random.Range (298F, 318F);
+					if (angle < 310f) {
+						CreatePlatform (randomnum, -8.6f + (-9.5f * (float)(score + 2f)), angle, randomnum + 6.6f, levelBasedColor, scale);
+					} else {
+						CreatePlatform (randomnum, -8f + (-9.5f * (float)(score + 2f)), angle, randomnum + 6.6f, levelBasedColor, scale);
+					}
 					right = true;
 				}
 				coll.gameObject.GetComponent<PlatformScript>().hasCollided = true;

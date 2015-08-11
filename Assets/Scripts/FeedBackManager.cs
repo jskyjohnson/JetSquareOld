@@ -27,8 +27,6 @@ public class FeedBackManager : MonoBehaviour {
 
 			GameObject hitCoinParticle = (GameObject) Instantiate (hitCoinFeedback, newspawn, Quaternion.identity);
 			hitCoinParticle.GetComponent<SpriteRenderer>().color = color;
-
 		}
-
 	}
 }
