@@ -84,11 +84,11 @@ public class Player : MonoBehaviour {
 	public Sprite CarotFace;
 	public Sprite xface;
 	public Sprite Bat;
-	public Sprite BatMan;
-	public Sprite IronMan;
-	public Sprite CaptainA;
-	public Sprite SpiderMan;
-	public Sprite Nyanco;
+	public Sprite Sky1;
+	public Sprite Sky2;
+	public Sprite Sky3;
+	public Sprite Sky4;
+	public Sprite Sky5;
 	public Sprite CircleShadow;
 	public Sprite meowShadow;
 	public Sprite BatShadow;
@@ -318,7 +318,7 @@ public class Player : MonoBehaviour {
 			}
 			if (Input.GetKeyUp ("up")) {
 				jumpsCount += 1;
-				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 150f) * jumpPowerInTime), ForceMode2D.Impulse);
+				playerobject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((sinAngle * 25f * jumpPowerInTime), (cosAngle * 200f) * jumpPowerInTime), ForceMode2D.Impulse);
 				jumpPowerInTime = 0f;
 				if(right && jumpsCount == 1) {
 					playerobject.GetComponent<Rigidbody2D>().AddTorque (-15f);
@@ -493,6 +493,7 @@ public class Player : MonoBehaviour {
 			case "Default":
 			case "":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Default;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -512,6 +513,7 @@ public class Player : MonoBehaviour {
 			break;
 			case "Purple":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Purple;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -530,6 +532,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Pink":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Pink;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -548,6 +551,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Teal":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Teal;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -566,6 +570,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Green":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Green;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -584,6 +589,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Moon":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Moon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
@@ -602,6 +608,7 @@ public class Player : MonoBehaviour {
 			break;
 			case "CirclePlayer":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = CirclePlayer;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
@@ -619,6 +626,7 @@ public class Player : MonoBehaviour {
 			break;
 			case "8Ball":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = eightBall;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
@@ -637,6 +645,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "TennisBall":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = TennisBall;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<CircleCollider2D>();
@@ -655,6 +664,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Mellon":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Mellon;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -675,6 +685,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Cat":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Cat;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -695,6 +706,7 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = shadowscale;
 				break;
 			case "toungeface":
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = ToungeFace;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -718,6 +730,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "carotface":
 				PlayerShadow.isTrail = true;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = CarotFace;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -740,6 +753,7 @@ public class Player : MonoBehaviour {
 				break;
 			case "Bat":
 				PlayerShadow.isTrail = false;
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = Bat;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -760,6 +774,7 @@ public class Player : MonoBehaviour {
 				playershadow.transform.localScale = shadowscale;
 				break;
 			case "xface":
+				PlayerShadow.destroyable = true;
 				playerobject.GetComponent<SpriteRenderer>().sprite = xface;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
@@ -780,9 +795,10 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer>().sprite = xface;
 				playershadow.transform.localScale = shadowscale;
 				break;
-			case "Batman":
-				PlayerShadow.isTrail = false;
-				playerobject.GetComponent<SpriteRenderer>().sprite = BatMan;
+			case "Sky1":
+				PlayerShadow.isTrail = true;
+				PlayerShadow.destroyable = false;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Sky1;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
@@ -790,28 +806,28 @@ public class Player : MonoBehaviour {
 				playerobject.transform.localScale = playerscale;
 				thisDeath = BatManDeath;
 				//shadow customization
-				shadowcolor = new Color(0f, 0f, 0f);
-				shadowcolor.a = 0.2f;
-				shadowscale = new Vector3(1.0f, 1.0f, 1f);
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.6f;
+				shadowscale = new Vector3(0.6f, 0.6f, 0.6f);
 				fireshadowcolor = new Color(0f, 0.0f, 0f);
-				fireshadowscale = new Vector3(1.8f, 1.8f, 1f);
-				fireshadowcolor.a = 0.6f;
-				shadowTimeIntervalCreation = 0.1f;
+				fireshadowscale = new Vector3(1.4f, 1.4f, 1f);
+				fireshadowcolor.a = 1f;
+				shadowTimeIntervalCreation = 0.01f;
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
-				playershadow.GetComponent<SpriteRenderer>().sprite = BatShadow;
 				playershadow.transform.localScale = shadowscale;
 				break;
-			case "Ironman":
-				playerobject.GetComponent<SpriteRenderer>().sprite = IronMan;
+			case "Sky2":
+				PlayerShadow.destroyable = true;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Sky2;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				PlayerShadow.isTrail = true;
+				PlayerShadow.isTrail = false;
 				thisDeath = IronManDeath;
 				//shadow customization
-				shadowcolor = new Color(1f, 0.3137f, 0.3137f);
+				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.9f;
 				shadowscale = new Vector3(0.3f, 0.3f, 1f);
 				fireshadowcolor = new Color(0f, 1f, 1f);
@@ -820,8 +836,9 @@ public class Player : MonoBehaviour {
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
 				playershadow.transform.localScale = shadowscale;
 				break;
-			case "CaptainA":
-				playerobject.GetComponent<SpriteRenderer>().sprite = CaptainA;
+			case "Sky3":
+				PlayerShadow.destroyable = true;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Sky3;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
@@ -833,32 +850,34 @@ public class Player : MonoBehaviour {
 				shadowcolor = new Color(1f, 1f, 1f);
 				shadowcolor.a = 0.2f;
 				shadowscale = new Vector3(0.3f, 0.3f, 1f);
-				fireshadowcolor = new Color(1f, 0.54f, 0.54f);
+				fireshadowcolor = new Color(0.6f, 0.4f, 0.4f);
 				fireshadowscale = new Vector3(1f, 1f, 1f);
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
 				playershadow.transform.localScale = shadowscale;
 				break;
-			case "Spiderman":
-				playerobject.GetComponent<SpriteRenderer>().sprite = SpiderMan;
+			case "Sky4":
+				PlayerShadow.destroyable = true;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Sky4;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;
 				playerscale.y = 0.6f;
 				playerobject.transform.localScale = playerscale;
-				thisDeath = SpiderManDeath;
-				PlayerShadow.isTrail = true;
+				PlayerShadow.isTrail = false;
+				thisDeath = IronManDeath;
 				//shadow customization
-				shadowcolor = new Color(1f,1f, 1f);
-				shadowcolor.a = 0.5f;
-				shadowscale = new Vector3(0.1f, 0.1f, 1f);
-				fireshadowcolor = new Color(1f, 1f, 1f);
-				fireshadowscale = new Vector3(0.3f, 0.3f, 1f);
-				shadowTimeIntervalCreation = 0.001f;
+				shadowcolor = new Color(1f, 1f, 1f);
+				shadowcolor.a = 0.9f;
+				shadowscale = new Vector3(0.3f, 0.3f, 1f);
+				fireshadowcolor = new Color(0f, 1f, 1f);
+				fireshadowscale = new Vector3(0.5f, 0.5f, 1f);
+				shadowTimeIntervalCreation = 0.01f;
 				playershadow.GetComponent<SpriteRenderer>().color = shadowcolor;
 				playershadow.transform.localScale = shadowscale;
 				break;
-			case "Nyanco":
-				playerobject.GetComponent<SpriteRenderer>().sprite = Nyanco;
+			case "Sky5":
+				PlayerShadow.destroyable = true;
+				playerobject.GetComponent<SpriteRenderer>().sprite = Sky5;
 				Destroy (GetComponent<Collider2D>());
 				playerobject.AddComponent<BoxCollider2D>();
 				playerscale.x = 0.6f;

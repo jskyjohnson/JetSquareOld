@@ -2199,7 +2199,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2758,7 +2758,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: .0500000007
-  m_GravityScale: 2.9000001
+  m_GravityScale: 4
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2843,11 +2843,11 @@ MonoBehaviour:
   CarotFace: {fileID: 21300000, guid: f18d8c62a65c74cc7b0224c6305cb063, type: 3}
   xface: {fileID: 21300000, guid: dc9358ef7b905413c8961c1c98973867, type: 3}
   Bat: {fileID: 21300000, guid: 1644c5cae52d045859e36b2c0f17c91c, type: 3}
-  BatMan: {fileID: 21300000, guid: a7c5fd090b4a6434d847794949cab554, type: 3}
-  IronMan: {fileID: 21300000, guid: fc1ca9b1e84bd45b8b38888cae4f25a8, type: 3}
-  CaptainA: {fileID: 21300000, guid: 3b394e6e4367d486982e3617363e0acf, type: 3}
-  SpiderMan: {fileID: 21300000, guid: ae82ae244c60f4c5ca0c59d7837cb565, type: 3}
-  Nyanco: {fileID: 21300000, guid: fdb5f2a68073144b5bfc8ecee445ec07, type: 3}
+  Sky1: {fileID: 21300000, guid: 98e3083c1c69b4cdf82ddd88dc61ca7e, type: 3}
+  Sky2: {fileID: 21300000, guid: f442e97e2fc714c97b0ad9b706fa3160, type: 3}
+  Sky3: {fileID: 21300000, guid: 32abd000d665041a4bb0de502d37d50d, type: 3}
+  Sky4: {fileID: 21300000, guid: a5cf472b928204d64aa3a573188162be, type: 3}
+  Sky5: {fileID: 0}
   CircleShadow: {fileID: 21300000, guid: 3013105fe4fae43f3ac5279891e8a88f, type: 3}
   meowShadow: {fileID: 21300000, guid: 60bc4b6e80197492e9d257d1bdea717d, type: 3}
   BatShadow: {fileID: 21300000, guid: 80ae30851d83f46f5a0cf93b97800c99, type: 3}
