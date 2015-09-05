@@ -47,6 +47,10 @@ public class Player : MonoBehaviour {
 	public GameObject CaptainADeath;
 	public GameObject SpiderManDeath;
 	public GameObject NyancoDeath;
+	public GameObject sky1;
+	public GameObject sky2;
+	public GameObject sky3;
+	public GameObject sky4;
 	//Logic Variables
 	public bool canReplicate;
 	public bool right;

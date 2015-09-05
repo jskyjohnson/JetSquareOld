@@ -2811,6 +2811,10 @@ MonoBehaviour:
   CaptainADeath: {fileID: 147994, guid: dda7958d5611f0e418bcb3c0476abb6c, type: 2}
   SpiderManDeath: {fileID: 162560, guid: b69eaf30f7bf05640bc503948fdb2817, type: 2}
   NyancoDeath: {fileID: 126170, guid: 397fbfac0562e60498c2f97c94d8ae0c, type: 2}
+  sky1: {fileID: 171758, guid: 929a5b7ecca62f04bbaf905d7c17af2a, type: 2}
+  sky2: {fileID: 0}
+  sky3: {fileID: 123674, guid: 44c8b6ae359c3cd4a9d03f17db9de18d, type: 2}
+  sky4: {fileID: 160770, guid: 4be96face0fd7c74ea8bb4d8c4b512cc, type: 2}
   canReplicate: 1
   right: 1
   spaceBetweenObstacles: 3
