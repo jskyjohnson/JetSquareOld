@@ -20,6 +20,7 @@ public class CoinController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (player.GetComponent<Player> ().coinMagnet);
 		if(player.GetComponent<Player> ().coinMagnet == true && this.gameObject.name == "Coin(Clone)") {
 			position = this.gameObject.transform.position;
 			playerPosition = player.transform.position;

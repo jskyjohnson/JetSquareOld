@@ -11,6 +11,12 @@ public class Initializer : MonoBehaviour {
 		} else if (this.gameObject.name != "Initializer") {
 			DontDestroyOnLoad (this.gameObject);
 		}
+	}
+	void Update() {
+		StartCoroutine(loadScene1());
+	}
+	IEnumerator loadScene1() {
+		yield return new WaitForSeconds(2.0f);
 		Application.LoadLevel ("Scene1");
 	}
 }

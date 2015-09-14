@@ -18,7 +18,7 @@ public class PlayerDeath : MonoBehaviour {
 			if(!Player.guardianAngel) {
 				Debug.Log (PlayerPrefs.GetInt ("adIteration"));
 				PlayerPrefs.SetInt ("adIteration", PlayerPrefs.GetInt ("adIteration") + 1);
-				if(PlayerPrefs.GetInt ("GameTime") < 100 && PlayerPrefs.GetInt ("adIteration") < 6 || PlayerPrefs.GetString("ads") == "false") {
+				if(PlayerPrefs.GetInt ("GameTime") < 210 && PlayerPrefs.GetInt ("adIteration") < 12 || PlayerPrefs.GetString("ads") == "false") {
 					Application.LoadLevel ("Scene1");
 				}
 				AdsManager.loadAd();

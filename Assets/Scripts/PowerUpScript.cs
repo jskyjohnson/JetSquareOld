@@ -44,9 +44,11 @@ public class PowerUpScript : MonoBehaviour {
 	}
 
 	IEnumerator CoinMagnet() {
+		Debug.Log ("start");
 		player.GetComponent<Player>().coinMagnet = true;
 		PlayerPrefs.SetInt ("CoinMagnetQuantity", PlayerPrefs.GetInt ("CoinMagnetQuantity") - 1);
 		yield return new WaitForSeconds(CoinMagnetDuration);
+		Debug.Log ("end");
 		player.GetComponent<Player>().coinMagnet = false;
 	}
 
