@@ -80,7 +80,7 @@ using Soomla.Store;
 			"3000 Coins",                                       		// name
 			"Get 3000 Coins", // description
 			"coins3000",                                       		// item id
-			new PurchaseWithMarket(new MarketItem(COINS_3000_ID, 1.99))); // the way this virtual good is purchased
+			new PurchaseWithMarket(new MarketItem(COINS_3000_ID, 0.99))); // the way this virtual good is purchased
 
 		public static SingleUseVG COINS_10000_ITEM = new SingleUseVG(
 			"10000 Coins",                                       		// name

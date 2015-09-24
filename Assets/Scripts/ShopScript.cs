@@ -88,10 +88,12 @@ public class ShopScript : MonoBehaviour {
 		if (Advertisement.IsReady ()) {
 			Advertisement.Show (null, new ShowOptions {
 				resultCallback = ShowResult => {
-					PlayerPrefs.SetInt ("GameTime", 0);
-					PlayerPrefs.SetInt ("adIteration", 0);
-					PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 100);
-					Application.LoadLevel ("ShopMenu");
+					if(ShowResult == ShowResult.Finished) {
+						PlayerPrefs.SetInt ("GameTime", 0);
+						PlayerPrefs.SetInt ("adIteration", 0);
+						PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 100);
+						Application.LoadLevel ("ShopMenu");
+					}
 				}
 			});
 		}
