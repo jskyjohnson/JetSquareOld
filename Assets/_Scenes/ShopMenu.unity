@@ -190,8 +190,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
-  m_AnchoredPosition: {x: -7.28480018e-06, y: -41}
-  m_SizeDelta: {x: 142, y: 57}
+  m_AnchoredPosition: {x: 7.62939726e-06, y: -41}
+  m_SizeDelta: {x: 333, y: 57}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &12514029
 MonoBehaviour:
@@ -224,7 +224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1 Ad
+  m_Text: 1 Finished Ad
 --- !u!222 &12514030
 CanvasRenderer:
   m_ObjectHideFlags: 0
