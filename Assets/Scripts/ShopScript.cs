@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using Soomla;
 using Soomla.Store;
+using UnityEngine.Advertisements;
 
 
 public class ShopScript : MonoBehaviour {
@@ -82,6 +83,18 @@ public class ShopScript : MonoBehaviour {
 	}
 	public void restore() {
 		SoomlaStore.RestoreTransactions();
+	}
+	public void playAdForCoins() {
+		if (Advertisement.IsReady ()) {
+			Advertisement.Show (null, new ShowOptions {
+				resultCallback = ShowResult => {
+					PlayerPrefs.SetInt ("GameTime", 0);
+					PlayerPrefs.SetInt ("adIteration", 0);
+					PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 100);
+					Application.LoadLevel ("ShopMenu");
+				}
+			});
+		}
 	}
 	public void buy(String name) {
 		Debug.Log ("called");

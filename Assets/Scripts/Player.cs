@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	float cosAngle = 1.0f;
 	float sinAngle = 0.0f;
 	//Game Objects
+	public Image powerBar;
 	public GameObject Platform;
 	public GameObject Deathblock;
 	public GameObject playerobject;
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour {
 	private GameObject obstacle;
 	public Camera maincamera;
 	public BackgroundCube backgroundCube;
-
+	public static bool isDemo;
 	public GameObject thisDeath;//
 	public GameObject DefaultDeath;//
 	public GameObject CirclePlayerDeath;//
@@ -141,6 +142,7 @@ public class Player : MonoBehaviour {
 		leftBoundary = -(maincamera.orthographicSize * maincamera.aspect) + 2.8593f;
 		rightBoundary = maincamera.orthographicSize * maincamera.aspect + 2.8593f;
 		coinValue = 1;
+		powerBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 34f);
 	}
 
 	// Update is called once per frame
@@ -161,10 +163,14 @@ public class Player : MonoBehaviour {
 				CreatePlayerShadow ();
 			}
 		}
+		powerBar.GetComponent<RectTransform>().sizeDelta = new Vector2(jumpPowerInTime * 2000f, 34f);
 		foreach (Touch touch in Input.touches)
 		{
 			if ((touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved) && jumpsCount < 2)
 			{
+				if(isDemo) {
+					playerobject.GetComponent<Rigidbody2D>().isKinematic = false;
+				}
 				jumpPowerInTime += Time.deltaTime;
 				Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 				if(playershadowcolor.r < fireshadowcolor.r) {
@@ -249,6 +255,9 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKey ("up") && jumpsCount < 2) {
+			if(isDemo) {
+				playerobject.GetComponent<Rigidbody2D>().isKinematic = false;
+			}
 			jumpPowerInTime += Time.deltaTime;
 			Color playershadowcolor = playershadow.GetComponent<SpriteRenderer> ().color;
 			if(playershadowcolor.r < fireshadowcolor.r) {
@@ -351,6 +360,15 @@ public class Player : MonoBehaviour {
 
 			coins += coll.gameObject.GetComponent<CoinController> ().coinValue;
 			initcoins += coll.gameObject.GetComponent<CoinController> ().coinValue;
+			if(coll.gameObject.GetComponent<CoinController> ().coinValue == 1) {
+				PlayerPrefs.SetInt ("TotalYellowCoins", PlayerPrefs.GetInt ("TotalYellowCoins") + 1);
+			} else if (coll.gameObject.GetComponent<CoinController> ().coinValue == 2) {
+				PlayerPrefs.SetInt ("TotalRedCoins", PlayerPrefs.GetInt ("TotalRedCoins") + 1);
+			} else if (coll.gameObject.GetComponent<CoinController> ().coinValue == 3) {
+				PlayerPrefs.SetInt ("TotalBlueCoins", PlayerPrefs.GetInt ("TotalBlueCoins") + 1);
+			} else if(coll.gameObject.GetComponent<CoinController> ().coinValue == 4) {
+				PlayerPrefs.SetInt ("TotalPinkCoins", PlayerPrefs.GetInt ("TotalPinkCoins") + 1);
+			}
 			Destroy(coll.gameObject);
 			coinGUI.GetComponent<Text>().text = initcoins.ToString();
 		}
@@ -402,6 +420,9 @@ public class Player : MonoBehaviour {
 			backgroundCube.randTorHit();
 			feedbackmanager.hitPlatform(this);
 			if((!coll.gameObject.GetComponent<PlatformScript>().hasCollided) || hasDied) {
+				if(isDemo) {
+					playerobject.GetComponent<Rigidbody2D>().isKinematic = true;
+				}
 				RandomiseAudio(HitPlatform);
 				playerobject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 				playerobject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
@@ -434,6 +455,9 @@ public class Player : MonoBehaviour {
 				sinAngle = -(float)(Math.Sin (3.14f * (rot.z / 180f)));
 				if(coll.gameObject.GetComponent<PlatformScript>().givenScore == false) {
 					score += 1;
+					if(score >= 5 && isDemo) {
+						die ();
+					}
 					coll.gameObject.GetComponent<PlatformScript>().givenScore = true;
 				}
 				scoreGUI.GetComponent<Text>().text = score.ToString();
@@ -907,8 +931,11 @@ public class Player : MonoBehaviour {
 		Debug.Log ("timePassed " + PlayerPrefs.GetInt ("GameTime"));
 		PlayerPrefs.SetInt ("GameTime", (int) timePassed + PlayerPrefs.GetInt ("GameTime"));
 		playerDeather ();
-
+		Player.isDemo = false;
 		hasDied = true;
+		PlayerPrefs.SetInt ("TotalScore", PlayerPrefs.GetInt ("TotalScore") + score);
+		PlayerPrefs.SetInt ("TotalDeaths", PlayerPrefs.GetInt ("TotalDeaths") + 1);
+		PlayerPrefs.SetInt ("TotalTimePlayed", PlayerPrefs.GetInt ("TotalTimePlayed") + (int) timePassed);
 		if (!guardianAngel) {
 			PlayerPrefs.SetInt ("LastScore", score);
 			StoreValues (score, coins);

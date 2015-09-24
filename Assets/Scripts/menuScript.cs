@@ -9,6 +9,7 @@ public class menuScript : MonoBehaviour {
 	int highscorevalue;
 	public Text text;
 	public Text coins;
+	public Text countdown;
 	public GameObject shop;
 	public GameObject playbutton;
 	public GameObject player;
@@ -20,19 +21,28 @@ public class menuScript : MonoBehaviour {
 	public GameObject share;
 	public GameObject mainMenu;
 	public GameObject invite;
+	public GameObject achievements;
 	public bool fadeIn;
 	public float opacity;
-	public float instructionOpacity;
-	public GameObject[] instructions;
 	public GameObject[] menuObjects;
 	public GameObject[] leaderboardObjects;
+	public GameObject[] buttonBounce;
+	public GameObject instructionText;
 	public Button inviteButton;
+
 	//public AudioSource menuSong;
 
 	int coinsvalue;
 	// Use this for initialization
 	void Start () {
 		//menuSong.Play ();
+		foreach(GameObject item in buttonBounce) {
+			item.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 200f);
+		}
+
+		if(PlayerPrefs.GetInt ("TotalScore") == 0) {
+			PlayerPrefs.SetInt ("TotalScore", PlayerPrefs.GetInt ("highscore"));
+		}
 		text.GetComponent<Text> ().text = PlayerPrefs.GetInt ("LastScore").ToString ();
 		Menu = Menu.GetComponent<Canvas> ();
 		playGame = playGame.GetComponent<Button> ();
@@ -52,11 +62,31 @@ public class menuScript : MonoBehaviour {
 		foreach(GameObject item in leaderboardObjects) {
 			item.SetActive(false);
 		}
-		foreach (GameObject item in instructions) {
-			item.SetActive(false);
-		}
 		if (PlayerPrefs.GetString ("DontShowShare") == "True") {
 			share.SetActive (false);
+		}
+	}
+	IEnumerator bounce(){
+		foreach(GameObject item in buttonBounce) {
+			if(item.GetComponent<RectTransform>().sizeDelta.x > 177f) {
+				Vector2 newSize = new Vector2(item.GetComponent<RectTransform>().sizeDelta.x - 1f, item.GetComponent<RectTransform>().sizeDelta.y -1f);
+				item.GetComponent<RectTransform>().sizeDelta = newSize;
+				yield return 0;
+			}
+		}
+	}
+	void Update() {
+		if(playbutton != null) {
+			StartCoroutine(bounce());
+		}
+		if(Player.isDemo) {
+			if(player.GetComponent<Player>().score <= 1) {
+				instructionText.GetComponent<Text>().text = "Tap and hold to build power, release to jump.";
+			} else if (player.GetComponent<Player>().score <= 2) {
+				instructionText.GetComponent<Text>().text = "You can double jump.";
+			} else if (player.GetComponent<Player>().score <= 3) {
+				instructionText.GetComponent<Text>().text = "Press play to start after dying.";
+			}
 		}
 	}
 	public void Play() {
@@ -69,11 +99,10 @@ public class menuScript : MonoBehaviour {
 		Destroy (share);
 		Destroy (highscoretext);
 		Destroy (invite);
-		foreach (GameObject item in instructions) {
-			Destroy (item);
-		}
-		player.GetComponent<Rigidbody2D> ().isKinematic = false;
+		Destroy (achievements);
+		StartCoroutine(beginGame());
 		coins.text = "0";
+		text.text = "0";
 		highscore.text = "0";
 	}
 
@@ -81,13 +110,15 @@ public class menuScript : MonoBehaviour {
 		Application.LoadLevel ("ShopMenu");
 	}
 
-	public void showHowToPlay() {
-		foreach (GameObject item in menuObjects) {
-			item.SetActive(false);
+	IEnumerator beginGame() {
+		int count = 3;
+		while(count > 0) {
+			countdown.text = count.ToString();
+			count --;
+			yield return new WaitForSeconds(1.0f);
 		}
-		foreach (GameObject item in instructions) {
-			item.SetActive(true);
-		}
+		Destroy (countdown);
+		player.GetComponent<Rigidbody2D>().isKinematic = false;
 	}
 
 	public void showMenu() {
@@ -97,9 +128,15 @@ public class menuScript : MonoBehaviour {
 				item.SetActive(true);
 			}
 		}
-		foreach (GameObject item in instructions) {
-			item.SetActive(false);
-		}
+	}
+
+	public void Stats() {
+		Application.LoadLevel ("Stats");
+	}
+
+	public void Demo() {
+		Player.isDemo = true;
+		Play ();
 	}
 
 	public void backtoScene1() {
