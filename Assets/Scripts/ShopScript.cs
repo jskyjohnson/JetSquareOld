@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System;
 using Soomla;
 using Soomla.Store;
-using UnityEngine.Advertisements;
+using ChartboostSDK;
 
 
 public class ShopScript : MonoBehaviour {
@@ -85,7 +85,7 @@ public class ShopScript : MonoBehaviour {
 		SoomlaStore.RestoreTransactions();
 	}
 	public void playAdForCoins() {
-		if (Advertisement.IsReady ()) {
+		/*if (Advertisement.IsReady ()) {
 			Advertisement.Show (null, new ShowOptions {
 				resultCallback = ShowResult => {
 					if(ShowResult == ShowResult.Finished) {
@@ -96,7 +96,8 @@ public class ShopScript : MonoBehaviour {
 					}
 				}
 			});
-		}
+		}*/
+		ChartboostExample.runAddCoinsAd();
 	}
 	public void buy(String name) {
 		Debug.Log ("called");

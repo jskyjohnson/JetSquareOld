@@ -29,12 +29,15 @@ public class menuScript : MonoBehaviour {
 	public GameObject[] buttonBounce;
 	public GameObject instructionText;
 	public Button inviteButton;
+	public GameObject enterPromoButton;
+	public GameObject promoContainer;
 
 	//public AudioSource menuSong;
 
 	int coinsvalue;
 	// Use this for initialization
 	void Start () {
+		promoContainer.SetActive (false);
 		//menuSong.Play ();
 		foreach(GameObject item in buttonBounce) {
 			item.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 200f);
@@ -100,6 +103,7 @@ public class menuScript : MonoBehaviour {
 		Destroy (highscoretext);
 		Destroy (invite);
 		Destroy (achievements);
+		Destroy (enterPromoButton);
 		StartCoroutine(beginGame());
 		coins.text = "0";
 		text.text = "0";
@@ -111,7 +115,7 @@ public class menuScript : MonoBehaviour {
 	}
 
 	IEnumerator beginGame() {
-		int count = 3;
+		int count = 2;
 		while(count > 0) {
 			countdown.text = count.ToString();
 			count --;
@@ -144,5 +148,23 @@ public class menuScript : MonoBehaviour {
 	}
 	public void ExitGame() {
 		Application.Quit ();
+	}
+	public void openPromo() {
+		promoContainer.SetActive (true);
+	}
+	public void checkIfPromoCodeIsCorrect(string code) {
+		if(code == "Update2.0") {
+			if(PlayerPrefs.GetString ("rewardedUpdate2.0") != "true") {
+				PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 1200);
+				coins.text = PlayerPrefs.GetInt ("coins").ToString();
+				PlayerPrefs.SetString ("rewardedUpdate2.0", "true");
+			}
+		} else if (code == "BeholdTheYanmaster") {
+			if(PlayerPrefs.GetString ("rewardedBeholdTheYanmaster") != "true") {
+				PlayerPrefs.SetInt ("coins", PlayerPrefs.GetInt ("coins") + 1200);
+				coins.text = PlayerPrefs.GetInt ("coins").ToString();
+				PlayerPrefs.SetString ("rewardedBeholdTheYanmaster", "true");
+			}
+		}
 	}
 }
